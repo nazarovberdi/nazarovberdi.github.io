@@ -10,7 +10,7 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "format": "oxfmt src/",
-    "deploy": "bun run build && gh-pages -d dist"
+    "deploy": "bun run build && gh-pages -d dist --nojekyll"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
