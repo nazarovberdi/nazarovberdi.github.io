@@ -6,6 +6,9 @@
   --font-serif: 'DM Serif Display', serif;
 
   --animate-fade-up: fade-up 0.6s ease both;
+  --animate-fade-soft: fade-soft 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-gentle-drift: gentle-drift 10s ease-in-out infinite;
+  --animate-float-subtle: float-subtle 4.5s ease-in-out infinite;
 
   @keyframes fade-up {
     from {
@@ -15,6 +18,39 @@
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-soft {
+    from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.985);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes gentle-drift {
+    0%,
+    100% {
+      opacity: 0.75;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: translate3d(0, 14px, 0) scale(1.04);
+    }
+  }
+
+  @keyframes float-subtle {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-3px);
     }
   }
 }

@@ -3,9 +3,10 @@
     class="min-h-screen bg-[#f1efe8] dark:bg-[#2a2a27] px-4 py-8 font-sans text-[#1a1a18] dark:text-[#e8e6dc]"
   >
     <div class="max-w-[680px] mx-auto">
-      <h1 class="text-[20px] font-medium mb-1">Vue / Vite OSS Roadmap</h1>
+      <h1 class="text-[20px] font-medium mb-1">Vue / Vite Learning Roadmap</h1>
       <p class="text-[13px] text-[#5f5e5a] dark:text-[#9c9a92] mb-6">
-        Check off items as you complete them — progress is saved in your browser.
+        A personal roadmap for building toward future contributions in the ecosystem. You can use
+        it too, and progress is saved in your browser.
       </p>
 
       <!-- Overall progress -->
@@ -165,7 +166,7 @@ const phases = ref<Phase[]>([
     color: '#BA7517',
     bgColor: prefersDark ? '#412402' : '#FAEEDA',
     title: 'Vite Plugin Pipeline',
-    subtitle: 'Weeks 9–12 · Your entry point for OSS contributions',
+    subtitle: 'Weeks 9–12 · A good entry point for future contributions',
     open: false,
     items: OSS_VITE,
   },
@@ -182,8 +183,8 @@ const phases = ref<Phase[]>([
     num: 5,
     color: '#185FA5',
     bgColor: prefersDark ? '#042C53' : '#E6F1FB',
-    title: 'OSS Contribution Path',
-    subtitle: 'Month 4+ · Showing up in the ecosystem',
+    title: 'Contribution Readiness',
+    subtitle: 'Month 4+ · Preparing to show up in the ecosystem',
     open: false,
     items: OSS_CONTRIBUTION,
   },
