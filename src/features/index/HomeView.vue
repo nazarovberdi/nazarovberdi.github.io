@@ -11,6 +11,7 @@
       <HeroSection />
       <ProfileSnapshotSection />
       <ProjectsSection :projects="projects" />
+      <BlogSection :posts="featuredBlogPosts" />
       <ToolboxSection :core-skills="coreSkills" :working-traits="workingTraits" />
       <ContactSection :social-profiles="socialProfiles" />
       <HomeFooter :year="year" />
@@ -19,6 +20,9 @@
 </template>
 
 <script setup lang="ts">
+import BlogSection from '@/features/blog/BlogSection.vue'
+import { featuredBlogPosts } from '@/features/blog/posts'
+
 import ContactSection from './components/ContactSection.vue'
 import HeroSection from './components/HeroSection.vue'
 import HomeFooter from './components/HomeFooter.vue'

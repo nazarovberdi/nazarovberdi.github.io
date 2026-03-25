@@ -11,6 +11,16 @@
     </div>
 
     <div class="flex flex-wrap items-center justify-end gap-3 max-sm:justify-start">
+      <RouterLink
+        to="/blog"
+        class="body-muted text-[12px] tracking-[0.04em] transition-colors duration-150 hover:text-[var(--page-text)]"
+        >Blog</RouterLink
+      >
+      <RouterLink
+        to="/goals"
+        class="body-muted text-[12px] tracking-[0.04em] transition-colors duration-150 hover:text-[var(--page-text)]"
+        >Goals</RouterLink
+      >
       <span class="pill px-[10px] py-1 text-[11px] uppercase tracking-[0.08em] body-muted">
         Status: Available
       </span>
@@ -24,3 +34,7 @@
     </div>
   </header>
 </template>
+
+<script setup lang="ts">
+import { RouterLink } from 'vue-router'
+</script>
