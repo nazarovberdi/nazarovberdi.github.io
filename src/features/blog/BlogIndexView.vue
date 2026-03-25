@@ -13,7 +13,7 @@
         <div class="min-w-0 flex-1">
           <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">Writing</p>
           <h1 class="font-serif text-[clamp(42px,10vw,86px)] leading-[0.95] tracking-[-0.05em]">
-            Blog posts in markdown, rendered with the site’s own voice.
+            Thoughts & Learnings
           </h1>
           <p class="body-muted mt-5 max-w-[580px] text-[14px] leading-[1.85]">
             Each post lives as a plain markdown file, which keeps writing lightweight while letting
