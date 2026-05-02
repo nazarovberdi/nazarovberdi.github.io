@@ -5,11 +5,6 @@ export interface SocialProfile {
   url: string
 }
 
-export interface WorkingTrait {
-  title: string
-  description: string
-}
-
 export interface Project {
   name: string
   owner: string
@@ -51,22 +46,6 @@ export const coreSkills = [
   'Tailwind CSS',
   'Vue Router',
   'GitHub',
-] as const
-
-export const workingTraits: readonly WorkingTrait[] = [
-  {
-    title: 'Interface craft',
-    description: 'Thoughtful layouts, readable spacing, and product details that feel intentional.',
-  },
-  {
-    title: 'Developer experience',
-    description: 'Tools and workflows that make building, shipping, and maintaining easier.',
-  },
-  {
-    title: 'Open source mindset',
-    description:
-      'Learning in public, documenting clearly, and building toward thoughtful contributions over time.',
-  },
 ] as const
 
 export const projects: readonly Project[] = [

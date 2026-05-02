@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400&family=Manrope:wght@400;500;600;700&display=swap');
 @import 'tailwindcss';
+@custom-variant dark (&:is(.dark *));
 
 @theme {
   --font-mono: 'DM Mono', monospace;
@@ -74,6 +75,7 @@
   --radius-card: 16px;
   --radius-pill: 999px;
   --main-width: 920px;
+  --header-height: 64px;
   --font-body: var(--font-sans);
   --dot-opacity: 0.42;
   --dot-primary: rgba(127, 240, 178, 0.09);
@@ -92,6 +94,48 @@
   --button-primary-text: #071015;
   --button-secondary-bg: rgba(9, 19, 24, 0.9);
   --button-secondary-text: #d9eee4;
+}
+
+[data-theme='light'] {
+  --page-bg: #f4faf7;
+  --page-text: #0d1f18;
+  --page-muted: #4a6b5c;
+  --page-soft-text: #7a9e90;
+  --panel-bg: rgba(255, 255, 255, 0.82);
+  --panel-bg-strong: rgba(248, 253, 250, 0.96);
+  --panel-bg-alt: rgba(236, 248, 242, 0.9);
+  --line: rgba(60, 130, 100, 0.15);
+  --line-strong: rgba(40, 160, 100, 0.28);
+  --accent: #1a9e5c;
+  --accent-soft: rgba(26, 158, 92, 0.10);
+  --hero-accent: #1a9e5c;
+  --shadow: 0 22px 70px rgba(0, 0, 0, 0.10);
+  --dot-opacity: 0.22;
+  --dot-primary: rgba(26, 158, 92, 0.07);
+  --dot-secondary: rgba(20, 180, 150, 0.06);
+  --veil-gradient: linear-gradient(
+    to bottom,
+    rgba(244, 250, 247, 0.20),
+    rgba(244, 250, 247, 0.70) 40%,
+    rgba(244, 250, 247, 0.92) 72%,
+    #f4faf7 100%
+  );
+  --hero-glow:
+    radial-gradient(circle at top, rgba(26, 158, 92, 0.12), transparent 52%),
+    linear-gradient(90deg, rgba(20, 180, 150, 0.06), transparent 52%);
+  --button-primary-bg: #1a9e5c;
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: rgba(248, 253, 250, 0.92);
+  --button-secondary-text: #0d1f18;
+}
+
+*,
+*::before,
+*::after {
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.15s ease;
 }
 
 body {
@@ -184,8 +228,8 @@ body {
   background: var(--button-primary-bg);
   color: var(--button-primary-text);
   box-shadow:
-    0 0 0 1px rgba(127, 240, 178, 0.1),
-    0 12px 34px rgba(127, 240, 178, 0.16);
+    0 0 0 1px color-mix(in srgb, var(--accent) 10%, transparent),
+    0 12px 34px color-mix(in srgb, var(--accent) 16%, transparent);
 }
 
 .secondary-button {
@@ -222,7 +266,7 @@ body {
 }
 
 .theme-hackful .hero-accent {
-  text-shadow: 0 0 24px rgba(127, 240, 178, 0.28);
+  text-shadow: 0 0 24px color-mix(in srgb, var(--accent) 28%, transparent);
 }
 
 .theme-hackful .profile-grid,
@@ -244,7 +288,7 @@ body {
   inset: 0;
   pointer-events: none;
   border-radius: inherit;
-  background: linear-gradient(180deg, rgba(127, 240, 178, 0.04), transparent 30%);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 4%, transparent), transparent 30%);
 }
 
 .theme-hackful .project-card,
@@ -255,8 +299,8 @@ body {
 
 .theme-hackful .contact-panel {
   background:
-    linear-gradient(135deg, rgba(11, 23, 28, 0.94), rgba(8, 18, 22, 0.94)),
-    linear-gradient(90deg, rgba(127, 240, 178, 0.04), transparent 42%);
+    linear-gradient(135deg, var(--panel-bg-strong), var(--panel-bg-strong)),
+    linear-gradient(90deg, color-mix(in srgb, var(--accent) 4%, transparent), transparent 42%);
 }
 
 .blog-page {
@@ -324,13 +368,13 @@ body {
 
 .blog-prose p,
 .blog-prose li {
-  color: #d8ebe3;
+  color: var(--page-text);
 }
 
 .blog-prose a {
   color: var(--accent);
   text-decoration: underline;
-  text-decoration-color: rgba(127, 240, 178, 0.42);
+  text-decoration-color: color-mix(in srgb, var(--accent) 42%, transparent);
   text-underline-offset: 0.22em;
 }
 
@@ -360,11 +404,11 @@ body {
 .blog-prose :not(pre) > code {
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(127, 240, 178, 0.08);
+  background: var(--accent-soft);
   padding: 0.18rem 0.55rem;
   font-family: var(--font-mono);
   font-size: 0.92em;
-  color: #bdf8d6;
+  color: var(--accent);
 }
 
 .blog-prose pre {
@@ -374,7 +418,7 @@ body {
   overscroll-behavior-x: contain;
   border: 1px solid var(--line);
   border-radius: 18px;
-  background: rgba(5, 13, 17, 0.96);
+  background: var(--panel-bg-strong);
   padding: 1rem 1.1rem;
 }
 
@@ -384,7 +428,7 @@ body {
   font-family: var(--font-mono);
   font-size: 13px;
   line-height: 1.8;
-  color: #dffbed;
+  color: var(--page-text);
 }
 
 .blog-code-block {
@@ -444,7 +488,19 @@ body {
 
 .blog-code-block .shiki {
   margin: 0;
-  background: transparent !important;
+  background-color: var(--shiki-dark-bg) !important;
+}
+
+.blog-code-block .shiki span {
+  color: var(--shiki-dark) !important;
+}
+
+[data-theme='light'] .blog-code-block .shiki {
+  background-color: var(--shiki-light-bg) !important;
+}
+
+[data-theme='light'] .blog-code-block .shiki span {
+  color: var(--shiki-light) !important;
 }
 
 .blog-code-block .shiki code {

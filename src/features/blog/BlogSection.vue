@@ -2,13 +2,12 @@
   <section class="mb-16 animate-fade-up [animation-delay:255ms]">
     <div class="mb-8 flex items-end justify-between gap-6 max-sm:flex-col max-sm:items-start">
       <div>
-        <p class="eyebrow mb-3 text-[11px] uppercase tracking-[0.12em]">Blog</p>
+        <p class="eyebrow mb-3 text-[11px] uppercase tracking-[0.12em]">{{ t('blogSection.eyebrow') }}</p>
         <h2 class="font-serif text-[clamp(28px,5vw,40px)] leading-[1.05] tracking-[-0.02em]">
-          Notes from the workbench.
+          {{ t('blogSection.heading') }}
         </h2>
         <p class="body-muted mt-4 max-w-[480px] text-[13px] leading-[1.8]">
-          Short write-ups on frontend craft, developer tooling, and the small decisions that make
-          products feel more intentional.
+          {{ t('blogSection.description') }}
         </p>
       </div>
 
@@ -16,7 +15,7 @@
         to="/blog"
         class="body-muted inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.06em] transition-colors duration-150 hover:text-(--page-text)"
       >
-        <span>Open Blog</span>
+        <span>{{ t('blogSection.openBlog') }}</span>
         <span aria-hidden="true">→</span>
       </RouterLink>
     </div>
@@ -41,7 +40,7 @@
         <span
           class="mt-auto pt-6 text-[12px] uppercase tracking-[0.08em] text-(--page-text) transition-transform duration-300 group-hover:translate-x-1"
         >
-          Read entry
+          {{ t('blogSection.readEntry') }}
         </span>
       </RouterLink>
     </div>
@@ -50,9 +49,12 @@
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
 import type { BlogPost } from './posts'
 import { formatBlogDate } from './posts'
+
+const { t } = useI18n()
 
 defineProps<{
   posts: BlogPost[]

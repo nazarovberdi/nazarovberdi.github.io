@@ -14,7 +14,7 @@
             class="body-muted mb-6 inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.08em] transition-colors duration-150 hover:text-(--page-text)"
           >
             <span aria-hidden="true">←</span>
-            <span>Back to blog</span>
+            <span>{{ t('post.backToBlog') }}</span>
           </RouterLink>
 
           <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">
@@ -35,18 +35,18 @@
 
       <template v-else>
         <section class="surface-panel max-w-[720px] p-8">
-          <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">Missing post</p>
+          <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">{{ t('post.missing') }}</p>
           <h1 class="font-serif text-[clamp(34px,8vw,64px)] leading-[0.96] tracking-[-0.05em]">
-            This entry does not exist yet.
+            {{ t('post.missingTitle') }}
           </h1>
           <p class="body-muted mt-5 max-w-[520px] text-[14px] leading-[1.85]">
-            The route is wired correctly, but there is no markdown file matching this slug.
+            {{ t('post.missingDesc') }}
           </p>
           <RouterLink
             to="/blog"
             class="primary-button mt-8 inline-flex items-center gap-2 rounded-full px-5 py-3 text-[12px] uppercase tracking-[0.08em]"
           >
-            Return to blog
+            {{ t('post.returnToBlog') }}
           </RouterLink>
         </section>
       </template>
@@ -57,9 +57,11 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
 import { formatBlogDate, getBlogPostBySlug } from './posts'
 
+const { t } = useI18n()
 const route = useRoute()
 const articleRef = ref<HTMLElement | null>(null)
 const copyResetTimers = new WeakMap<HTMLButtonElement, number>()

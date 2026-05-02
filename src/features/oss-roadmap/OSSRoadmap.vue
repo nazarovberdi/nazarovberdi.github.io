@@ -3,10 +3,9 @@
     class="min-h-screen bg-[#f1efe8] dark:bg-[#2a2a27] px-4 py-8 font-sans text-[#1a1a18] dark:text-[#e8e6dc]"
   >
     <div class="max-w-[680px] mx-auto">
-      <h1 class="text-[20px] font-medium mb-1">Vue / Vite Learning Roadmap</h1>
+      <h1 class="text-[20px] font-medium mb-1">{{ t('roadmap.title') }}</h1>
       <p class="text-[13px] text-[#5f5e5a] dark:text-[#9c9a92] mb-6">
-        A personal roadmap for building toward future contributions in the ecosystem. You can use
-        it too, and progress is saved in your browser.
+        {{ t('roadmap.description') }}
       </p>
 
       <!-- Overall progress -->
@@ -15,7 +14,7 @@
       >
         <div class="flex-1">
           <strong class="text-[14px] font-medium"
-            >{{ totalDone }} / {{ totalItems }} completed</strong
+            >{{ totalDone }} / {{ totalItems }} {{ t('roadmap.completed') }}</strong
           >
           <div class="mt-1 h-[3px] rounded-full bg-[#f1efe8] dark:bg-[#2a2a27] overflow-hidden">
             <div
@@ -118,7 +117,12 @@
 
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { JS_ENGINE_ITEMS, OSS_CONTRIBUTION, OSS_VITE, OSS_VUE, REACTIVITY } from './phases'
+import { useTheme } from '@/composables/useTheme'
+
+const { t } = useI18n()
+const { theme } = useTheme()
 
 const STORAGE_KEY = 'vue-roadmap'
 
@@ -140,13 +144,13 @@ interface Phase {
 
 type CheckedState = Record<string, boolean>
 
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+const isDark = computed(() => theme.value === 'dark')
 
 const phases = ref<Phase[]>([
   {
     num: 1,
     color: '#7F77DD',
-    bgColor: prefersDark ? '#26215C' : '#EEEDFE',
+    bgColor: isDark.value ? '#26215C' : '#EEEDFE',
     title: 'JS Engine Internals',
     subtitle: 'Weeks 1–4 · Foundation for everything else',
     open: true,
@@ -155,7 +159,7 @@ const phases = ref<Phase[]>([
   {
     num: 2,
     color: '#1D9E75',
-    bgColor: prefersDark ? '#04342C' : '#E1F5EE',
+    bgColor: isDark.value ? '#04342C' : '#E1F5EE',
     title: 'Vue 3 Reactivity Source',
     subtitle: 'Weeks 5–8 · Read the engine, not just the docs',
     open: false,
@@ -164,7 +168,7 @@ const phases = ref<Phase[]>([
   {
     num: 3,
     color: '#BA7517',
-    bgColor: prefersDark ? '#412402' : '#FAEEDA',
+    bgColor: isDark.value ? '#412402' : '#FAEEDA',
     title: 'Vite Plugin Pipeline',
     subtitle: 'Weeks 9–12 · A good entry point for future contributions',
     open: false,
@@ -173,7 +177,7 @@ const phases = ref<Phase[]>([
   {
     num: 4,
     color: '#D85A30',
-    bgColor: prefersDark ? '#4A1B0C' : '#FAECE7',
+    bgColor: isDark.value ? '#4A1B0C' : '#FAECE7',
     title: 'TypeScript as Design Tool',
     subtitle: 'Weeks 13–16 · Stop using it defensively, start using it expressively',
     open: false,
@@ -182,13 +186,21 @@ const phases = ref<Phase[]>([
   {
     num: 5,
     color: '#185FA5',
-    bgColor: prefersDark ? '#042C53' : '#E6F1FB',
+    bgColor: isDark.value ? '#042C53' : '#E6F1FB',
     title: 'Contribution Readiness',
     subtitle: 'Month 4+ · Preparing to show up in the ecosystem',
     open: false,
     items: OSS_CONTRIBUTION,
   },
 ])
+
+watch(isDark, (dark) => {
+  const darkColors = ['#26215C', '#04342C', '#412402', '#4A1B0C', '#042C53']
+  const lightColors = ['#EEEDFE', '#E1F5EE', '#FAEEDA', '#FAECE7', '#E6F1FB']
+  phases.value.forEach((phase, i) => {
+    phase.bgColor = dark ? darkColors[i]! : lightColors[i]!
+  })
+})
 
 const state = ref<CheckedState>({})
 

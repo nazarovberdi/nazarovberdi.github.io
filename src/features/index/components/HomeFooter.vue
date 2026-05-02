@@ -7,13 +7,16 @@
       to="/goals"
       class="body-muted transition-colors duration-150 hover:text-[var(--page-text)]"
     >
-      Learning Roadmap →
+      {{ t('footer.roadmap') }}
     </RouterLink>
   </footer>
 </template>
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 defineProps<{
   year: number

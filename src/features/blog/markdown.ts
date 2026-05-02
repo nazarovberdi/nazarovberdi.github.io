@@ -1,7 +1,8 @@
 import { bundledLanguages, codeToHtml, type BundledLanguage, type BundledTheme } from 'shiki'
 
 const FRONTMATTER_BOUNDARY = '---'
-const SHIKI_THEME: BundledTheme = 'vesper'
+const SHIKI_LIGHT_THEME: BundledTheme = 'github-light'
+const SHIKI_DARK_THEME: BundledTheme = 'vesper'
 
 export interface FrontmatterAttributes {
   title?: string
@@ -39,7 +40,8 @@ async function renderCodeFence(code: string, language: string): Promise<string> 
 
   const html = await codeToHtml(code, {
     lang: normalizedLanguage,
-    theme: SHIKI_THEME,
+    themes: { light: SHIKI_LIGHT_THEME, dark: SHIKI_DARK_THEME },
+    defaultColor: false,
   })
 
   return `<div class="blog-code-block" data-language="${escapeHtml(normalizedLanguage)}">${copyButton}${html}</div>`

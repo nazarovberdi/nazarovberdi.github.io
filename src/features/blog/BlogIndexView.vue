@@ -11,14 +11,14 @@
         class="mb-12 flex items-start justify-between gap-6 max-lg:flex-col max-lg:items-start"
       >
         <div class="min-w-0 flex-1">
-          <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">Writing</p>
-          <h1 class="font-serif text-[clamp(42px,10vw,86px)] leading-[0.95] tracking-[-0.05em]">
-            Thoughts & Learnings
-          </h1>
-          <p class="body-muted mt-5 max-w-[580px] text-[14px] leading-[1.85]">
-            Each post lives as a plain markdown file, which keeps writing lightweight while letting
-            the site control the presentation, spacing, and typography.
+          <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">
+            {{ t('blog.heading') }}
           </p>
+          <h1
+            class="font-serif text-[clamp(42px,10vw,86px)] leading-[0.95] tracking-[-0.05em]"
+          >
+            {{ t('blog.subheading') }}
+          </h1>
         </div>
 
         <RouterLink
@@ -26,7 +26,7 @@
           class="secondary-button inline-flex items-center gap-2 rounded-full px-5 py-3 text-[12px] uppercase tracking-[0.08em] transition-transform duration-200 hover:-translate-y-0.5 max-lg:self-start"
         >
           <span aria-hidden="true">←</span>
-          <span>Back home</span>
+          <span>{{ t('blog.backHome') }}</span>
         </RouterLink>
       </header>
 
@@ -43,16 +43,22 @@
               <p class="eyebrow mb-3 text-[11px] uppercase tracking-[0.12em]">
                 {{ formatBlogDate(post.date) }}
               </p>
-              <h2 class="font-serif text-[32px] leading-[1.05] tracking-[-0.03em]">
+              <h2
+                class="font-serif text-[32px] leading-[1.05] tracking-[-0.03em]"
+              >
                 {{ post.title }}
               </h2>
-              <p class="body-muted mt-4 max-w-[640px] text-[14px] leading-[1.85]">
+              <p
+                class="body-muted mt-4 max-w-[640px] text-[14px] leading-[1.85]"
+              >
                 {{ post.summary }}
               </p>
             </div>
 
-            <span class="mt-1 shrink-0 text-[12px] uppercase tracking-[0.08em] text-(--page-text)">
-              Open post →
+            <span
+              class="mt-1 shrink-0 text-[12px] uppercase tracking-[0.08em] text-(--page-text)"
+            >
+              {{ t('blog.openPost') }}
             </span>
           </div>
         </RouterLink>
@@ -63,6 +69,9 @@
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
 import { blogPosts, formatBlogDate } from './posts'
+
+const { t } = useI18n()
 </script>

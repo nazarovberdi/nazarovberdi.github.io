@@ -1,25 +1,23 @@
 <template>
   <section class="mb-16 animate-fade-up [animation-delay:255ms]">
     <div class="contact-panel surface-panel p-7">
-      <p class="eyebrow mb-3 text-[11px] uppercase tracking-[0.12em]">Network</p>
+      <p class="eyebrow mb-3 text-[11px] uppercase tracking-[0.12em]">{{ t('contact.eyebrow') }}</p>
       <div class="grid grid-cols-[minmax(0,1fr)_300px] gap-8 max-sm:grid-cols-1">
         <div>
           <h2
             class="font-serif text-[clamp(30px,5vw,44px)] leading-[1.02] tracking-[-0.02em] text-[var(--page-text)]"
           >
-            Available for frontend collaboration and thoughtful product work.
+            {{ t('contact.heading') }}
           </h2>
           <p class="body-muted mt-4 max-w-[520px] text-[13px] font-light leading-[1.8]">
-            If you&apos;re building something user-focused, technical, and intentional, I&apos;d be
-            glad to connect. These are the channels where I publish work, track progress, and stay
-            reachable.
+            {{ t('contact.description') }}
           </p>
 
           <div
             class="pill body-muted mt-8 inline-flex items-center gap-3 px-4 py-2 text-[12px]"
           >
             <span class="size-2 rounded-full bg-[#7d9b67]" aria-hidden="true" />
-            <span>Open channel for work and collaboration</span>
+            <span>{{ t('contact.status') }}</span>
           </div>
         </div>
 
@@ -60,7 +58,11 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
 import type { SocialProfile } from '../data'
+
+const { t } = useI18n()
 
 defineProps<{
   socialProfiles: readonly SocialProfile[]
