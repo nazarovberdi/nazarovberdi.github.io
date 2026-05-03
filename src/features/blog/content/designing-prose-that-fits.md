@@ -42,3 +42,13 @@ function applyProseTheme(className: string) {
 ```
 
 > The goal is not to style markdown generically. The goal is to make prose feel like a natural extension of the website.
+
+## Adding images
+
+You can embed images with the standard markdown syntax. Images stored in `/public` are served at the root path:
+
+![A description of the image](/images/example.png)
+
+Or link to any external URL:
+
+![Vue.js logo](https://vuejs.org/logo.svg)

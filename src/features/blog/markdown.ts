@@ -67,6 +67,12 @@ function formatInline(markdown: string): string {
   })
 
   html = html.replace(
+    /!\[([^\]]*)\]\(([^)\s]+)\)/g,
+    (_, alt: string, src: string) =>
+      `<img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" />`,
+  )
+
+  html = html.replace(
     /\[([^\]]+)\]\(([^)\s]+)\)/g,
     (_, label: string, href: string) =>
       `<a href="${escapeHtml(href)}" target="_blank" rel="noopener">${label}</a>`,
