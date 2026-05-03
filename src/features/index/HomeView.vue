@@ -3,7 +3,7 @@
     <div class="home-dot-grid pointer-events-none fixed inset-0" />
     <div class="home-veil pointer-events-none fixed inset-0" />
     <div
-      class="home-glow pointer-events-none absolute inset-x-0 top-0 h-[420px] animate-gentle-drift"
+      class="home-glow pointer-events-none absolute inset-x-0 top-0 h-[420px]"
     />
 
     <main class="home-main relative mx-auto px-6 pt-8 pb-16">
@@ -19,6 +19,8 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
 import BlogSection from '@/features/blog/BlogSection.vue'
 import { featuredBlogPosts } from '@/features/blog/posts'
 
@@ -29,6 +31,13 @@ import ProfileSnapshotSection from './components/ProfileSnapshotSection.vue'
 import ProjectsSection from './components/ProjectsSection.vue'
 import ToolboxSection from './components/ToolboxSection.vue'
 import { coreSkills, projects, socialProfiles } from './data'
+import { usePageMeta } from '@/composables/usePageMeta'
 
+const { t } = useI18n()
 const year = new Date().getFullYear()
+
+usePageMeta(() => ({
+  title: 'Frontend Engineer — Vue / Vite',
+  description: t('hero.summary'),
+}))
 </script>

@@ -41,7 +41,9 @@
           <div class="flex items-start justify-between gap-6 max-md:flex-col">
             <div class="min-w-0 flex-1">
               <p class="eyebrow mb-3 text-[11px] uppercase tracking-[0.12em]">
-                {{ formatBlogDate(post.date) }}
+                {{ formatBlogDate(post.date, locale) }}
+                <span aria-hidden="true"> · </span>
+                {{ t('post.readingTime', { n: post.readingTime }) }}
               </p>
               <h2
                 class="font-serif text-[32px] leading-[1.05] tracking-[-0.03em]"
@@ -72,6 +74,12 @@ import { RouterLink } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 
 import { blogPosts, formatBlogDate } from './posts'
+import { usePageMeta } from '@/composables/usePageMeta'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
+
+usePageMeta(() => ({
+  title: t('blog.heading'),
+  description: t('blogSection.description'),
+}))
 </script>

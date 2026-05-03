@@ -1,11 +1,14 @@
 {
   "nav": {
     "blog": "Blog",
-    "goals": "Maksatlar"
+    "goals": "Maksatlar",
+    "menu": "Menýuny aç",
+    "close": "Ýap"
   },
   "header": {
     "name": "Nazarow Berdi",
-    "role": "Programma inženeri"
+    "role": "Programma inženeri",
+    "downloadCV": "CV"
   },
   "hero": {
     "tagline": "Öňdäki ulgamlar, guralar we arassa ulanyjy tejribeleri döretmek",
@@ -58,7 +61,8 @@
     "eyebrow": "Tor",
     "heading": "Öňdäki hyzmatdaşlyk we oýlanyşykly önüm işleri üçin elýeterli.",
     "description": "Ulanyjy gönükli, tehniki we niýetlenen bir zat gurýan bolsaňyz, hoşallyk bilen aragatnaşyk ederis. Işimi çap edýän, öňegidişligi yzarlaýan we elýeterli bolýan kanallar.",
-    "status": "Iş we hyzmatdaşlyk üçin açyk kanal"
+    "status": "Iş we hyzmatdaşlyk üçin açyk kanal",
+    "email": "E-poçta iberiň"
   },
   "footer": {
     "roadmap": "Öwreniş Ýoly →"
@@ -81,7 +85,16 @@
     "missing": "Ýazgy Tapylmady",
     "missingTitle": "Bu giriş heniz ýok.",
     "missingDesc": "Ugur dogry birikdirilen, ýöne bu slug-a laýyk markdown faýl ýok.",
-    "returnToBlog": "Bloga Dolan"
+    "returnToBlog": "Bloga Dolan",
+    "readingTime": "{n} min okamak",
+    "newerPost": "← Täze",
+    "olderPost": "Könesi →"
+  },
+  "notFound": {
+    "eyebrow": "404",
+    "title": "Sahypa tapylmady.",
+    "description": "Bu ugur ýok. Ýalňyş baglanyşyga eýerilen ýa-da adres nädogry ýazyldy.",
+    "goHome": "Baş sahypa dolan"
   },
   "roadmap": {
     "title": "Vue / Vite Öwreniş Ýoly",

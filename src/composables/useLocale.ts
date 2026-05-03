@@ -7,6 +7,7 @@ export function useLocale() {
   function toggle() {
     locale.value = locale.value === 'en' ? 'tk' : 'en'
     localStorage.setItem('locale', locale.value)
+    document.documentElement.lang = locale.value
   }
 
   const label = computed(() => (locale.value === 'en' ? 'TK' : 'EN'))

@@ -18,7 +18,9 @@
           </RouterLink>
 
           <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">
-            {{ formatBlogDate(post.date) }}
+            {{ formatBlogDate(post.date, locale) }}
+            <span aria-hidden="true"> · </span>
+            {{ t('post.readingTime', { n: post.readingTime }) }}
           </p>
           <h1 class="font-serif text-[clamp(40px,9vw,80px)] leading-[0.96] tracking-[-0.05em]">
             {{ post.title }}
@@ -31,6 +33,41 @@
         <article ref="articleRef" class="surface-panel blog-article p-8 max-sm:p-6">
           <div class="blog-prose" v-html="post.html" />
         </article>
+
+        <nav
+          v-if="adjacent.prev || adjacent.next"
+          class="mt-8 flex items-start justify-between gap-6 max-sm:flex-col"
+          aria-label="Post navigation"
+        >
+          <RouterLink
+            v-if="adjacent.prev"
+            :to="`/blog/${adjacent.prev.slug}`"
+            class="group flex min-w-0 flex-1 flex-col gap-1"
+          >
+            <span class="eyebrow text-[11px] uppercase tracking-[0.08em]">
+              {{ t('post.newerPost') }}
+            </span>
+            <span
+              class="font-serif text-[18px] leading-tight tracking-[-0.02em] text-(--page-text) transition-colors duration-150 group-hover:text-(--accent)"
+            >
+              {{ adjacent.prev.title }}
+            </span>
+          </RouterLink>
+          <RouterLink
+            v-if="adjacent.next"
+            :to="`/blog/${adjacent.next.slug}`"
+            class="group flex min-w-0 flex-1 flex-col items-end gap-1 text-right"
+          >
+            <span class="eyebrow text-[11px] uppercase tracking-[0.08em]">
+              {{ t('post.olderPost') }}
+            </span>
+            <span
+              class="font-serif text-[18px] leading-tight tracking-[-0.02em] text-(--page-text) transition-colors duration-150 group-hover:text-(--accent)"
+            >
+              {{ adjacent.next.title }}
+            </span>
+          </RouterLink>
+        </nav>
       </template>
 
       <template v-else>
@@ -59,14 +96,24 @@ import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 
-import { formatBlogDate, getBlogPostBySlug } from './posts'
+import { formatBlogDate, getAdjacentPosts, getBlogPostBySlug } from './posts'
+import { usePageMeta } from '@/composables/usePageMeta'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const route = useRoute()
 const articleRef = ref<HTMLElement | null>(null)
 const copyResetTimers = new WeakMap<HTMLButtonElement, number>()
 
 const post = computed(() => getBlogPostBySlug(String(route.params.slug ?? '')))
+const adjacent = computed(() =>
+  post.value ? getAdjacentPosts(post.value.slug) : { prev: null, next: null },
+)
+
+usePageMeta(() => ({
+  title: post.value?.title,
+  description: post.value?.summary,
+  ogType: 'article',
+}))
 
 async function handleArticleClick(event: Event): Promise<void> {
   const target = event.target

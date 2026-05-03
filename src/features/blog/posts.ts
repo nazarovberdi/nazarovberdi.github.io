@@ -6,6 +6,7 @@ export interface BlogPost {
   date: string
   summary: string
   html: string
+  readingTime: number
 }
 
 const rawPosts = import.meta.glob('./content/*.md', {
@@ -31,6 +32,11 @@ function getFallbackSummary(markdown: string): string {
     .slice(0, 180)
 }
 
+function estimateReadingTime(text: string): number {
+  const words = text.trim().split(/\s+/).filter(Boolean).length
+  return Math.max(1, Math.ceil(words / 200))
+}
+
 const resolvedBlogPosts = await Promise.all(
   Object.entries(rawPosts).map(async ([path, raw]) => {
     const { attributes, body } = parseFrontmatter(raw)
@@ -42,6 +48,7 @@ const resolvedBlogPosts = await Promise.all(
       date: attributes.date ?? '2026-01-01',
       summary: attributes.summary ?? getFallbackSummary(body),
       html: await markdownToHtml(body),
+      readingTime: estimateReadingTime(body),
     }
   }),
 )
@@ -56,8 +63,17 @@ export function getBlogPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find((post) => post.slug === slug)
 }
 
-export function formatBlogDate(date: string): string {
-  return new Intl.DateTimeFormat('en', {
+export function getAdjacentPosts(slug: string): { prev: BlogPost | null; next: BlogPost | null } {
+  const idx = blogPosts.findIndex((p) => p.slug === slug)
+  if (idx === -1) return { prev: null, next: null }
+  return {
+    prev: blogPosts[idx - 1] ?? null,
+    next: blogPosts[idx + 1] ?? null,
+  }
+}
+
+export function formatBlogDate(date: string, locale = 'en'): string {
+  return new Intl.DateTimeFormat(locale, {
     day: 'numeric',
     month: 'long',
     year: 'numeric',

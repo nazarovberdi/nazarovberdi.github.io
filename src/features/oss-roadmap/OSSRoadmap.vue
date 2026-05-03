@@ -1,72 +1,81 @@
 <template>
-  <div
-    class="min-h-screen bg-[#f1efe8] dark:bg-[#2a2a27] px-4 py-8 font-sans text-[#1a1a18] dark:text-[#e8e6dc]"
-  >
-    <div class="max-w-[680px] mx-auto">
-      <h1 class="text-[20px] font-medium mb-1">{{ t('roadmap.title') }}</h1>
-      <p class="text-[13px] text-[#5f5e5a] dark:text-[#9c9a92] mb-6">
+  <div class="min-h-screen px-4 py-8 font-sans" style="background: var(--page-bg); color: var(--page-text)">
+    <div class="mx-auto max-w-[680px]">
+      <h1 class="mb-1 text-[20px] font-medium">{{ t('roadmap.title') }}</h1>
+      <p class="mb-6 text-[13px]" style="color: var(--page-muted)">
         {{ t('roadmap.description') }}
       </p>
 
-      <!-- Overall progress -->
       <div
-        class="flex items-center gap-3 px-[14px] py-[10px] bg-white dark:bg-[#1e1e1c] rounded-lg border border-black/[0.08] dark:border-white/[0.08] mb-4"
+        class="mb-4 flex items-center gap-3 rounded-lg px-[14px] py-[10px]"
+        style="background: var(--panel-bg); border: 1px solid var(--line)"
       >
         <div class="flex-1">
-          <strong class="text-[14px] font-medium"
-            >{{ totalDone }} / {{ totalItems }} {{ t('roadmap.completed') }}</strong
+          <strong class="text-[14px] font-medium">
+            {{ totalDone }} / {{ totalItems }} {{ t('roadmap.completed') }}
+          </strong>
+          <div
+            class="mt-1 h-[3px] overflow-hidden rounded-full"
+            style="background: var(--panel-bg-strong)"
           >
-          <div class="mt-1 h-[3px] rounded-full bg-[#f1efe8] dark:bg-[#2a2a27] overflow-hidden">
             <div
-              class="h-full rounded-full bg-[#7F77DD] transition-all duration-300"
+              class="h-full rounded-full transition-all duration-300"
+              style="background: var(--accent)"
               :style="{ width: totalPercent + '%' }"
             />
           </div>
         </div>
-        <span class="text-[12px] text-[#5f5e5a] dark:text-[#9c9a92]">{{ totalPercent }}%</span>
+        <span class="text-[12px]" style="color: var(--page-muted)">{{ totalPercent }}%</span>
       </div>
 
-      <!-- Phases -->
-      <div class="pb-8 space-y-2">
+      <div class="space-y-2 pb-8">
         <div
           v-for="(phase, pi) in phases"
           :key="phase.num"
-          class="rounded-xl border border-black/[0.08] dark:border-white/[0.08] overflow-hidden bg-white dark:bg-[#1e1e1c]"
+          class="overflow-hidden rounded-xl"
+          style="background: var(--panel-bg); border: 1px solid var(--line)"
         >
-          <div class="px-[14px] pt-[12px] pb-[12px]">
-            <!-- Phase header -->
-            <div
-              class="flex items-center gap-3 mb-3 cursor-pointer select-none"
+          <div class="px-[14px] pb-[12px] pt-[12px]">
+            <button
+              type="button"
+              class="mb-3 flex w-full cursor-pointer select-none items-center gap-3 text-left"
               @click="togglePhase(pi)"
             >
               <div
-                class="w-7 h-7 rounded-full flex items-center justify-center text-[12px] font-medium flex-shrink-0"
-                :style="{ background: phase.bgColor, color: phase.color }"
+                class="flex size-7 flex-shrink-0 items-center justify-center rounded-full text-[12px] font-medium"
+                :style="{
+                  background: `color-mix(in srgb, ${phase.color} 18%, var(--panel-bg-strong))`,
+                  color: phase.color,
+                }"
               >
                 {{ phase.num }}
               </div>
-              <div>
-                <div class="text-[15px] font-medium leading-tight">{{ phase.title }}</div>
-                <div class="text-[12px] text-[#5f5e5a] dark:text-[#9c9a92] mt-px">
+              <div class="min-w-0 flex-1">
+                <div class="text-[15px] font-medium leading-tight" style="color: var(--page-text)">
+                  {{ phase.title }}
+                </div>
+                <div class="mt-px text-[12px]" style="color: var(--page-muted)">
                   {{ phase.subtitle }}
                 </div>
               </div>
-              <div class="ml-auto flex items-center gap-2">
-                <span class="text-[11px] text-[#5f5e5a] dark:text-[#9c9a92]">
+              <div class="ml-auto flex flex-shrink-0 items-center gap-2">
+                <span class="text-[11px]" style="color: var(--page-muted)">
                   {{ phaseDone(phase) }}/{{ phase.items.length }}
                 </span>
                 <span
-                  class="text-[12px] text-[#888780] dark:text-[#6b6a64] inline-block transition-transform duration-200"
+                  class="inline-block text-[12px] transition-transform duration-200"
+                  style="color: var(--page-muted)"
                   :style="{ transform: phase.open ? 'rotate(180deg)' : 'rotate(0deg)' }"
+                  aria-hidden="true"
                   >▼</span
                 >
               </div>
-            </div>
+            </button>
 
-            <!-- Phase progress bar -->
             <div
-              class="h-[3px] rounded-full bg-[#f1efe8] dark:bg-[#2a2a27] overflow-hidden"
+              class="overflow-hidden rounded-full h-[3px]"
               :class="phase.open ? 'mb-3' : 'mb-0'"
+              style="background: var(--panel-bg-strong)"
             >
               <div
                 class="h-full rounded-full transition-all duration-300"
@@ -74,39 +83,45 @@
               />
             </div>
 
-            <!-- Items -->
             <div
               class="overflow-hidden transition-all duration-300 ease-in-out"
               :style="{ maxHeight: phase.open ? phase.items.length * 100 + 'px' : '0px' }"
             >
-              <div
+              <button
                 v-for="item in phase.items"
                 :key="item.id"
-                class="flex gap-[10px] px-3 py-[9px] mb-1.5 last:mb-0 rounded-lg border border-black/[0.08] dark:border-white/[0.08] bg-[#f1efe8] dark:bg-[#2a2a27] cursor-pointer items-start transition-all duration-150 hover:border-black/[0.18] dark:hover:border-white/[0.16]"
+                type="button"
+                class="roadmap-item mb-1.5 flex w-full cursor-pointer items-start gap-[10px] rounded-lg px-3 py-[9px] text-left last:mb-0"
                 :class="{ 'opacity-55': state[item.id] }"
+                style="background: var(--panel-bg-strong)"
                 @click="toggleItem(item.id)"
               >
-                <!-- Checkbox dot -->
                 <div
-                  class="w-4 h-4 rounded-full border-[1.5px] flex-shrink-0 mt-px flex items-center justify-center transition-all duration-150"
-                  :class="
+                  class="mt-px flex size-4 flex-shrink-0 items-center justify-center rounded-full border-[1.5px] transition-all duration-150"
+                  :style="
                     state[item.id]
-                      ? 'bg-[#e1f5ee] dark:bg-[#085041] border-[#9fe1cb] dark:border-[#0f6e56]'
-                      : 'border-black/22 dark:border-white/18'
+                      ? {
+                          background: `color-mix(in srgb, var(--accent) 15%, transparent)`,
+                          borderColor: `color-mix(in srgb, var(--accent) 50%, transparent)`,
+                        }
+                      : { borderColor: 'var(--line-strong)' }
                   "
                 >
                   <div
                     v-if="state[item.id]"
-                    class="w-1.5 h-1.5 rounded-full bg-[#0f6e56] dark:bg-[#5dcaa5]"
+                    class="size-1.5 rounded-full"
+                    style="background: var(--accent)"
                   />
                 </div>
-                <div>
-                  <div class="text-[13px] font-medium leading-snug">{{ item.label }}</div>
-                  <div class="text-[12px] text-[#5f5e5a] dark:text-[#9c9a92] mt-0.5 leading-snug">
+                <div class="min-w-0">
+                  <div class="text-[13px] font-medium leading-snug" style="color: var(--page-text)">
+                    {{ item.label }}
+                  </div>
+                  <div class="mt-0.5 text-[12px] leading-snug" style="color: var(--page-muted)">
                     {{ item.note }}
                   </div>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
         </div>
@@ -118,11 +133,16 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
+
 import { JS_ENGINE_ITEMS, OSS_CONTRIBUTION, OSS_VITE, OSS_VUE, REACTIVITY } from './phases'
-import { useTheme } from '@/composables/useTheme'
+import { usePageMeta } from '@/composables/usePageMeta'
 
 const { t } = useI18n()
-const { theme } = useTheme()
+
+usePageMeta(() => ({
+  title: t('roadmap.title'),
+  description: t('roadmap.description'),
+}))
 
 const STORAGE_KEY = 'vue-roadmap'
 
@@ -135,7 +155,6 @@ interface RoadmapItem {
 interface Phase {
   num: number
   color: string
-  bgColor: string
   title: string
   subtitle: string
   open: boolean
@@ -144,13 +163,10 @@ interface Phase {
 
 type CheckedState = Record<string, boolean>
 
-const isDark = computed(() => theme.value === 'dark')
-
 const phases = ref<Phase[]>([
   {
     num: 1,
     color: '#7F77DD',
-    bgColor: isDark.value ? '#26215C' : '#EEEDFE',
     title: 'JS Engine Internals',
     subtitle: 'Weeks 1–4 · Foundation for everything else',
     open: true,
@@ -159,7 +175,6 @@ const phases = ref<Phase[]>([
   {
     num: 2,
     color: '#1D9E75',
-    bgColor: isDark.value ? '#04342C' : '#E1F5EE',
     title: 'Vue 3 Reactivity Source',
     subtitle: 'Weeks 5–8 · Read the engine, not just the docs',
     open: false,
@@ -168,7 +183,6 @@ const phases = ref<Phase[]>([
   {
     num: 3,
     color: '#BA7517',
-    bgColor: isDark.value ? '#412402' : '#FAEEDA',
     title: 'Vite Plugin Pipeline',
     subtitle: 'Weeks 9–12 · A good entry point for future contributions',
     open: false,
@@ -177,7 +191,6 @@ const phases = ref<Phase[]>([
   {
     num: 4,
     color: '#D85A30',
-    bgColor: isDark.value ? '#4A1B0C' : '#FAECE7',
     title: 'TypeScript as Design Tool',
     subtitle: 'Weeks 13–16 · Stop using it defensively, start using it expressively',
     open: false,
@@ -186,21 +199,12 @@ const phases = ref<Phase[]>([
   {
     num: 5,
     color: '#185FA5',
-    bgColor: isDark.value ? '#042C53' : '#E6F1FB',
     title: 'Contribution Readiness',
     subtitle: 'Month 4+ · Preparing to show up in the ecosystem',
     open: false,
     items: OSS_CONTRIBUTION,
   },
 ])
-
-watch(isDark, (dark) => {
-  const darkColors = ['#26215C', '#04342C', '#412402', '#4A1B0C', '#042C53']
-  const lightColors = ['#EEEDFE', '#E1F5EE', '#FAEEDA', '#FAECE7', '#E6F1FB']
-  phases.value.forEach((phase, i) => {
-    phase.bgColor = dark ? darkColors[i]! : lightColors[i]!
-  })
-})
 
 const state = ref<CheckedState>({})
 
@@ -236,8 +240,8 @@ function phasePercent(phase: Phase): number {
 }
 
 const totalItems = computed<number>(() => phases.value.reduce((s, p) => s + p.items.length, 0))
-
 const totalDone = computed<number>(() => phases.value.reduce((s, p) => s + phaseDone(p), 0))
-
-const totalPercent = computed<number>(() => Math.round((totalDone.value / totalItems.value) * 100))
+const totalPercent = computed<number>(() =>
+  Math.round((totalDone.value / totalItems.value) * 100),
+)
 </script>

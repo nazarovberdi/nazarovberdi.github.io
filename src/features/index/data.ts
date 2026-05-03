@@ -7,6 +7,7 @@ export interface SocialProfile {
 
 export interface Project {
   name: string
+  repoSlug?: string
   owner: string
   description: string
   language: string
@@ -30,10 +31,10 @@ export const socialProfiles: readonly SocialProfile[] = [
     url: 'https://x.com/berdi_nazarov',
   },
   {
-    label: 'Instagram',
-    kind: 'Visual',
-    handle: '@nberdi0',
-    url: 'https://www.instagram.com/nberdi0',
+    label: 'GitHub',
+    kind: 'Code',
+    handle: 'nazarovberdi',
+    url: 'https://github.com/nazarovberdi',
   },
 ] as const
 
@@ -52,7 +53,8 @@ export const projects: readonly Project[] = [
   {
     name: 'date-fns-locale-tk',
     owner: 'nazarovberdi',
-    description: 'Turkmen locale support package for date-fns.',
+    description:
+      'Turkmen (tk) locale for date-fns. Full date formatting support for the Turkmen language, contributed upstream.',
     language: 'JavaScript',
     color: '#f1e05a',
     stars: 2,
@@ -62,7 +64,8 @@ export const projects: readonly Project[] = [
   {
     name: 'weather-wise',
     owner: 'nazarovberdi',
-    description: 'Weather web application.',
+    description:
+      'Weather app built with Vue 3 and the Open-Meteo API. Location search, hourly forecasts, and a clean responsive interface.',
     language: 'Vue',
     color: '#41b883',
     stars: null,
@@ -72,7 +75,8 @@ export const projects: readonly Project[] = [
   {
     name: 'vue-media',
     owner: 'TurkmenistanRailways',
-    description: 'Media portal for railways.',
+    description:
+      'Internal media portal for Turkmenistan Railways — news, routes, and asset management built with Vue 3.',
     language: 'Vue',
     color: '#41b883',
     stars: 3,
@@ -80,9 +84,11 @@ export const projects: readonly Project[] = [
     liveUrl: null,
   },
   {
-    name: 'Physicst-Explorer',
+    name: 'Physicist Explorer',
+    repoSlug: 'Physicst-Explorer',
     owner: 'nazarovberdi',
-    description: 'React Native app.',
+    description:
+      'React Native app for exploring physics constants, formulas, and unit conversions. Built for offline use.',
     language: 'TypeScript',
     color: '#3178c6',
     stars: 1,

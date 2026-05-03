@@ -13,11 +13,21 @@
             {{ t('contact.description') }}
           </p>
 
-          <div
-            class="pill body-muted mt-8 inline-flex items-center gap-3 px-4 py-2 text-[12px]"
-          >
-            <span class="size-2 rounded-full bg-[#7d9b67]" aria-hidden="true" />
-            <span>{{ t('contact.status') }}</span>
+          <div class="mt-6 flex flex-wrap items-center gap-4">
+            <div
+              class="pill body-muted inline-flex items-center gap-3 px-4 py-2 text-[12px]"
+            >
+              <span class="size-2 rounded-full bg-[#7d9b67]" aria-hidden="true" />
+              <span>{{ t('contact.status') }}</span>
+            </div>
+
+            <a
+              href="mailto:nazarov120100@gmail.com"
+              class="inline-flex items-center gap-1.5 text-[13px] font-medium transition-colors duration-150"
+              style="color: var(--accent)"
+            >
+              {{ t('contact.email') }} ↗
+            </a>
           </div>
         </div>
 

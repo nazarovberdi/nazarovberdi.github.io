@@ -1,11 +1,14 @@
 {
   "nav": {
     "blog": "Blog",
-    "goals": "Goals"
+    "goals": "Goals",
+    "menu": "Open menu",
+    "close": "Close menu"
   },
   "header": {
     "name": "Nazarov Berdi",
-    "role": "Software Engineer"
+    "role": "Software Engineer",
+    "downloadCV": "CV"
   },
   "hero": {
     "tagline": "Shipping frontend systems, tooling, and calm user experiences",
@@ -58,7 +61,8 @@
     "eyebrow": "Network",
     "heading": "Available for frontend collaboration and thoughtful product work.",
     "description": "If you're building something user-focused, technical, and intentional, I'd be glad to connect. These are the channels where I publish work, track progress, and stay reachable.",
-    "status": "Open channel for work and collaboration"
+    "status": "Open channel for work and collaboration",
+    "email": "Send an email"
   },
   "footer": {
     "roadmap": "Learning Roadmap →"
@@ -81,7 +85,16 @@
     "missing": "Missing post",
     "missingTitle": "This entry does not exist yet.",
     "missingDesc": "The route is wired correctly, but there is no markdown file matching this slug.",
-    "returnToBlog": "Return to blog"
+    "returnToBlog": "Return to blog",
+    "readingTime": "{n} min read",
+    "newerPost": "← Newer",
+    "olderPost": "Older →"
+  },
+  "notFound": {
+    "eyebrow": "404",
+    "title": "Page not found.",
+    "description": "This route doesn't exist. You may have followed a broken link or typed the address incorrectly.",
+    "goHome": "Back to home"
   },
   "roadmap": {
     "title": "Vue / Vite Learning Roadmap",

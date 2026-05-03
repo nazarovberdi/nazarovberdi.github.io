@@ -42,10 +42,10 @@
           </div>
 
           <span
-            v-if="project.stars !== null"
+            v-if="displayStars(project) !== null"
             class="pill px-3 py-1 text-[11px] uppercase tracking-[0.08em] body-muted"
           >
-            ★ {{ project.stars }}
+            ★ {{ displayStars(project) }}
           </span>
         </div>
 
@@ -103,13 +103,65 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import type { Project } from '../data'
 
 const { t } = useI18n()
 
-defineProps<{
+const props = defineProps<{
   projects: readonly Project[]
 }>()
+
+const CACHE_KEY = 'gh-stars-cache'
+const CACHE_TTL = 60 * 60 * 1000
+
+interface StarsCache {
+  ts: number
+  data: Record<string, number>
+}
+
+const liveStars = ref<Record<string, number>>({})
+
+function displayStars(project: Project): number | null {
+  const live = liveStars.value[project.name]
+  if (live !== undefined) return live
+  return project.stars
+}
+
+onMounted(async () => {
+  try {
+    const cached = localStorage.getItem(CACHE_KEY)
+    if (cached) {
+      const { ts, data }: StarsCache = JSON.parse(cached)
+      if (Date.now() - ts < CACHE_TTL) {
+        liveStars.value = data
+        return
+      }
+    }
+  } catch {}
+
+  const results: Record<string, number> = {}
+
+  await Promise.all(
+    props.projects.map(async (project) => {
+      const repoSlug = project.repoSlug ?? project.name
+      try {
+        const res = await fetch(
+          `https://api.github.com/repos/${project.owner}/${repoSlug}`,
+        )
+        if (res.ok) {
+          const data = (await res.json()) as { stargazers_count: number }
+          results[project.name] = data.stargazers_count
+        }
+      } catch {}
+    }),
+  )
+
+  liveStars.value = results
+  try {
+    localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: results }))
+  } catch {}
+})
 </script>

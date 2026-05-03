@@ -29,7 +29,7 @@
         :style="{ animationDelay: `${290 + index * 55}ms` }"
       >
         <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">
-          {{ formatBlogDate(post.date) }}
+          {{ formatBlogDate(post.date, locale) }}
         </p>
         <h3 class="mb-4 font-serif text-[26px] leading-[1.05] tracking-[-0.02em]">
           {{ post.title }}
@@ -54,7 +54,7 @@ import { useI18n } from 'vue-i18n'
 import type { BlogPost } from './posts'
 import { formatBlogDate } from './posts'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 defineProps<{
   posts: BlogPost[]
