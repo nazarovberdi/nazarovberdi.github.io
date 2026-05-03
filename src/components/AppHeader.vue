@@ -231,6 +231,7 @@ const isDark = computed(() => theme.value === 'dark')
 const menuOpen = ref(false)
 
 watch(menuOpen, (open) => {
+  if (import.meta.env.SSR) return
   document.body.style.overflow = open ? 'hidden' : ''
 })
 

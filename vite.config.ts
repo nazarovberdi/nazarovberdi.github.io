@@ -1,17 +1,31 @@
-import { fileURLToPath, URL } from "node:url";
+import { readdirSync } from 'node:fs'
+import { fileURLToPath, URL } from 'node:url'
 
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import tailwindcss from "@tailwindcss/vite";
-import vueDevTools from "vite-plugin-vue-devtools";
+import tailwindcss from '@tailwindcss/vite'
+import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite'
+import vueDevTools from 'vite-plugin-vue-devtools'
+import type {} from 'vite-ssg'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [vue(), tailwindcss(), vueDevTools()],
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-  base: "/",
-});
+  base: '/',
+  ssgOptions: {
+    script: 'async',
+    formatting: 'minify',
+    includedRoutes(paths) {
+      const slugs = readdirSync('./src/features/blog/content')
+        .filter((f) => f.endsWith('.md'))
+        .map((f) => f.replace(/\.md$/, ''))
+
+      return paths.flatMap((path) =>
+        path === '/blog/:slug' ? slugs.map((slug) => `/blog/${slug}`) : path,
+      )
+    },
+  },
+})

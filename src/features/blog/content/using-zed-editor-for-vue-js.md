@@ -4,8 +4,6 @@ date: 2026-04-30
 summary: Zed is fast, but its Vue 3 and TypeScript setup needs a few deliberate choices before it stops fighting you.
 ---
 
-# Configuring Zed for Vue 3 development
-
 Zed is fast enough that the difference is noticeable immediately — startup is near-instant, scrolling is smooth, and LSP responses arrive before you finish typing. But out of the box, a Vue 3 project needs a few things adjusted before the editor feels complete.
 
 ## Enable Volar, not Vetur
