@@ -1,7 +1,6 @@
 import { readFileSync, writeFileSync, readdirSync } from 'fs'
 import { join, resolve } from 'path'
 
-// Update this to your deployed site URL
 const SITE_URL = 'https://nazarovberdi.github.io'
 const FEED_TITLE = 'Nazarov Berdi — Writing'
 const FEED_DESCRIPTION =
