@@ -11,7 +11,7 @@ interface PageMeta {
 
 const SITE_NAME = "Nazarov Berdi";
 const SITE_URL = "https://nazarovberdi.github.io";
-const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpeg`;
+const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 
 export function usePageMeta(getMeta: () => PageMeta): void {
   const meta = computed(getMeta);
