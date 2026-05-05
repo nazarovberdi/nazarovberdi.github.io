@@ -11,13 +11,11 @@
         class="mb-12 flex items-start justify-between gap-6 max-lg:flex-col max-lg:items-start"
       >
         <div class="min-w-0 flex-1">
-          <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">
-            {{ t('blog.heading') }}
-          </p>
+          <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">Writing</p>
           <h1
             class="font-serif text-[clamp(42px,10vw,86px)] leading-[0.95] tracking-[-0.05em]"
           >
-            {{ t('blog.subheading') }}
+            Thoughts &amp; Learnings
           </h1>
         </div>
 
@@ -26,7 +24,7 @@
           class="secondary-button inline-flex items-center gap-2 rounded-full px-5 py-3 text-[12px] uppercase tracking-[0.08em] transition-transform duration-200 hover:-translate-y-0.5 max-lg:self-start"
         >
           <span aria-hidden="true">←</span>
-          <span>{{ t('blog.backHome') }}</span>
+          <span>Back home</span>
         </RouterLink>
       </header>
 
@@ -41,9 +39,9 @@
           <div class="flex items-start justify-between gap-6 max-md:flex-col">
             <div class="min-w-0 flex-1">
               <p class="eyebrow mb-3 text-[11px] uppercase tracking-[0.12em]">
-                {{ formatBlogDate(post.date, locale) }}
+                {{ formatBlogDate(post.date) }}
                 <span aria-hidden="true"> · </span>
-                {{ t('post.readingTime', { n: post.readingTime }) }}
+                {{ post.readingTime }} min read
               </p>
               <h2
                 class="font-serif text-[32px] leading-[1.05] tracking-[-0.03em]"
@@ -60,7 +58,7 @@
             <span
               class="mt-1 shrink-0 text-[12px] uppercase tracking-[0.08em] text-(--page-text)"
             >
-              {{ t('blog.openPost') }}
+              Open post →
             </span>
           </div>
         </RouterLink>
@@ -71,15 +69,12 @@
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
-import { useI18n } from 'vue-i18n'
 
 import { blogPosts, formatBlogDate } from './posts'
 import { usePageMeta } from '@/composables/usePageMeta'
 
-const { t, locale } = useI18n()
-
 usePageMeta(() => ({
-  title: t('blog.heading'),
-  description: t('blogSection.description'),
+  title: 'Writing',
+  description: 'Short write-ups on frontend craft, developer tooling, and the small decisions that make products feel more intentional.',
 }))
 </script>

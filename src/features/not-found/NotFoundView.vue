@@ -7,22 +7,20 @@
     />
 
     <main class="blog-main relative mx-auto flex min-h-[calc(100vh-64px)] flex-col justify-center px-6 py-16 animate-fade-up">
-      <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">
-        {{ t('notFound.eyebrow') }}
-      </p>
+      <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">404</p>
       <h1
         class="font-serif text-[clamp(72px,14vw,140px)] leading-[0.88] tracking-[-0.06em]"
       >
-        {{ t('notFound.title') }}
+        Page not found.
       </h1>
       <p class="body-muted mt-6 max-w-[480px] text-[14px] leading-[1.85]">
-        {{ t('notFound.description') }}
+        This route doesn't exist. You may have followed a broken link or typed the address incorrectly.
       </p>
       <RouterLink
         to="/"
         class="primary-button mt-10 inline-flex w-fit items-center gap-2 rounded-full px-5 py-3 text-[12px] uppercase tracking-[0.08em]"
       >
-        {{ t('notFound.goHome') }}
+        Back to home
       </RouterLink>
     </main>
   </div>
@@ -30,10 +28,7 @@
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
-import { useI18n } from 'vue-i18n'
 import { usePageMeta } from '@/composables/usePageMeta'
-
-const { t } = useI18n()
 
 usePageMeta(() => ({
   title: '404 — Page Not Found',

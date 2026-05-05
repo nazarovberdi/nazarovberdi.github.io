@@ -19,8 +19,6 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-
 import BlogSection from '@/features/blog/BlogSection.vue'
 import { featuredBlogPosts } from '@/features/blog/posts'
 
@@ -33,11 +31,10 @@ import ToolboxSection from './components/ToolboxSection.vue'
 import { coreSkills, projects, socialProfiles } from './data'
 import { usePageMeta } from '@/composables/usePageMeta'
 
-const { t } = useI18n()
 const year = new Date().getFullYear()
 
 usePageMeta(() => ({
   title: 'Frontend Engineer — Vue / Vite',
-  description: t('hero.summary'),
+  description: 'Building interfaces and tools in the Vue / Vite ecosystem. Especially interested in developer experience, frontend systems, and growing toward future contributions in the Vite and Vue world.',
 }))
 </script>

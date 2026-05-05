@@ -8,12 +8,8 @@
       aria-label="Nazarov Berdi — home"
     >
       <span class="pill flex size-9 items-center justify-center font-serif text-[15px]">NB</span>
-      <span class="text-[13px] font-medium text-[var(--page-text)]">
-        {{ $t('header.name') }}
-      </span>
-      <span class="body-muted hidden text-[11px] sm:block">
-        {{ $t('header.role') }}
-      </span>
+      <span class="text-[13px] font-medium text-[var(--page-text)]">Nazarov Berdi</span>
+      <span class="body-muted hidden text-[11px] sm:block">Software Engineer</span>
     </RouterLink>
 
     <nav class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 md:flex">
@@ -21,13 +17,13 @@
         to="/blog"
         class="body-muted text-[12px] tracking-[0.04em] transition-colors duration-150 hover:text-[var(--page-text)]"
       >
-        {{ $t('nav.blog') }}
+        Blog
       </RouterLink>
       <RouterLink
         to="/goals"
         class="body-muted text-[12px] tracking-[0.04em] transition-colors duration-150 hover:text-[var(--page-text)]"
       >
-        {{ $t('nav.goals') }}
+        Goals
       </RouterLink>
     </nav>
 
@@ -37,15 +33,8 @@
         download
         class="body-muted hidden items-center gap-1 rounded-full border border-[var(--line)] px-3 py-1 font-mono text-[11px] font-medium tracking-[0.06em] transition-colors duration-150 hover:border-[var(--line-strong)] hover:text-[var(--page-text)] md:inline-flex"
       >
-        {{ $t('header.downloadCV') }} ↓
+        CV ↓
       </a>
-
-      <button
-        class="body-muted rounded-full border border-[var(--line)] px-3 py-1 font-mono text-[11px] font-medium tracking-[0.06em] transition-colors duration-150 hover:border-[var(--line-strong)] hover:text-[var(--page-text)]"
-        @click="toggleLocale"
-      >
-        {{ localeLabel }}
-      </button>
 
       <button
         class="body-muted flex size-8 items-center justify-center rounded-full border border-[var(--line)] transition-colors duration-150 hover:border-[var(--line-strong)] hover:text-[var(--page-text)]"
@@ -88,7 +77,7 @@
 
       <button
         class="body-muted flex size-8 items-center justify-center rounded-full border border-[var(--line)] transition-colors duration-150 hover:border-[var(--line-strong)] hover:text-[var(--page-text)] md:hidden"
-        :aria-label="$t('nav.menu')"
+        aria-label="Open menu"
         :aria-expanded="menuOpen"
         @click="menuOpen = true"
       >
@@ -113,7 +102,7 @@
       class="fixed inset-0 z-[60] flex flex-col backdrop-blur-xl md:hidden"
       style="background: var(--panel-bg-strong)"
       role="dialog"
-      :aria-label="$t('nav.menu')"
+      aria-label="Open menu"
     >
       <div
         class="flex h-16 shrink-0 items-center justify-end border-b px-6"
@@ -121,7 +110,7 @@
       >
         <button
           class="body-muted flex size-8 items-center justify-center rounded-full border border-[var(--line)] transition-colors duration-150 hover:border-[var(--line-strong)] hover:text-[var(--page-text)]"
-          :aria-label="$t('nav.close')"
+          aria-label="Close menu"
           @click="menuOpen = false"
         >
           <svg
@@ -145,7 +134,7 @@
           style="font-size: clamp(52px, 14vw, 80px); color: var(--page-text)"
           @click="menuOpen = false"
         >
-          {{ $t('nav.blog') }}
+          Blog
         </RouterLink>
         <RouterLink
           to="/goals"
@@ -153,26 +142,20 @@
           style="font-size: clamp(52px, 14vw, 80px); color: var(--page-text)"
           @click="menuOpen = false"
         >
-          {{ $t('nav.goals') }}
+          Goals
         </RouterLink>
       </nav>
 
-      <div class="flex items-center justify-between px-8 pb-10">
-        <a
-          href="/resume/resume.pdf"
-          download
-          class="primary-button inline-flex items-center gap-2 rounded-full px-5 py-3 text-[12px] uppercase tracking-[0.08em]"
-          @click="menuOpen = false"
-        >
-          {{ $t('header.downloadCV') }} ↓
-        </a>
+      <div class="flex items-center justify-end px-8 pb-10">
         <div class="flex items-center gap-2">
-          <button
-            class="body-muted rounded-full border border-[var(--line)] px-3 py-1 font-mono text-[11px] font-medium tracking-[0.06em] transition-colors duration-150 hover:border-[var(--line-strong)] hover:text-[var(--page-text)]"
-            @click="toggleLocale"
+          <a
+            href="/resume/resume.pdf"
+            download
+            class="primary-button inline-flex items-center gap-2 rounded-full px-5 py-3 text-[12px] uppercase tracking-[0.08em]"
+            @click="menuOpen = false"
           >
-            {{ localeLabel }}
-          </button>
+            CV ↓
+          </a>
           <button
             class="body-muted flex size-8 items-center justify-center rounded-full border border-[var(--line)] transition-colors duration-150 hover:border-[var(--line-strong)] hover:text-[var(--page-text)]"
             :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
@@ -221,11 +204,9 @@
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { RouterLink } from 'vue-router'
 
-import { useLocale } from '../composables/useLocale'
 import { useTheme } from '../composables/useTheme'
 
 const { toggle: toggleTheme, theme } = useTheme()
-const { toggle: toggleLocale, label: localeLabel } = useLocale()
 
 const isDark = computed(() => theme.value === 'dark')
 const menuOpen = ref(false)

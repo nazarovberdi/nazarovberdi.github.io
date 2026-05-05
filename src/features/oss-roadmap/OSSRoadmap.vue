@@ -1,9 +1,9 @@
 <template>
   <div class="min-h-screen px-4 py-8 font-sans" style="background: var(--page-bg); color: var(--page-text)">
     <div class="mx-auto max-w-[680px]">
-      <h1 class="mb-1 text-[20px] font-medium">{{ t('roadmap.title') }}</h1>
+      <h1 class="mb-1 text-[20px] font-medium">Vue / Vite Learning Roadmap</h1>
       <p class="mb-6 text-[13px]" style="color: var(--page-muted)">
-        {{ t('roadmap.description') }}
+        A personal roadmap for building toward future contributions in the ecosystem. You can use it too, and progress is saved in your browser.
       </p>
 
       <div
@@ -12,7 +12,7 @@
       >
         <div class="flex-1">
           <strong class="text-[14px] font-medium">
-            {{ totalDone }} / {{ totalItems }} {{ t('roadmap.completed') }}
+            {{ totalDone }} / {{ totalItems }} completed
           </strong>
           <div
             class="mt-1 h-[3px] overflow-hidden rounded-full"
@@ -132,16 +132,13 @@
 
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import { JS_ENGINE_ITEMS, OSS_CONTRIBUTION, OSS_VITE, OSS_VUE, REACTIVITY } from './phases'
 import { usePageMeta } from '@/composables/usePageMeta'
 
-const { t } = useI18n()
-
 usePageMeta(() => ({
-  title: t('roadmap.title'),
-  description: t('roadmap.description'),
+  title: 'Vue / Vite Learning Roadmap',
+  description: 'A personal roadmap for building toward future contributions in the ecosystem. You can use it too, and progress is saved in your browser.',
 }))
 
 const STORAGE_KEY = 'vue-roadmap'

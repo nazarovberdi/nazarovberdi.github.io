@@ -14,13 +14,13 @@
             class="body-muted mb-6 inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.08em] transition-colors duration-150 hover:text-(--page-text)"
           >
             <span aria-hidden="true">←</span>
-            <span>{{ t('post.backToBlog') }}</span>
+            <span>Back to blog</span>
           </RouterLink>
 
           <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">
-            {{ formatBlogDate(post.date, locale) }}
+            {{ formatBlogDate(post.date) }}
             <span aria-hidden="true"> · </span>
-            {{ t('post.readingTime', { n: post.readingTime }) }}
+            {{ post.readingTime }} min read
           </p>
           <h1 class="font-serif text-[clamp(40px,9vw,80px)] leading-[0.96] tracking-[-0.05em]">
             {{ post.title }}
@@ -44,9 +44,7 @@
             :to="`/blog/${adjacent.prev.slug}`"
             class="group flex min-w-0 flex-1 flex-col gap-1"
           >
-            <span class="eyebrow text-[11px] uppercase tracking-[0.08em]">
-              {{ t('post.newerPost') }}
-            </span>
+            <span class="eyebrow text-[11px] uppercase tracking-[0.08em]">← Newer</span>
             <span
               class="font-serif text-[18px] leading-tight tracking-[-0.02em] text-(--page-text) transition-colors duration-150 group-hover:text-(--accent)"
             >
@@ -58,9 +56,7 @@
             :to="`/blog/${adjacent.next.slug}`"
             class="group flex min-w-0 flex-1 flex-col items-end gap-1 text-right"
           >
-            <span class="eyebrow text-[11px] uppercase tracking-[0.08em]">
-              {{ t('post.olderPost') }}
-            </span>
+            <span class="eyebrow text-[11px] uppercase tracking-[0.08em]">Older →</span>
             <span
               class="font-serif text-[18px] leading-tight tracking-[-0.02em] text-(--page-text) transition-colors duration-150 group-hover:text-(--accent)"
             >
@@ -72,18 +68,18 @@
 
       <template v-else>
         <section class="surface-panel max-w-[720px] p-8">
-          <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">{{ t('post.missing') }}</p>
+          <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">Missing post</p>
           <h1 class="font-serif text-[clamp(34px,8vw,64px)] leading-[0.96] tracking-[-0.05em]">
-            {{ t('post.missingTitle') }}
+            This entry does not exist yet.
           </h1>
           <p class="body-muted mt-5 max-w-[520px] text-[14px] leading-[1.85]">
-            {{ t('post.missingDesc') }}
+            The route is wired correctly, but there is no markdown file matching this slug.
           </p>
           <RouterLink
             to="/blog"
             class="primary-button mt-8 inline-flex items-center gap-2 rounded-full px-5 py-3 text-[12px] uppercase tracking-[0.08em]"
           >
-            {{ t('post.returnToBlog') }}
+            Return to blog
           </RouterLink>
         </section>
       </template>
@@ -94,12 +90,10 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
-import { useI18n } from 'vue-i18n'
 
 import { formatBlogDate, getAdjacentPosts, getBlogPostBySlug } from './posts'
 import { usePageMeta } from '@/composables/usePageMeta'
 
-const { t, locale } = useI18n()
 const route = useRoute()
 const articleRef = ref<HTMLElement | null>(null)
 const copyResetTimers = new WeakMap<HTMLButtonElement, number>()

@@ -2,12 +2,12 @@
   <section class="mb-16 animate-fade-up [animation-delay:225ms]">
     <div class="mb-8 flex items-end justify-between gap-6 max-sm:flex-col max-sm:items-start">
       <div>
-        <p class="eyebrow mb-3 text-[11px] uppercase tracking-[0.12em]">{{ t('projects.eyebrow') }}</p>
+        <p class="eyebrow mb-3 text-[11px] uppercase tracking-[0.12em]">Pinned Repositories</p>
         <h2 class="font-serif text-[clamp(28px,5vw,40px)] leading-[1.05] tracking-[-0.02em]">
-          {{ t('projects.heading') }}
+          Recent builds worth opening.
         </h2>
         <p class="body-muted mt-4 max-w-[460px] text-[13px] leading-[1.8]">
-          {{ t('projects.description') }}
+          A small set of repositories that show the kind of work I enjoy most: practical tools, polished interfaces, and developer-facing systems with a clear job to do.
         </p>
       </div>
 
@@ -17,7 +17,7 @@
         rel="noopener"
         class="body-muted inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.06em] transition-colors duration-150 hover:text-[var(--page-text)]"
       >
-        <span>{{ t('projects.inspectAll') }}</span>
+        <span>Inspect All Repos</span>
         <span aria-hidden="true">↗</span>
       </a>
     </div>
@@ -74,7 +74,7 @@
               rel="noopener"
               class="group/link inline-flex items-center gap-2 text-[var(--page-muted)] transition-colors duration-200 group-hover:text-[var(--page-text)]"
             >
-              <span>{{ t('projects.openLive') }}</span>
+              <span>Open live</span>
               <span
                 aria-hidden="true"
                 class="transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:-translate-y-0.5"
@@ -88,7 +88,7 @@
               rel="noopener"
               class="group/link inline-flex items-center gap-2 text-[var(--page-muted)] transition-colors duration-200 group-hover:text-[var(--page-text)]"
             >
-              <span>{{ t('projects.readSource') }}</span>
+              <span>Read source</span>
               <span
                 aria-hidden="true"
                 class="transition-transform duration-300 group-hover/link:translate-x-1.5"
@@ -104,11 +104,8 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import type { Project } from '../data'
-
-const { t } = useI18n()
 
 const props = defineProps<{
   projects: readonly Project[]
