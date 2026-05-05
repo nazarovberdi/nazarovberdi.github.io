@@ -9,6 +9,19 @@
     --animate-fade-up: fade-up 0.6s ease both;
     --animate-fade-soft: fade-soft 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
     --animate-float-subtle: float-subtle 4.5s ease-in-out infinite;
+    --animate-gentle-drift: gentle-drift 0.75s ease-in-out both;
+    --animate-slide: slide-right 0.75s ease-in-out both;
+
+    @keyframes slide-right {
+        from {
+            opacity: 0;
+            transform: translateX(-16px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
 
     @keyframes fade-up {
         from {
@@ -40,7 +53,7 @@
         }
         50% {
             opacity: 1;
-            transform: translate3d(0, 14px, 0) scale(1.04);
+            transform: translate3d(14px, 0, 0) scale(1.04);
         }
     }
 
