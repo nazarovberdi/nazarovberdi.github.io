@@ -14,12 +14,5 @@
     <pubDate>Thu, 30 Apr 2026 00:00:00 GMT</pubDate>
     <guid isPermaLink="true">https://nazarovberdi.github.io/blog/using-zed-editor-for-vue-js</guid>
   </item>
-  <item>
-    <title>Designing prose that fits the site</title>
-    <link>https://nazarovberdi.github.io/blog/designing-prose-that-fits</link>
-    <description>Markdown should stay simple, while the website owns typography, spacing, and code block presentation.</description>
-    <pubDate>Mon, 16 Mar 2026 00:00:00 GMT</pubDate>
-    <guid isPermaLink="true">https://nazarovberdi.github.io/blog/designing-prose-that-fits</guid>
-  </item>
   </channel>
 </rss>
