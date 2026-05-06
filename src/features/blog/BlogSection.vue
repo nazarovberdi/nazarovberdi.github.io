@@ -21,12 +21,15 @@
     </div>
 
     <div class="grid grid-cols-3 gap-4 max-lg:grid-cols-1">
-      <RouterLink
+      <div
         v-for="(post, index) in posts"
         :key="post.slug"
-        :to="`/blog/${post.slug}`"
-        class="surface-card blog-listing-card group animate-fade-soft flex h-full flex-col p-6 transition-all duration-300 hover:-translate-y-1.5"
+        class="group animate-fade-soft"
         :style="{ animationDelay: `${290 + index * 55}ms` }"
+      >
+      <RouterLink
+        :to="`/blog/${post.slug}`"
+        class="surface-card blog-listing-card flex h-full flex-col p-6 transition-all duration-300 group-hover:-translate-y-1.5"
       >
         <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">
           {{ formatBlogDate(post.date) }}
@@ -43,6 +46,7 @@
           Read entry
         </span>
       </RouterLink>
+      </div>
     </div>
   </section>
 </template>

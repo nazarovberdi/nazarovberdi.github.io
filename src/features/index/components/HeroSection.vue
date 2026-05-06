@@ -20,9 +20,9 @@
       <p
         class="hero-summary body-muted max-w-[500px] text-[14px] font-light leading-[1.85]"
       >
-        Building interfaces and tools in the Vue / Vite ecosystem. Especially
-        interested in developer experience, frontend systems, and growing toward
-        future contributions in the Vite and Vue world.
+        Frontend engineer in the Vue / Vite ecosystem — shipping production
+        interfaces for organizations, contributing to open-source libraries,
+        and going deep on developer tooling and DX.
       </p>
 
       <div

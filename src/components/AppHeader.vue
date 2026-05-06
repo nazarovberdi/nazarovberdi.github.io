@@ -7,12 +7,21 @@
       class="mr-auto flex items-center gap-3"
       aria-label="Nazarov Berdi — home"
     >
-      <span class="pill flex size-9 items-center justify-center font-serif text-[15px]">NB</span>
-      <span class="text-[13px] font-medium text-[var(--page-text)]">Nazarov Berdi</span>
-      <span class="body-muted hidden text-[11px] sm:block">Software Engineer</span>
+      <span
+        class="pill flex size-9 items-center justify-center font-serif text-[15px]"
+        >NB</span
+      >
+      <span class="text-[13px] font-medium text-[var(--page-text)]"
+        >Nazarov Berdi</span
+      >
+      <span class="body-muted hidden text-[11px] sm:block"
+        >Frontend Engineer</span
+      >
     </RouterLink>
 
-    <nav class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 md:flex">
+    <nav
+      class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 md:flex"
+    >
       <RouterLink
         to="/blog"
         class="body-muted text-[12px] tracking-[0.04em] transition-colors duration-150 hover:text-[var(--page-text)]"
@@ -90,7 +99,11 @@
           stroke-width="1.75"
           aria-hidden="true"
         >
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
         </svg>
       </button>
     </div>
@@ -122,7 +135,11 @@
             stroke-width="1.75"
             aria-hidden="true"
           >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
           </svg>
         </button>
       </div>
@@ -158,7 +175,9 @@
           </a>
           <button
             class="body-muted flex size-8 items-center justify-center rounded-full border border-[var(--line)] transition-colors duration-150 hover:border-[var(--line-strong)] hover:text-[var(--page-text)]"
-            :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+            :aria-label="
+              isDark ? 'Switch to light mode' : 'Switch to dark mode'
+            "
             @click="toggleTheme"
           >
             <svg
@@ -201,29 +220,29 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import { RouterLink } from 'vue-router'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { RouterLink } from "vue-router";
 
-import { useTheme } from '../composables/useTheme'
+import { useTheme } from "../composables/useTheme";
 
-const { toggle: toggleTheme, theme } = useTheme()
+const { toggle: toggleTheme, theme } = useTheme();
 
-const isDark = computed(() => theme.value === 'dark')
-const menuOpen = ref(false)
+const isDark = computed(() => theme.value === "dark");
+const menuOpen = ref(false);
 
 watch(menuOpen, (open) => {
-  if (import.meta.env.SSR) return
-  document.body.style.overflow = open ? 'hidden' : ''
-})
+  if (import.meta.env.SSR) return;
+  document.body.style.overflow = open ? "hidden" : "";
+});
 
 function handleKeydown(e: KeyboardEvent): void {
-  if (e.key === 'Escape') menuOpen.value = false
+  if (e.key === "Escape") menuOpen.value = false;
 }
 
-onMounted(() => window.addEventListener('keydown', handleKeydown))
+onMounted(() => window.addEventListener("keydown", handleKeydown));
 
 onBeforeUnmount(() => {
-  window.removeEventListener('keydown', handleKeydown)
-  document.body.style.overflow = ''
-})
+  window.removeEventListener("keydown", handleKeydown);
+  document.body.style.overflow = "";
+});
 </script>

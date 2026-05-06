@@ -35,6 +35,6 @@ const year = new Date().getFullYear()
 
 usePageMeta(() => ({
   title: 'Frontend Engineer — Vue / Vite',
-  description: 'Building interfaces and tools in the Vue / Vite ecosystem. Especially interested in developer experience, frontend systems, and growing toward future contributions in the Vite and Vue world.',
+  description: 'Frontend engineer in the Vue / Vite ecosystem — shipping production interfaces for organizations, contributing to open-source libraries, and going deep on developer tooling and DX.',
 }))
 </script>

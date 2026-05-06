@@ -19,10 +19,11 @@
           <div class="rule-line h-px w-10" />
         </div>
         <div class="eyebrow mb-2 text-[11px] uppercase tracking-[0.08em]">
-          Learning queue
+          Open Source
         </div>
         <p class="body-muted text-[13px] font-light leading-[1.7]">
-          Vue 3 internals, Vite plugin pipeline, TypeScript type system depth.
+          Authored the Turkmen locale for date-fns — PR open upstream, already
+          shipping in production via fork.
         </p>
       </div>
       <div
@@ -33,11 +34,11 @@
           <div class="rule-line h-px w-10" />
         </div>
         <div class="eyebrow mb-2 text-[11px] uppercase tracking-[0.08em]">
-          Target state
+          Focus
         </div>
         <p class="body-muted text-[13px] font-light leading-[1.7]">
-          Building enough depth to contribute meaningfully to the Vite or Vue
-          ecosystem over time.
+          Vue 3, Vite, TypeScript — production interfaces, developer tooling,
+          and plugin systems.
         </p>
       </div>
       <div
@@ -48,10 +49,10 @@
           <div class="rule-line h-px w-10" />
         </div>
         <div class="eyebrow mb-2 text-[11px] uppercase tracking-[0.08em]">
-          Location
+          Based in
         </div>
         <p class="body-muted text-[13px] font-light leading-[1.7]">
-          Turkmenistan — building in public, one commit at a time.
+          Ashgabat, Turkmenistan.
         </p>
       </div>
     </section>

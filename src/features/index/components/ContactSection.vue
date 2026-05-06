@@ -32,14 +32,17 @@
         </div>
 
         <div class="grid gap-3 self-end">
-          <a
+          <div
             v-for="(profile, index) in socialProfiles"
             :key="profile.label"
+            class="group animate-fade-soft"
+            :style="{ animationDelay: `${320 + index * 70}ms` }"
+          >
+          <a
             :href="profile.url"
             target="_blank"
             rel="noopener"
-            class="contact-link surface-card group animate-fade-soft px-5 py-4 transition-all duration-300 hover:-translate-y-1"
-            :style="{ animationDelay: `${320 + index * 70}ms` }"
+            class="contact-link surface-card block px-5 py-4 transition-all duration-300 group-hover:-translate-y-1"
           >
             <div class="flex items-start justify-between gap-4">
               <div>
@@ -61,6 +64,7 @@
               >
             </div>
           </a>
+          </div>
         </div>
       </div>
     </div>
