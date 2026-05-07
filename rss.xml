@@ -8,6 +8,13 @@
     <atom:link href="https://nazarovberdi.github.io/rss.xml" rel="self" type="application/rss+xml" />
     
   <item>
+    <title>Using ESLint as linter and formatter</title>
+    <link>https://nazarovberdi.github.io/blog/using-eslint-as-linter-formatter</link>
+    <description>ESLint is a linter, but with the Stylistic plugin it replaces Prettier entirely — one tool, one config, zero conflicts.</description>
+    <pubDate>Thu, 07 May 2026 00:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://nazarovberdi.github.io/blog/using-eslint-as-linter-formatter</guid>
+  </item>
+  <item>
     <title>Configuring Zed for Vue 3 development</title>
     <link>https://nazarovberdi.github.io/blog/using-zed-editor-for-vue-js</link>
     <description>Zed is fast, but its Vue 3 and TypeScript setup needs a few deliberate choices before it stops fighting you.</description>
