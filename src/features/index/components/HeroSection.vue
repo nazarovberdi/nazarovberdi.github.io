@@ -21,8 +21,8 @@
         class="hero-summary body-muted max-w-[500px] text-[14px] font-light leading-[1.85]"
       >
         Frontend engineer in the Vue / Vite ecosystem — shipping production
-        interfaces for organizations, contributing to open-source libraries,
-        and going deep on developer tooling and DX.
+        interfaces for organizations, contributing to open-source libraries, and
+        going deep on developer tooling and DX.
       </p>
 
       <div
@@ -41,28 +41,6 @@
     </div>
 
     <div class="mt-10 flex flex-wrap items-center gap-3">
-      <RouterLink
-        to="/goals"
-        class="primary-button group inline-flex items-center gap-2 rounded-full px-5 py-[11px] text-[13px] transition-all duration-300 hover:-translate-y-0.5 hover:translate-x-1"
-      >
-        <span>View Learning Roadmap</span>
-        <svg
-          class="transition-transform duration-300 group-hover:translate-x-1.5"
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-        >
-          <path
-            d="M3 8h10M9 4l4 4-4 4"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </RouterLink>
-
       <a
         href="https://github.com/nazarovberdi"
         target="_blank"
