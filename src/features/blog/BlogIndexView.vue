@@ -1,19 +1,13 @@
 <template>
-  <div class="blog-page theme-hackful relative min-h-screen overflow-x-hidden">
-    <div class="home-dot-grid pointer-events-none fixed inset-0" />
-    <div class="home-veil pointer-events-none fixed inset-0" />
-    <div
-      class="home-glow pointer-events-none absolute inset-x-0 top-0 h-[360px] animate-gentle-drift"
-    />
-
-    <main class="blog-main relative mx-auto px-6 pt-8 pb-16 animate-fade-up">
+  <div class="blog-page relative min-h-screen overflow-x-hidden">
+    <main class="blog-main relative mx-auto px-5 pt-10 pb-16 sm:px-8 sm:pt-16 animate-fade-up">
       <header
         class="mb-12 flex items-start justify-between gap-6 max-lg:flex-col max-lg:items-start"
       >
         <div class="min-w-0 flex-1">
-          <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">Writing</p>
+          <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">Writing / frontend notes</p>
           <h1
-            class="font-serif text-[clamp(42px,10vw,86px)] leading-[0.95] tracking-[-0.05em]"
+            class="font-serif text-[clamp(52px,10vw,120px)] font-semibold leading-[.85] tracking-[-0.07em]"
           >
             Thoughts &amp; Learnings
           </h1>
@@ -21,7 +15,7 @@
 
         <RouterLink
           to="/"
-          class="secondary-button inline-flex items-center gap-2 rounded-full px-5 py-3 text-[12px] uppercase tracking-[0.08em] transition-transform duration-200 hover:-translate-y-0.5 max-lg:self-start"
+          class="secondary-button inline-flex items-center gap-2 px-5 py-3 text-[11px] uppercase tracking-[0.08em] max-lg:self-start"
         >
           <span aria-hidden="true">←</span>
           <span>Back home</span>
@@ -33,7 +27,7 @@
           v-for="(post, index) in blogPosts"
           :key="post.slug"
           :to="`/blog/${post.slug}`"
-          class="surface-panel animate-fade-soft blog-row-link block min-w-0 p-6 transition-all duration-300 hover:-translate-y-1"
+          class="surface-panel animate-fade-soft blog-row-link block min-w-0 p-6 transition-all duration-300 hover:-translate-y-1 sm:p-8"
           :style="{ animationDelay: `${120 + index * 50}ms` }"
         >
           <div class="flex items-start justify-between gap-6 max-md:flex-col">
@@ -44,7 +38,7 @@
                 {{ post.readingTime }} min read
               </p>
               <h2
-                class="font-serif text-[32px] leading-[1.05] tracking-[-0.03em]"
+                class="font-serif text-[clamp(28px,3vw,42px)] font-semibold leading-[.95] tracking-[-0.05em]"
               >
                 {{ post.title }}
               </h2>

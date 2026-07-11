@@ -1,21 +1,17 @@
 <template>
-  <section class="mb-16 animate-fade-up [animation-delay:225ms]">
+  <section id="work" class="mb-28 scroll-mt-28">
     <div
       class="mb-8 flex items-end justify-between gap-6 max-sm:flex-col max-sm:items-start"
     >
       <div>
-        <p class="eyebrow mb-3 text-[11px] uppercase tracking-[0.12em]">
-          Pinned Repositories
-        </p>
+        <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">01 / Selected work</p>
         <h2
-          class="font-serif text-[clamp(28px,5vw,40px)] leading-[1.05] tracking-[-0.02em]"
+          class="font-serif max-w-[620px] text-[clamp(38px,5vw,62px)] font-semibold leading-[.93] tracking-[-0.055em]"
         >
-          Recent builds worth opening.
+          Built for real use,<br />not just a screenshot.
         </h2>
         <p class="body-muted mt-4 max-w-[460px] text-[13px] leading-[1.8]">
-          A small set of repositories that show the kind of work I enjoy most:
-          practical tools, polished interfaces, and developer-facing systems
-          with a clear job to do.
+          A focused collection of interfaces, open-source contributions, and practical tools that show how I think through frontend work.
         </p>
       </div>
 
@@ -25,12 +21,12 @@
         rel="noopener"
         class="body-muted inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.06em] transition-colors duration-150 hover:text-[var(--page-text)]"
       >
-        <span>Inspect All Repos</span>
+        <span>All repositories</span>
         <span aria-hidden="true">↗</span>
       </a>
     </div>
 
-    <div class="projects-grid grid grid-cols-2 gap-4 max-sm:grid-cols-1">
+    <div class="projects-grid grid grid-cols-2 gap-px border border-[var(--line)] bg-[var(--line)] max-sm:grid-cols-1">
       <div
         v-for="(project, index) in projects"
         :key="project.name"
@@ -38,60 +34,53 @@
         :style="{ animationDelay: `${260 + index * 55}ms` }"
       >
         <article
-          class="project-card surface-card flex h-full flex-col p-6 transition-all duration-300 group-hover:-translate-y-1.5"
+          class="project-card surface-card flex h-full flex-col p-7"
+          :style="{ '--project-color': project.color }"
         >
-          <div class="mb-6 flex items-center justify-between gap-4">
-            <div class="inline-flex items-center gap-2">
-              <span
-                class="size-2 rounded-full transition-transform duration-300 group-hover:scale-125"
-                :style="{ backgroundColor: project.color }"
-                aria-hidden="true"
-              />
-              <p class="eyebrow text-[11px] uppercase tracking-[0.1em]">
-                {{ project.owner }}
-              </p>
-            </div>
+          <div class="mb-12 flex items-start justify-between gap-4">
+            <p class="project-index font-serif text-[46px] font-semibold leading-none tracking-[-0.07em]">0{{ index + 1 }}</p>
 
             <span
               v-if="displayStars(project) !== null"
-              class="pill px-3 py-1 text-[11px] uppercase tracking-[0.08em] body-muted"
+              class="pill px-3 py-1 font-mono text-[10px] uppercase tracking-[0.08em] body-muted"
             >
               ★ {{ displayStars(project) }}
             </span>
           </div>
 
-          <div class="mb-6">
+          <div class="mb-5">
+            <p class="eyebrow mb-3 text-[10px] uppercase tracking-[0.1em]">{{ project.owner }}</p>
             <h3
-              class="font-serif text-[28px] leading-[1.05] tracking-[-0.02em] text-(--page-text)"
+              class="font-serif text-[clamp(27px,3vw,38px)] font-semibold leading-[.95] tracking-[-0.05em] text-(--page-text)"
             >
               {{ project.name }}
             </h3>
           </div>
 
           <p
-            class="body-muted min-h-[72px] text-[13px] font-light leading-[1.75]"
+            class="body-muted min-h-[72px] text-[14px] leading-[1.7]"
           >
             {{ project.description }}
           </p>
 
           <div
-            class="body-muted mt-auto flex flex-col items-end gap-3 pt-5 text-[12px]"
+            class="body-muted mt-auto flex flex-col items-start gap-5 border-t border-[var(--line)] pt-5 text-[12px]"
           >
             <div class="flex items-center justify-end gap-3">
-              <span class="inline-flex items-center gap-2">
+              <span class="font-mono text-[10px] uppercase tracking-[0.08em]">
                 {{ project.language }}
               </span>
             </div>
 
             <div
-              class="flex flex-wrap items-center justify-end gap-x-4 gap-y-2"
+              class="flex flex-wrap items-center gap-x-5 gap-y-2"
             >
               <a
                 v-if="project.liveUrl"
                 :href="project.liveUrl"
                 target="_blank"
                 rel="noopener"
-                class="group/link inline-flex items-center gap-2 text-(--page-muted) transition-colors duration-200 group-hover:text-(--page-text)"
+                class="group/link inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.08em] text-(--page-muted) transition-colors duration-200 hover:text-(--accent-bright)"
               >
                 <span>Open live</span>
                 <span
@@ -105,7 +94,7 @@
                 :href="project.url"
                 target="_blank"
                 rel="noopener"
-                class="group/link inline-flex items-center gap-2 text-(--page-muted) transition-colors duration-200 group-hover:text-(--page-text)"
+                class="group/link inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.08em] text-(--page-muted) transition-colors duration-200 hover:text-(--accent-bright)"
               >
                 <span>Read source</span>
                 <span

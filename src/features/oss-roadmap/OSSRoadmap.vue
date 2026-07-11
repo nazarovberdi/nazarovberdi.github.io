@@ -1,13 +1,14 @@
 <template>
-  <div class="min-h-screen px-4 py-8 font-sans" style="background: var(--page-bg); color: var(--page-text)">
-    <div class="mx-auto max-w-[680px]">
-      <h1 class="mb-1 text-[20px] font-medium">Vue / Vite Learning Roadmap</h1>
-      <p class="mb-6 text-[13px]" style="color: var(--page-muted)">
+  <div class="blog-page min-h-screen px-5 py-12 sm:px-8" style="color: var(--page-text)">
+    <div class="mx-auto max-w-[880px]">
+      <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">Independent learning</p>
+      <h1 class="mb-3 font-serif text-[clamp(42px,7vw,76px)] font-semibold leading-[.9] tracking-[-0.06em]">Vue / Vite<br />Learning Roadmap</h1>
+      <p class="mb-10 max-w-[560px] text-[14px] leading-[1.75]" style="color: var(--page-muted)">
         A personal roadmap for building toward future contributions in the ecosystem. You can use it too, and progress is saved in your browser.
       </p>
 
       <div
-        class="mb-4 flex items-center gap-3 rounded-lg px-[14px] py-[10px]"
+        class="mb-8 flex items-center gap-3 px-5 py-4"
         style="background: var(--panel-bg); border: 1px solid var(--line)"
       >
         <div class="flex-1">
@@ -32,7 +33,7 @@
         <div
           v-for="(phase, pi) in phases"
           :key="phase.num"
-          class="overflow-hidden rounded-xl"
+          class="overflow-hidden"
           style="background: var(--panel-bg); border: 1px solid var(--line)"
         >
           <div class="px-[14px] pb-[12px] pt-[12px]">

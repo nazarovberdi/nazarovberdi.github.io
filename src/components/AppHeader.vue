@@ -1,6 +1,6 @@
 <template>
   <header
-    class="fixed top-0 right-0 left-0 z-50 flex h-16 items-center border-b border-[var(--line)] bg-[var(--panel-bg-strong)] px-6 backdrop-blur-md"
+    class="site-header fixed top-0 right-0 left-0 z-50 flex h-[var(--header-height)] items-center border-b border-[var(--line)] px-5 sm:px-8"
   >
     <RouterLink
       to="/"
@@ -8,31 +8,23 @@
       aria-label="Nazarov Berdi — home"
     >
       <span
-        class="pill flex size-9 items-center justify-center font-serif text-[15px]"
+        class="flex size-9 items-center justify-center bg-(--accent) font-mono text-[11px] font-medium text-(--button-primary-text)"
         >NB</span
       >
-      <span class="text-[13px] font-medium text-[var(--page-text)]"
+      <span class="font-serif text-[15px] font-semibold tracking-[-0.04em] text-[var(--page-text)]"
         >Nazarov Berdi</span
       >
-      <span class="body-muted hidden text-[11px] sm:block"
-        >Frontend Engineer</span
-      >
+      <span class="eyebrow hidden text-[10px] uppercase tracking-[0.08em] sm:block">Frontend Engineer</span>
     </RouterLink>
 
     <nav
-      class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 md:flex"
+      class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-7 md:flex"
     >
       <RouterLink
         to="/blog"
-        class="body-muted text-[12px] tracking-[0.04em] transition-colors duration-150 hover:text-[var(--page-text)]"
+        class="font-mono text-[10px] uppercase tracking-[0.09em] text-(--page-muted) transition-colors duration-150 hover:text-(--accent-bright)"
       >
         Blog
-      </RouterLink>
-      <RouterLink
-        to="/goals"
-        class="body-muted text-[12px] tracking-[0.04em] transition-colors duration-150 hover:text-[var(--page-text)]"
-      >
-        Goals
       </RouterLink>
     </nav>
 
@@ -40,13 +32,13 @@
       <a
         href="/resume/resume.pdf"
         download
-        class="body-muted hidden items-center gap-1 rounded-full border border-[var(--line)] px-3 py-1 font-mono text-[11px] font-medium tracking-[0.06em] transition-colors duration-150 hover:border-[var(--line-strong)] hover:text-[var(--page-text)] md:inline-flex"
+        class="hidden items-center gap-1 border border-[var(--line)] px-3 py-2 font-mono text-[10px] font-medium uppercase tracking-[0.08em] text-(--page-muted) transition-colors duration-150 hover:border-[var(--accent)] hover:text-[var(--accent-bright)] md:inline-flex"
       >
         CV ↓
       </a>
 
       <button
-        class="body-muted flex size-8 items-center justify-center rounded-full border border-[var(--line)] transition-colors duration-150 hover:border-[var(--line-strong)] hover:text-[var(--page-text)]"
+        class="body-muted flex size-9 items-center justify-center border border-[var(--line)] transition-colors duration-150 hover:border-[var(--accent)] hover:text-[var(--accent-bright)]"
         :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
         @click="toggleTheme"
       >
@@ -85,7 +77,7 @@
       </button>
 
       <button
-        class="body-muted flex size-8 items-center justify-center rounded-full border border-[var(--line)] transition-colors duration-150 hover:border-[var(--line-strong)] hover:text-[var(--page-text)] md:hidden"
+        class="body-muted flex size-9 items-center justify-center border border-[var(--line)] transition-colors duration-150 hover:border-[var(--accent)] hover:text-[var(--accent-bright)] md:hidden"
         aria-label="Open menu"
         :aria-expanded="menuOpen"
         @click="menuOpen = true"
@@ -118,11 +110,11 @@
       aria-label="Open menu"
     >
       <div
-        class="flex h-16 shrink-0 items-center justify-end border-b px-6"
+        class="flex h-[var(--header-height)] shrink-0 items-center justify-end border-b px-6"
         style="border-color: var(--line)"
       >
         <button
-          class="body-muted flex size-8 items-center justify-center rounded-full border border-[var(--line)] transition-colors duration-150 hover:border-[var(--line-strong)] hover:text-[var(--page-text)]"
+          class="body-muted flex size-9 items-center justify-center border border-[var(--line)] transition-colors duration-150 hover:border-[var(--accent)] hover:text-[var(--accent-bright)]"
           aria-label="Close menu"
           @click="menuOpen = false"
         >
@@ -147,19 +139,11 @@
       <nav class="flex flex-1 flex-col justify-center gap-1 px-8">
         <RouterLink
           to="/blog"
-          class="font-serif leading-[1.05] tracking-[-0.04em] transition-colors duration-150 hover:text-[var(--accent)]"
+          class="font-serif leading-[1.05] tracking-[-0.06em] transition-colors duration-150 hover:text-[var(--accent)]"
           style="font-size: clamp(52px, 14vw, 80px); color: var(--page-text)"
           @click="menuOpen = false"
         >
           Blog
-        </RouterLink>
-        <RouterLink
-          to="/goals"
-          class="font-serif leading-[1.05] tracking-[-0.04em] transition-colors duration-150 hover:text-[var(--accent)]"
-          style="font-size: clamp(52px, 14vw, 80px); color: var(--page-text)"
-          @click="menuOpen = false"
-        >
-          Goals
         </RouterLink>
       </nav>
 
@@ -168,13 +152,13 @@
           <a
             href="/resume/resume.pdf"
             download
-            class="primary-button inline-flex items-center gap-2 rounded-full px-5 py-3 text-[12px] uppercase tracking-[0.08em]"
+            class="primary-button inline-flex items-center gap-2 px-5 py-3 text-[12px] uppercase tracking-[0.08em]"
             @click="menuOpen = false"
           >
             CV ↓
           </a>
           <button
-            class="body-muted flex size-8 items-center justify-center rounded-full border border-[var(--line)] transition-colors duration-150 hover:border-[var(--line-strong)] hover:text-[var(--page-text)]"
+            class="body-muted flex size-9 items-center justify-center border border-[var(--line)] transition-colors duration-150 hover:border-[var(--accent)] hover:text-[var(--accent-bright)]"
             :aria-label="
               isDark ? 'Switch to light mode' : 'Switch to dark mode'
             "
