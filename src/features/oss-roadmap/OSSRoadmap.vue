@@ -20,9 +20,9 @@
             style="background: var(--panel-bg-strong)"
           >
             <div
-              class="h-full rounded-full transition-all duration-300"
+              class="h-full w-full origin-left rounded-full transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
               style="background: var(--accent)"
-              :style="{ width: totalPercent + '%' }"
+              :style="{ transform: `scaleX(${totalPercent / 100})` }"
             />
           </div>
         </div>
@@ -79,15 +79,16 @@
               style="background: var(--panel-bg-strong)"
             >
               <div
-                class="h-full rounded-full transition-all duration-300"
-                :style="{ width: phasePercent(phase) + '%', background: phase.color }"
+                class="h-full w-full origin-left rounded-full transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                :style="{ transform: `scaleX(${phasePercent(phase) / 100})`, background: phase.color }"
               />
             </div>
 
             <div
-              class="overflow-hidden transition-all duration-300 ease-in-out"
-              :style="{ maxHeight: phase.open ? phase.items.length * 100 + 'px' : '0px' }"
+              class="grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+              :style="{ gridTemplateRows: phase.open ? '1fr' : '0fr' }"
             >
+              <div class="min-h-0 overflow-hidden">
               <button
                 v-for="item in phase.items"
                 :key="item.id"
@@ -123,6 +124,7 @@
                   </div>
                 </div>
               </button>
+              </div>
             </div>
           </div>
         </div>

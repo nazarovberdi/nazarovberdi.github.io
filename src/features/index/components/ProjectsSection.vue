@@ -85,7 +85,7 @@
                 <span>Open live</span>
                 <span
                   aria-hidden="true"
-                  class="transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:-translate-y-0.5"
+                  class="transition-transform duration-200 group-hover/link:translate-x-1 group-hover/link:-translate-y-0.5"
                   >↗</span
                 >
               </a>
@@ -99,7 +99,7 @@
                 <span>Read source</span>
                 <span
                   aria-hidden="true"
-                  class="transition-transform duration-300 group-hover/link:translate-x-1.5"
+                  class="transition-transform duration-200 group-hover/link:translate-x-1.5"
                   >→</span
                 >
               </a>

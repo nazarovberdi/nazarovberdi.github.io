@@ -27,7 +27,7 @@
           v-for="(post, index) in blogPosts"
           :key="post.slug"
           :to="`/blog/${post.slug}`"
-          class="surface-panel animate-fade-soft blog-row-link block min-w-0 p-6 transition-all duration-300 hover:-translate-y-1 sm:p-8"
+          class="surface-panel animate-fade-soft blog-row-link block min-w-0 p-6 transition-[transform,border-color,box-shadow] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 sm:p-8"
           :style="{ animationDelay: `${120 + index * 50}ms` }"
         >
           <div class="flex items-start justify-between gap-6 max-md:flex-col">

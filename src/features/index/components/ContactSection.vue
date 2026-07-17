@@ -35,13 +35,13 @@
             v-for="(profile, index) in socialProfiles"
             :key="profile.label"
             class="group animate-fade-soft"
-            :style="{ animationDelay: `${320 + index * 70}ms` }"
+            :style="{ animationDelay: `${140 + index * 55}ms` }"
           >
           <a
             :href="profile.url"
             target="_blank"
             rel="noopener"
-            class="contact-link surface-card block px-5 py-4 transition-all duration-300 group-hover:-translate-y-1"
+            class="contact-link surface-card block px-5 py-4 transition-[transform,border-color,box-shadow] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1"
           >
             <div class="flex items-start justify-between gap-4">
               <div>
@@ -58,7 +58,7 @@
 
               <span
                 aria-hidden="true"
-                class="body-muted text-[14px] transition-transform duration-300 group-hover:translate-x-1.5 group-hover:-translate-y-0.5"
+                class="body-muted text-[14px] transition-transform duration-200 group-hover:translate-x-1.5 group-hover:-translate-y-0.5"
                 >↗</span
               >
             </div>
