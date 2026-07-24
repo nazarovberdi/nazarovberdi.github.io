@@ -32,13 +32,13 @@
       <a
         href="/resume/resume.pdf"
         download
-        class="hidden items-center gap-1 border border-[var(--line)] px-3 py-2 font-mono text-[10px] font-medium uppercase tracking-[0.08em] text-(--page-muted) transition-colors duration-150 hover:border-[var(--accent)] hover:text-[var(--accent-bright)] md:inline-flex"
+        class="hidden items-center gap-1 border border-[var(--line)] px-3 py-2 font-mono text-[10px] font-medium uppercase tracking-[0.08em] text-(--page-muted) transition-[color,border-color,scale] duration-150 hover:border-[var(--accent)] hover:text-[var(--accent-bright)] active:scale-[0.94] md:inline-flex"
       >
         CV ↓
       </a>
 
       <button
-        class="body-muted flex size-9 items-center justify-center border border-[var(--line)] transition-colors duration-150 hover:border-[var(--accent)] hover:text-[var(--accent-bright)]"
+        class="body-muted flex size-9 items-center justify-center border border-[var(--line)] transition-[color,border-color,scale] duration-150 hover:border-[var(--accent)] hover:text-[var(--accent-bright)] active:scale-[0.94]"
         :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
         @click="toggleTheme"
       >
@@ -77,7 +77,7 @@
       </button>
 
       <button
-        class="body-muted flex size-9 items-center justify-center border border-[var(--line)] transition-colors duration-150 hover:border-[var(--accent)] hover:text-[var(--accent-bright)] md:hidden"
+        class="body-muted flex size-9 items-center justify-center border border-[var(--line)] transition-[color,border-color,scale] duration-150 hover:border-[var(--accent)] hover:text-[var(--accent-bright)] active:scale-[0.94] md:hidden"
         aria-label="Open menu"
         :aria-expanded="menuOpen"
         @click="menuOpen = true"
@@ -114,7 +114,7 @@
         style="border-color: var(--line)"
       >
         <button
-          class="body-muted flex size-9 items-center justify-center border border-[var(--line)] transition-colors duration-150 hover:border-[var(--accent)] hover:text-[var(--accent-bright)]"
+          class="body-muted flex size-9 items-center justify-center border border-[var(--line)] transition-[color,border-color,scale] duration-150 hover:border-[var(--accent)] hover:text-[var(--accent-bright)] active:scale-[0.94]"
           aria-label="Close menu"
           @click="menuOpen = false"
         >
@@ -158,7 +158,7 @@
             CV ↓
           </a>
           <button
-            class="body-muted flex size-9 items-center justify-center border border-[var(--line)] transition-colors duration-150 hover:border-[var(--accent)] hover:text-[var(--accent-bright)]"
+            class="body-muted flex size-9 items-center justify-center border border-[var(--line)] transition-[color,border-color,scale] duration-150 hover:border-[var(--accent)] hover:text-[var(--accent-bright)] active:scale-[0.94]"
             :aria-label="
               isDark ? 'Switch to light mode' : 'Switch to dark mode'
             "

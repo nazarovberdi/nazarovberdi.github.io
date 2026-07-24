@@ -112,6 +112,22 @@ a, button { -webkit-tap-highlight-color: transparent; }
   .mobile-menu-enter-from, .mobile-menu-leave-to { transform: none; }
 }
 
+/* Theme swap: without this the palette flip is a full-page flash. Skipped
+   entirely for reduced motion — see useTheme.ts. */
+::view-transition-old(root), ::view-transition-new(root) {
+  animation-duration: 220ms;
+  animation-timing-function: var(--ease-out);
+}
+
+/* Star pill arriving after the GitHub fetch resolves. No `appear`, so pills
+   already present at hydration stay put. */
+.pill-enter-from { opacity: 0; transform: scale(0.96); }
+.pill-enter-active { transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out); }
+
+/* Roadmap checkbox dot — matches the 150ms the surrounding ring already uses. */
+.check-enter-from { opacity: 0; transform: scale(0.4); }
+.check-enter-active { transition: opacity 150ms var(--ease-out), transform 150ms var(--ease-out); }
+
 .surface-panel, .surface-card {
   position: relative;
   border: 1px solid var(--line);
@@ -143,6 +159,8 @@ a, button { -webkit-tap-highlight-color: transparent; }
   .primary-button:hover, .secondary-button:hover { transform: translateY(-3px); }
   .secondary-button:hover { border-color: var(--accent); color: var(--accent-bright); }
 }
+/* Ungated: touch devices never get the hover lift, so press is their only feedback. */
+.primary-button:active, .secondary-button:active { transform: scale(0.97); transition-duration: 140ms; }
 
 .hero-rule::before { content: ""; display: block; width: 56px; height: 2px; margin-bottom: 22px; background: var(--accent); }
 .hero-orb { background: radial-gradient(circle at 30% 30%, var(--accent-bright), var(--accent) 38%, transparent 70%); filter: blur(1px); }

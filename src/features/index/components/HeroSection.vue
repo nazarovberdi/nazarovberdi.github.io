@@ -18,8 +18,8 @@
       </p>
     </div>
     <div class="animate-fade-up mt-10 flex flex-wrap gap-3 [animation-delay:280ms]">
-      <a href="#work" class="primary-button inline-flex items-center gap-3 px-5 py-3 text-[11px] uppercase tracking-[.09em]">View selected work <span aria-hidden="true">↓</span></a>
-      <a href="mailto:nazarov120100@gmail.com" class="secondary-button inline-flex items-center gap-3 px-5 py-3 text-[11px] uppercase tracking-[.09em]">Start a conversation <span aria-hidden="true">↗</span></a>
+      <a href="#work" class="primary-button group inline-flex items-center gap-3 px-5 py-3 text-[11px] uppercase tracking-[.09em]">View selected work <span aria-hidden="true" class="transition-transform duration-200 ease-out group-hover:translate-y-0.5">↓</span></a>
+      <a href="mailto:nazarov120100@gmail.com" class="secondary-button group inline-flex items-center gap-3 px-5 py-3 text-[11px] uppercase tracking-[.09em]">Start a conversation <span aria-hidden="true" class="transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span></a>
     </div>
   </section>
 </template>

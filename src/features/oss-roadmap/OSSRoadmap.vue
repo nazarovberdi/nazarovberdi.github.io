@@ -109,11 +109,13 @@
                       : { borderColor: 'var(--line-strong)' }
                   "
                 >
-                  <div
-                    v-if="state[item.id]"
-                    class="size-1.5 rounded-full"
-                    style="background: var(--accent)"
-                  />
+                  <Transition name="check">
+                    <div
+                      v-if="state[item.id]"
+                      class="size-1.5 rounded-full"
+                      style="background: var(--accent)"
+                    />
+                  </Transition>
                 </div>
                 <div class="min-w-0">
                   <div class="text-[13px] font-medium leading-snug" style="color: var(--page-text)">

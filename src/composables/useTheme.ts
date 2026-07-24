@@ -1,4 +1,4 @@
-import { ref, watchEffect } from 'vue'
+import { nextTick, ref, watchEffect } from 'vue'
 
 type Theme = 'dark' | 'light'
 
@@ -16,7 +16,27 @@ export function useTheme() {
   })
 
   function toggle() {
-    theme.value = theme.value === 'dark' ? 'light' : 'dark'
+    const next = theme.value === 'dark' ? 'light' : 'dark'
+
+    if (
+      import.meta.env.SSR ||
+      !document.startViewTransition ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      theme.value = next
+      return
+    }
+
+    // watchEffect flushes on nextTick, so the callback has to await it for the
+    // view transition to capture the palette after the swap.
+    const transition = document.startViewTransition(async () => {
+      theme.value = next
+      await nextTick()
+    })
+
+    // A rapid second toggle skips the in-flight transition; the theme still
+    // applies, so swallow the rejection rather than let it surface as uncaught.
+    transition.ready.catch(() => {})
   }
 
   return { theme, toggle }

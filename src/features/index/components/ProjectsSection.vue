@@ -40,12 +40,14 @@
           <div class="mb-12 flex items-start justify-between gap-4">
             <p class="project-index font-serif text-[46px] font-semibold leading-none tracking-[-0.07em]">0{{ index + 1 }}</p>
 
-            <span
-              v-if="displayStars(project) !== null"
-              class="pill px-3 py-1 font-mono text-[10px] uppercase tracking-[0.08em] body-muted"
-            >
-              ★ {{ displayStars(project) }}
-            </span>
+            <Transition name="pill">
+              <span
+                v-if="displayStars(project) !== null"
+                class="pill px-3 py-1 font-mono text-[10px] uppercase tracking-[0.08em] body-muted"
+              >
+                ★ {{ displayStars(project) }}
+              </span>
+            </Transition>
           </div>
 
           <div class="mb-5">
