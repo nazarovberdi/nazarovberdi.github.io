@@ -13,8 +13,11 @@ export interface Project {
   language: string;
   color: string;
   stars: number | null;
-  url: string;
+  /** Public repo link. Omitted for closed-source work, which hides "Read source". */
+  url?: string;
   liveUrl: string | null;
+  /** App store listing, for projects that ship as an installable app. */
+  storeUrl?: string;
 }
 
 export const socialProfiles: readonly SocialProfile[] = [
@@ -51,6 +54,18 @@ export const coreSkills = [
 ] as const;
 
 export const projects: readonly Project[] = [
+  {
+    name: "Lyne",
+    owner: "nazarovberdi",
+    description:
+      "Cross-device EPUB reader — library and exact reading position sync everywhere. React PWA on Supabase, plus a native Kotlin/Compose Android app.",
+    language: "TypeScript",
+    color: "#3178c6",
+    stars: null,
+    liveUrl: "https://lyne.page",
+    storeUrl:
+      "https://play.google.com/store/apps/details?id=com.enjoyablereader",
+  },
   {
     name: "date-fns-locale-tk",
     owner: "nazarovberdi",

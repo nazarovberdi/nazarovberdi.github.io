@@ -93,6 +93,22 @@
               </a>
 
               <a
+                v-if="project.storeUrl"
+                :href="project.storeUrl"
+                target="_blank"
+                rel="noopener"
+                class="group/link inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.08em] text-(--page-muted) transition-colors duration-200 hover:text-(--accent-bright)"
+              >
+                <span>Play Store</span>
+                <span
+                  aria-hidden="true"
+                  class="transition-transform duration-200 group-hover/link:translate-x-1 group-hover/link:-translate-y-0.5"
+                  >↗</span
+                >
+              </a>
+
+              <a
+                v-if="project.url"
                 :href="project.url"
                 target="_blank"
                 rel="noopener"
@@ -154,6 +170,9 @@ onMounted(async () => {
 
   await Promise.all(
     props.projects.map(async (project) => {
+      // Closed-source projects have no public repo to count stars on.
+      if (!project.url) return;
+
       const repoSlug = project.repoSlug ?? project.name;
       try {
         const res = await fetch(
