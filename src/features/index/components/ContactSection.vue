@@ -1,5 +1,5 @@
 <template>
-  <section class="mb-20">
+  <section data-reveal class="mb-20">
     <div class="contact-panel border-y border-[var(--line)] py-14">
       <p class="eyebrow mb-5 text-[11px] uppercase tracking-[0.12em]">03 / Contact</p>
       <div class="grid grid-cols-[minmax(0,1fr)_300px] gap-8 max-sm:grid-cols-1">
@@ -25,23 +25,22 @@
               href="mailto:nazarov120100@gmail.com"
               class="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.08em] text-(--accent-bright) transition-colors duration-150 hover:text-(--page-text)"
             >
-              Send an email ↗
+              <HoverLabel label="Send an email" /> <span aria-hidden="true">↗</span>
             </a>
           </div>
         </div>
 
         <div class="grid gap-3 self-end">
           <div
-            v-for="(profile, index) in socialProfiles"
+            v-for="profile in socialProfiles"
             :key="profile.label"
-            class="group animate-fade-soft"
-            :style="{ animationDelay: `${140 + index * 55}ms` }"
+            data-reveal-item class="group"
           >
           <a
             :href="profile.url"
             target="_blank"
             rel="noopener"
-            class="contact-link surface-card block px-5 py-4 transition-[transform,border-color,box-shadow] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1"
+            class="contact-link surface-card block px-5 py-4 transition-[transform,border-color,box-shadow] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]"
           >
             <div class="flex items-start justify-between gap-4">
               <div>
@@ -71,6 +70,8 @@
 </template>
 
 <script setup lang="ts">
+import HoverLabel from '@/components/HoverLabel.vue'
+
 import type { SocialProfile } from '../data'
 
 defineProps<{

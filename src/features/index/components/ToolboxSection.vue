@@ -1,5 +1,5 @@
 <template>
-  <section class="mb-28">
+  <section data-reveal class="mb-28">
     <div class="mb-8 flex items-end justify-between gap-6 max-sm:flex-col max-sm:items-start">
       <div>
         <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">02 / Capabilities</p>
@@ -23,7 +23,7 @@
           <span
             v-for="skill in coreSkills"
             :key="skill"
-            class="pill px-3 py-2 font-mono text-[10px] uppercase tracking-[0.06em] text-[var(--page-text)]"
+            data-reveal-item class="pill px-3 py-2 font-mono text-[10px] uppercase tracking-[0.06em] text-[var(--page-text)]"
           >
             {{ skill }}
           </span>

@@ -18,13 +18,13 @@
     </RouterLink>
 
     <nav
-      class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-7 md:flex"
+      class="desktop-nav absolute left-1/2 hidden -translate-x-1/2 items-center gap-7 md:flex"
     >
       <RouterLink
         to="/blog"
         class="font-mono text-[10px] uppercase tracking-[0.09em] text-(--page-muted) transition-colors duration-150 hover:text-(--accent-bright)"
       >
-        Blog
+        <HoverLabel label="Blog" />
       </RouterLink>
     </nav>
 
@@ -104,7 +104,7 @@
   <Transition name="mobile-menu">
     <div
       v-if="menuOpen"
-      class="fixed inset-0 z-[60] flex flex-col backdrop-blur-xl md:hidden"
+      class="mobile-menu-panel fixed inset-0 z-[60] flex flex-col backdrop-blur-xl md:hidden"
       style="background: var(--panel-bg-strong)"
       role="dialog"
       aria-label="Open menu"
@@ -143,7 +143,7 @@
           style="font-size: clamp(52px, 14vw, 80px); color: var(--page-text)"
           @click="menuOpen = false"
         >
-          Blog
+          <HoverLabel label="Blog" />
         </RouterLink>
       </nav>
 
@@ -204,6 +204,8 @@
 </template>
 
 <script setup lang="ts">
+import HoverLabel from './HoverLabel.vue';
+
 import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { RouterLink } from "vue-router";
 

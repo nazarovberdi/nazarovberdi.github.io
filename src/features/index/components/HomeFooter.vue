@@ -1,5 +1,5 @@
 <template>
-  <footer
+  <footer data-reveal
     class="eyebrow flex items-center justify-between gap-3 border-t border-[var(--line)] pt-6 text-[10px] uppercase tracking-[0.08em] max-sm:flex-col max-sm:items-start"
   >
     <span>© {{ year }} Nazarov Berdi</span>

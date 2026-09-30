@@ -1,5 +1,5 @@
 <template>
-  <div class="home-page relative overflow-hidden">
+  <div ref="page" class="home-page relative overflow-hidden">
     <main class="home-main relative mx-auto px-5 pt-10 pb-12 sm:px-8 sm:pt-16">
       <HeroSection />
       <ProjectsSection :projects="projects" />
@@ -12,6 +12,9 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+import { useHomeMotion } from '@/composables/useHomeMotion'
+
 import BlogSection from '@/features/blog/BlogSection.vue'
 import { featuredBlogPosts } from '@/features/blog/posts'
 
@@ -22,6 +25,9 @@ import ProjectsSection from './components/ProjectsSection.vue'
 import ToolboxSection from './components/ToolboxSection.vue'
 import { coreSkills, projects, socialProfiles } from './data'
 import { usePageMeta } from '@/composables/usePageMeta'
+
+const page = ref<HTMLElement | null>(null)
+useHomeMotion(page)
 
 const year = new Date().getFullYear()
 

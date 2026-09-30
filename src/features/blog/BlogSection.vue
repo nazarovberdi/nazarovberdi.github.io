@@ -1,5 +1,5 @@
 <template>
-  <section class="mb-16 animate-fade-up [animation-delay:255ms]">
+  <section data-reveal class="mb-16">
     <div class="mb-8 flex items-end justify-between gap-6 max-sm:flex-col max-sm:items-start">
       <div>
         <p class="eyebrow mb-3 text-[11px] uppercase tracking-[0.12em]">Blog</p>
@@ -22,14 +22,13 @@
 
     <div class="grid grid-cols-3 gap-4 max-lg:grid-cols-1">
       <div
-        v-for="(post, index) in posts"
+        v-for="post in posts"
         :key="post.slug"
-        class="group animate-fade-soft"
-        :style="{ animationDelay: `${290 + index * 55}ms` }"
+        data-reveal-item class="group"
       >
       <RouterLink
         :to="`/blog/${post.slug}`"
-        class="surface-card blog-listing-card flex h-full flex-col p-6 transition-all duration-300 group-hover:-translate-y-1.5"
+        class="surface-card blog-listing-card flex h-full flex-col p-6 transition-all duration-300"
       >
         <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">
           {{ formatBlogDate(post.date) }}
@@ -43,7 +42,7 @@
         <span
           class="mt-auto pt-6 text-[12px] uppercase tracking-[0.08em] text-(--page-text) transition-transform duration-300 group-hover:translate-x-1"
         >
-          Read entry
+          <HoverLabel label="Read entry" />
         </span>
       </RouterLink>
       </div>
@@ -52,6 +51,8 @@
 </template>
 
 <script setup lang="ts">
+import HoverLabel from '@/components/HoverLabel.vue'
+
 import { RouterLink } from 'vue-router'
 
 import type { BlogPost } from './posts'

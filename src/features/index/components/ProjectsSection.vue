@@ -1,5 +1,5 @@
 <template>
-  <section id="work" class="mb-28 scroll-mt-28">
+  <section data-reveal id="work" class="mb-28 scroll-mt-28">
     <div
       class="mb-8 flex items-end justify-between gap-6 max-sm:flex-col max-sm:items-start"
     >
@@ -21,7 +21,7 @@
         rel="noopener"
         class="body-muted inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.06em] transition-colors duration-150 hover:text-[var(--page-text)]"
       >
-        <span>All repositories</span>
+        <HoverLabel label="All repositories" />
         <span aria-hidden="true">↗</span>
       </a>
     </div>
@@ -30,13 +30,13 @@
       <div
         v-for="(project, index) in projects"
         :key="project.name"
-        class="group animate-fade-soft"
-        :style="{ animationDelay: `${260 + index * 55}ms` }"
+        data-reveal-item class="group"
       >
         <article
           class="project-card surface-card flex h-full flex-col p-7"
           :style="{ '--project-color': project.color }"
         >
+          <span class="project-spotlight" aria-hidden="true" />
           <div class="mb-12 flex items-start justify-between gap-4">
             <p class="project-index font-serif text-[46px] font-semibold leading-none tracking-[-0.07em]">0{{ index + 1 }}</p>
 
@@ -84,7 +84,7 @@
                 rel="noopener"
                 class="group/link inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.08em] text-(--page-muted) transition-colors duration-200 hover:text-(--accent-bright)"
               >
-                <span>Open live</span>
+                <HoverLabel label="Open live" />
                 <span
                   aria-hidden="true"
                   class="transition-transform duration-200 group-hover/link:translate-x-1 group-hover/link:-translate-y-0.5"
@@ -99,7 +99,7 @@
                 rel="noopener"
                 class="group/link inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.08em] text-(--page-muted) transition-colors duration-200 hover:text-(--accent-bright)"
               >
-                <span>Play Store</span>
+                <HoverLabel label="Play Store" />
                 <span
                   aria-hidden="true"
                   class="transition-transform duration-200 group-hover/link:translate-x-1 group-hover/link:-translate-y-0.5"
@@ -114,7 +114,7 @@
                 rel="noopener"
                 class="group/link inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.08em] text-(--page-muted) transition-colors duration-200 hover:text-(--accent-bright)"
               >
-                <span>Read source</span>
+                <HoverLabel label="Read source" />
                 <span
                   aria-hidden="true"
                   class="transition-transform duration-200 group-hover/link:translate-x-1.5"
@@ -130,6 +130,8 @@
 </template>
 
 <script setup lang="ts">
+import HoverLabel from '@/components/HoverLabel.vue'
+
 import { onMounted, ref } from "vue";
 
 import type { Project } from "../data";
