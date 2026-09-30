@@ -89,17 +89,6 @@ export const projects: readonly Project[] = [
     liveUrl: "https://weather-wize.vercel.app",
   },
   {
-    name: "vue-media",
-    owner: "TurkmenistanRailways",
-    description:
-      "Internal media portal for Turkmenistan Railways — movies, music streaming built with Vue 3.",
-    language: "Vue",
-    color: "#41b883",
-    stars: 3,
-    url: "https://github.com/TurkmenistanRailways/vue-media",
-    liveUrl: null,
-  },
-  {
     name: "Physicist Explorer",
     repoSlug: "Physicst-Explorer",
     owner: "nazarovberdi",
