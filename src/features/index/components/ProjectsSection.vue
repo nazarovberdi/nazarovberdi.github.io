@@ -38,7 +38,7 @@
         >
           <span class="project-spotlight" aria-hidden="true" />
           <div class="mb-12 flex items-start justify-between gap-4">
-            <p class="project-index font-display text-[46px] font-semibold leading-none tracking-[-0.07em]">0{{ index + 1 }}</p>
+            <p class="project-index font-display text-[46px] font-semibold leading-none tracking-[-0.07em]"><span>0{{ index + 1 }}</span></p>
 
             <Transition name="pill">
               <span

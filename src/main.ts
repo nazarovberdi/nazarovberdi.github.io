@@ -1,3 +1,8 @@
+// Self-hosted, so text paints without waiting on a third-party stylesheet.
+import '@fontsource-variable/dm-sans/opsz.css'
+import '@fontsource-variable/space-grotesk'
+import '@fontsource/ibm-plex-mono/400.css'
+import '@fontsource/ibm-plex-mono/500.css'
 import './main.css'
 
 import { ViteSSG } from 'vite-ssg'
