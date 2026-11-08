@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Berdi Nazarov — Frontend Engineer</title>
+<meta name="author" content="Berdi Nazarov" />
+<meta name="description" content="CV of Berdi Nazarov, frontend engineer (TypeScript, Vue, React)." />
+<style>
+  /* Same faces as the portfolio, loaded from node_modules so the PDF embeds real text. */
+  @font-face { font-family: "DM Sans"; src: url("../node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-opsz-normal.woff2") format("woff2"); font-weight: 100 1000; }
+  @font-face { font-family: "Space Grotesk"; src: url("../node_modules/@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2") format("woff2"); font-weight: 300 700; }
+
+  @page { size: A4; margin: 14mm 16mm; }
+
+  :root { --text: #16161a; --muted: #4a4a52; --line: #d9d7d0; --accent: #2f55c4; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { color: var(--text); font: 10pt/1.45 "DM Sans", system-ui, sans-serif; }
+  a { color: inherit; text-decoration: none; }
+  strong { font-weight: 650; }
+
+  header { padding-bottom: 9pt; border-bottom: 1.5pt solid var(--text); }
+  h1 { font: 650 23pt/1 "Space Grotesk", sans-serif; }
+  h1 span { color: var(--accent); font-weight: 500; }
+  .meta { margin-top: 6pt; color: var(--muted); font-size: 9pt; }
+  .contact { margin-top: 2pt; font-size: 9pt; }
+  .contact a { color: var(--accent); }
+  .sep { color: var(--line); }
+  .item { white-space: nowrap; }
+
+  section { margin-top: 11pt; }
+  h2 { font: 650 10pt/1 "Space Grotesk", sans-serif; text-transform: uppercase; color: var(--accent); padding-bottom: 4pt; border-bottom: 0.75pt solid var(--line); margin-bottom: 6pt; }
+
+  .role { text-align: justify; text-align-last: justify; }
+  .role > h3, .role > .dates { display: inline-block; text-align-last: auto; }
+  .role h3, .role .title { font: 600 10.5pt/1.3 "Space Grotesk", sans-serif; }
+  .role h3 em { font-style: normal; font-weight: 400; color: var(--muted); }
+  .dates { color: var(--muted); white-space: nowrap; }
+
+  ul { margin-top: 3pt; padding-left: 11pt; }
+  li { margin-top: 2.5pt; padding-left: 1pt; }
+  li::marker { color: var(--muted); }
+  .stack { margin-top: 4pt; color: var(--muted); }
+
+  .project + .project { margin-top: 6pt; }
+  .project p { margin-top: 1.5pt; }
+
+  dl { display: grid; grid-template-columns: 74pt 1fr; row-gap: 2.5pt; }
+  dt { font-weight: 600; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Berdi Nazarov <span>Frontend Engineer</span></h1>
+    <p class="meta"><span class="item">Ashgabat, Turkmenistan (UTC+5)</span> <span class="sep">|</span> <span class="item">Remote, full EU-hours overlap</span> <span class="sep">|</span> <span class="item">Available as a contractor</span> <span class="sep">|</span> <span class="item">Open to relocation</span></p>
+    <p class="contact">
+      <span class="item"><a href="mailto:nazarov120100@gmail.com">nazarov120100@gmail.com</a></span> <span class="sep">|</span> <span class="item">+993 62 559305</span> <span class="sep">|</span> <span class="item"><a href="https://www.linkedin.com/in/berdi-nazarov/">linkedin.com/in/berdi-nazarov</a></span> <span class="sep">|</span> <span class="item"><a href="https://github.com/nazarovberdi">github.com/nazarovberdi</a></span> <span class="sep">|</span> <span class="item"><a href="https://nazarovberdi.github.io">nazarovberdi.github.io</a></span>
+    </p>
+  </header>
+
+  <section>
+    <h2>Summary</h2>
+    <p>Frontend engineer (TypeScript, Vue, React) with 4 years in production. Builds the internal tools a national railway runs on, and ships his own products end to end: an EPUB reader on Google Play and a paid invitation app.</p>
+  </section>
+
+  <section>
+    <h2>Experience</h2>
+    <div class="role">
+      <h3>Milli Goshant <em>Frontend Developer, client: Turkmenistan Railways</em></h3> <span class="dates">Dec 2022 – present</span>
+    </div>
+    <ul>
+      <li>Built the <strong>station-fees billing app</strong> as its main developer: per-wagon charges, printed bills, and overcharge and undercharge corrections, in Vue 3 and TypeScript.</li>
+      <li>Built most of the <strong>freight logistics workspace</strong> that replaced a legacy app for ~30 operators: a spreadsheet-style wagon table with keyboard navigation, autosave, duplicate checks and live price calculation.</li>
+      <li>Built the touchscreen Vue UI of a <strong>Tauri kiosk app</strong> on station payment terminals, which <strong>handled ~50k payments a month</strong> (<span class="item">2024–2025</span>; later rewritten natively in Rust).</li>
+      <li>Work in a team of 10–20 developers, alongside a Go backend team.</li>
+    </ul>
+    <p class="stack">Vue 3, TypeScript, Pinia, TanStack Table, Tailwind CSS, shadcn-vue, Tauri</p>
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+    <div class="project">
+      <div class="role"><h3>Lyne <em>EPUB reader</em></h3> <span class="dates"><a href="https://lyne.page">lyne.page</a></span></div>
+      <p>Cross-device reader that syncs the library and exact reading position everywhere. React PWA on Supabase, plus a native Kotlin/Compose Android app. <strong>100+ installs on Google Play.</strong></p>
+    </div>
+    <div class="project">
+      <div class="role"><h3>Bileje <em>Date invitations</em></h3> <span class="dates"><a href="https://bileje.biz">bileje.biz</a></span></div>
+      <p>Playful date invitations sent as a link, with animated openings and the reply sent back to the sender. React 19, Motion, Supabase; Russian and Turkmen. Launched October 2026, <strong>first paying customer</strong>.</p>
+    </div>
+    <div class="project">
+      <div class="role"><h3>date-fns Turkmen locale <em>Open source</em></h3> <span class="dates"><a href="https://github.com/date-fns/date-fns/pull/3845">PR #3845</a></span></div>
+      <p>Turkmen (tk) locale for date-fns, proposed upstream (pull request open).</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <dl>
+      <dt>Languages</dt><dd>TypeScript, JavaScript, HTML, CSS</dd>
+      <dt>Frameworks</dt><dd>Vue 3, Nuxt, React, Next.js</dd>
+      <dt>State &amp; data</dt><dd>Pinia, Zustand, Redux Toolkit, TanStack Table, Supabase</dd>
+      <dt>UI</dt><dd>Tailwind CSS, shadcn-vue, Motion, GSAP, accessibility (WCAG)</dd>
+      <dt>Tools</dt><dd>Vite, Tauri, Git</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <div class="role">
+      <h3>Oguzhan Engineering and Technology University <em>BEng</em></h3> <span class="dates">2019 – 2024</span>
+    </div>
+    <p>Thesis: a food-delivery robot for restaurants, with a Next.js QR ordering app for guests.</p>
+  </section>
+
+  <section>
+    <h2>Languages</h2>
+    <p>Turkmen (native) <span class="sep">|</span> English (B2) <span class="sep">|</span> Russian (basic)</p>
+  </section>
+</body>
+</html>

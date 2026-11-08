@@ -81,7 +81,7 @@ export const projects: readonly Project[] = [
     name: "date-fns-locale-tk",
     owner: "nazarovberdi",
     description:
-      "Turkmen (tk) locale for date-fns. Full date formatting support for the Turkmen language, contributed upstream.",
+      "Turkmen (tk) locale for date-fns. Full date formatting support for the Turkmen language, proposed upstream (pull request open).",
     language: "JavaScript",
     color: "#f1e05a",
     stars: 2,
