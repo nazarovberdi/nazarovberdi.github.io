@@ -258,6 +258,13 @@ a, button { -webkit-tap-highlight-color: transparent; }
 [data-hero-line] {
   display: block;
 }
+.intro-pending .hero-intro,
+.intro-pending [data-hero-line],
+.intro-pending .portrait-frame,
+.intro-pending .hero-detail {
+  visibility: hidden;
+}
+
 .portrait-frame {
   position: relative;
   aspect-ratio: 4 / 5;

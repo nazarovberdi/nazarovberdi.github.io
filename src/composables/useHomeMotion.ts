@@ -2,11 +2,18 @@ import { onBeforeUnmount, onMounted, type Ref } from 'vue'
 import gsap from 'gsap'
 
 /** Homepage-only motion. The rendered HTML stays visible without JavaScript. */
+let firstMount = true
+
 export function useHomeMotion(page: Ref<HTMLElement | null>) {
   let media: ReturnType<typeof gsap.matchMedia> | undefined
 
   onMounted(() => {
-    if (!page.value) return
+    // On the first load the pre-rendered page may already have been seen (slow
+    // start, or scrolled): then nothing on screen animates in again.
+    const html = document.documentElement
+    const seen = firstMount && ('introSkip' in html.dataset || window.scrollY > 0)
+    firstMount = false
+    if (!page.value) return html.classList.remove('intro-pending')
     const root = page.value
     media = gsap.matchMedia()
     media.add(
@@ -17,7 +24,7 @@ export function useHomeMotion(page: Ref<HTMLElement | null>) {
       (context) => {
         if (!context.conditions?.motion) return
         const desktop = context.conditions.desktop
-        gsap
+        if (!seen) gsap
           .timeline({ defaults: { ease: 'power3.out' } })
           .from(root.querySelector('.hero-intro'), { opacity: 0, y: 8, duration: 0.45 })
           .from(
@@ -93,7 +100,10 @@ export function useHomeMotion(page: Ref<HTMLElement | null>) {
           },
           { threshold: 0.08 },
         )
-        root.querySelectorAll('[data-reveal]').forEach((section) => observer.observe(section))
+        root.querySelectorAll('[data-reveal]').forEach((section) => {
+          if (seen && section.getBoundingClientRect().top < window.innerHeight) return
+          observer.observe(section)
+        })
 
         // A keyboard-focused destination must be immediately visible.
         const revealFocus = (event: FocusEvent) => {
@@ -112,6 +122,8 @@ export function useHomeMotion(page: Ref<HTMLElement | null>) {
       },
       root,
     )
+    // The intro's starting frames are set above, so the hero can show now.
+    html.classList.remove('intro-pending')
 
     media.add('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)', () => {
       const cleanups: Array<() => void> = []

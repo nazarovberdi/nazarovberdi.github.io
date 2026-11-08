@@ -1,4 +1,4 @@
-import { markdownToHtml, parseFrontmatter } from './markdown'
+import type { FrontmatterAttributes } from './markdown'
 
 export interface BlogPost {
   slug: string
@@ -9,11 +9,18 @@ export interface BlogPost {
   readingTime: number
 }
 
-const rawPosts = import.meta.glob('./content/*.md', {
+interface RenderedPost {
+  attributes: FrontmatterAttributes
+  body: string
+  html: string
+}
+
+// Rendered at build time by the blog-posts plugin in vite.config.ts.
+const renderedPosts = import.meta.glob('./content/*.md', {
   eager: true,
   import: 'default',
-  query: '?raw',
-}) as Record<string, string>
+  query: '?post',
+}) as Record<string, RenderedPost>
 
 function getSlugFromPath(path: string): string {
   return path.split('/').pop()?.replace(/\.md$/, '') ?? path
@@ -37,9 +44,8 @@ function estimateReadingTime(text: string): number {
   return Math.max(1, Math.ceil(words / 200))
 }
 
-const resolvedBlogPosts = await Promise.all(
-  Object.entries(rawPosts).map(async ([path, raw]) => {
-    const { attributes, body } = parseFrontmatter(raw)
+const resolvedBlogPosts = Object.entries(renderedPosts).map(
+  ([path, { attributes, body, html }]) => {
     const slug = getSlugFromPath(path)
 
     return {
@@ -47,10 +53,10 @@ const resolvedBlogPosts = await Promise.all(
       title: attributes.title ?? slug.replace(/-/g, ' '),
       date: attributes.date ?? '2026-01-01',
       summary: attributes.summary ?? getFallbackSummary(body),
-      html: await markdownToHtml(body),
+      html,
       readingTime: estimateReadingTime(body),
     }
-  }),
+  },
 )
 
 export const blogPosts: BlogPost[] = resolvedBlogPosts.sort(
