@@ -32,11 +32,13 @@ function getFallbackSummary(markdown: string): string {
     .map((block) => block.trim())
     .find((block) => block && !block.startsWith('#') && !block.startsWith('```'))
 
-  return (firstParagraph ?? 'New writing coming soon.')
+  const summary = (firstParagraph ?? 'New writing coming soon.')
     .replace(/^[-*]\s+/gm, '')
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1')
     .replace(/[*`>#]/g, '')
-    .slice(0, 180)
+    .trim()
+  if (summary.length <= 180) return summary
+  return `${summary.slice(0, summary.lastIndexOf(' ', 179)).replace(/[\s,.;:—-]+$/, '')}…`
 }
 
 function estimateReadingTime(text: string): number {

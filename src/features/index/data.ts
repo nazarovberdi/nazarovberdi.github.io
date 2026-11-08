@@ -11,6 +11,7 @@ export interface Project {
   owner: string;
   description: string;
   language: string;
+  /** The card's own accent: its number and hover bar. */
   color: string;
   stars: number | null;
   /** Public repo link. Omitted for closed-source work, which hides "Read source". */
@@ -72,7 +73,7 @@ export const projects: readonly Project[] = [
     description:
       "Playful date invitations sent as a link — envelope, scratch-off or incoming-call openings, a dodging No button, and the reply back to the sender. React, Motion and Supabase; Russian and Turkmen.",
     language: "TypeScript",
-    color: "#3178c6",
+    color: "#e0457b",
     stars: null,
     liveUrl: "https://bileje.biz",
   },
@@ -105,7 +106,7 @@ export const projects: readonly Project[] = [
     description:
       "React Native app for exploring physics constants, formulas, and unit conversions. Built for offline use.",
     language: "TypeScript",
-    color: "#3178c6",
+    color: "#8b5cf6",
     stars: 1,
     url: "https://github.com/nazarovberdi/Physicst-Explorer",
     liveUrl: null,

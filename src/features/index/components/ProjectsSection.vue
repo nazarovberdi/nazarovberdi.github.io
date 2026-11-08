@@ -6,7 +6,7 @@
       <div>
         <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">01 / Selected work</p>
         <h2
-          class="font-serif max-w-[620px] text-[clamp(38px,5vw,62px)] font-semibold leading-[.93] tracking-[-0.055em]"
+          class="font-display max-w-[620px] text-[clamp(38px,5vw,62px)] font-semibold leading-[.93] tracking-[-0.055em]"
         >
           Built for real use,<br />not just a screenshot.
         </h2>
@@ -38,12 +38,12 @@
         >
           <span class="project-spotlight" aria-hidden="true" />
           <div class="mb-12 flex items-start justify-between gap-4">
-            <p class="project-index font-serif text-[46px] font-semibold leading-none tracking-[-0.07em]">0{{ index + 1 }}</p>
+            <p class="project-index font-display text-[46px] font-semibold leading-none tracking-[-0.07em]">0{{ index + 1 }}</p>
 
             <Transition name="pill">
               <span
                 v-if="displayStars(project) !== null"
-                class="pill px-3 py-1 font-mono text-[10px] uppercase tracking-[0.08em] body-muted"
+                class="pill px-3 py-1 font-mono text-[11px] uppercase tracking-[0.08em] body-muted"
               >
                 ★ {{ displayStars(project) }}
               </span>
@@ -51,9 +51,9 @@
           </div>
 
           <div class="mb-5">
-            <p class="eyebrow mb-3 text-[10px] uppercase tracking-[0.1em]">{{ project.owner }}</p>
+            <p class="eyebrow mb-3 text-[11px] uppercase tracking-[0.1em]">{{ project.owner }}</p>
             <h3
-              class="font-serif text-[clamp(27px,3vw,38px)] font-semibold leading-[.95] tracking-[-0.05em] text-(--page-text)"
+              class="font-display text-[clamp(27px,3vw,38px)] font-semibold leading-[.95] tracking-[-0.05em] text-(--page-text)"
             >
               {{ project.name }}
             </h3>
@@ -69,7 +69,7 @@
             class="body-muted mt-auto flex flex-col items-start gap-5 border-t border-[var(--line)] pt-5 text-[12px]"
           >
             <div class="flex items-center justify-end gap-3">
-              <span class="font-mono text-[10px] uppercase tracking-[0.08em]">
+              <span class="font-mono text-[11px] uppercase tracking-[0.08em]">
                 {{ project.language }}
               </span>
             </div>
@@ -82,7 +82,7 @@
                 :href="project.liveUrl"
                 target="_blank"
                 rel="noopener"
-                class="group/link inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.08em] text-(--page-muted) transition-colors duration-200 hover:text-(--accent-bright)"
+                class="group/link inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.08em] text-(--page-muted) transition-colors duration-200 hover:text-(--accent-bright)"
               >
                 <HoverLabel label="Open live" />
                 <span
@@ -97,7 +97,7 @@
                 :href="project.storeUrl"
                 target="_blank"
                 rel="noopener"
-                class="group/link inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.08em] text-(--page-muted) transition-colors duration-200 hover:text-(--accent-bright)"
+                class="group/link inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.08em] text-(--page-muted) transition-colors duration-200 hover:text-(--accent-bright)"
               >
                 <HoverLabel label="Play Store" />
                 <span
@@ -112,7 +112,7 @@
                 :href="project.url"
                 target="_blank"
                 rel="noopener"
-                class="group/link inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.08em] text-(--page-muted) transition-colors duration-200 hover:text-(--accent-bright)"
+                class="group/link inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.08em] text-(--page-muted) transition-colors duration-200 hover:text-(--accent-bright)"
               >
                 <HoverLabel label="Read source" />
                 <span

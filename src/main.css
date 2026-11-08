@@ -2,7 +2,7 @@
 
 @theme {
   --font-mono: "IBM Plex Mono", monospace;
-  --font-serif: "Space Grotesk", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
   --font-sans: "DM Sans", sans-serif;
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -24,11 +24,12 @@
   --page-bg: #0a0a0b;
   --page-text: #f4f1ea;
   --page-muted: #aaa9ad;
-  --page-soft-text: #74747b;
+  --page-soft-text: #8a8a91;
   --panel-bg: #111114;
   --panel-bg-strong: #151519;
   --panel-bg-alt: #1a1a20;
   --line: rgba(244, 241, 234, 0.12);
+  --grid-line: rgba(244, 241, 234, 0.055);
   --line-strong: rgba(120, 157, 255, 0.56);
   --accent: #7c9dff;
   --accent-bright: #a6bbff;
@@ -49,12 +50,13 @@
 [data-theme="light"] {
   --page-bg: #f0eee8;
   --page-text: #131317;
-  --page-muted: #66666d;
-  --page-soft-text: #85858b;
+  --page-muted: #4f4f55;
+  --page-soft-text: #626268;
   --panel-bg: #e8e6df;
   --panel-bg-strong: #f8f6f0;
   --panel-bg-alt: #e1dfd8;
   --line: rgba(19, 19, 23, 0.14);
+  --grid-line: rgba(19, 19, 23, 0.065);
   --line-strong: rgba(53, 91, 202, 0.58);
   --accent: #355bca;
   --accent-bright: #2549af;
@@ -65,8 +67,6 @@
   --button-secondary-bg: transparent;
   --button-secondary-text: var(--page-text);
 }
-
-html { scroll-behavior: smooth; }
 
 * { box-sizing: border-box; }
 
@@ -85,7 +85,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
 .home-page, .blog-page {
   min-height: 100vh;
   background-color: var(--page-bg);
-  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 72px 72px;
   color: var(--page-text);
 }
@@ -97,20 +97,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
   backdrop-filter: blur(16px);
 }
 
-.mobile-menu-enter-active {
-  transition: opacity 240ms var(--ease-out), transform 240ms var(--ease-out);
-}
-.mobile-menu-leave-active {
-  transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out);
-}
-.mobile-menu-enter-from, .mobile-menu-leave-to {
-  opacity: 0;
-  transform: translateY(10px);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .mobile-menu-enter-from, .mobile-menu-leave-to { transform: none; }
-}
 
 /* Theme swap: without this the palette flip is a full-page flash. Skipped
    entirely for reduced motion — see useTheme.ts. */
@@ -199,17 +185,16 @@ a, button { -webkit-tap-highlight-color: transparent; }
   to { stroke-dashoffset: 0; }
 }
 
-.project-card { overflow: hidden; transition: transform 240ms var(--ease-out), border-color 240ms var(--ease-out), box-shadow 240ms var(--ease-out); }
+.project-card { overflow: hidden; }
 .project-card::after { content: ""; position: absolute; inset: auto 0 0; height: 3px; background: var(--project-color, var(--accent)); transform: scaleX(0); transform-origin: left; transition: transform 300ms var(--ease-out); }
 @media (hover: hover) and (pointer: fine) {
   .project-card:hover::after { transform: scaleX(1); }
-  .project-card:hover { transform: translateY(-6px); }
 }
 .project-index { color: color-mix(in srgb, var(--project-color, var(--accent)) 78%, var(--page-text)); }
 
 .blog-prose { min-width: 0; color: var(--page-text); font-size: 16px; line-height: 1.9; overflow-wrap: anywhere; }
 .blog-prose > * + * { margin-top: 1.3rem; }
-.blog-prose h1, .blog-prose h2, .blog-prose h3, .blog-prose h4, .blog-prose h5, .blog-prose h6 { font-family: var(--font-serif); font-weight: 600; letter-spacing: -0.045em; line-height: 1.05; }
+.blog-prose h1, .blog-prose h2, .blog-prose h3, .blog-prose h4, .blog-prose h5, .blog-prose h6 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.045em; line-height: 1.05; }
 .blog-prose h2 { margin-top: 3rem; font-size: clamp(26px, 4vw, 38px); }
 .blog-prose h3 { margin-top: 2rem; font-size: clamp(21px, 3vw, 28px); }
 .blog-prose a { color: var(--accent-bright); text-decoration: underline; text-underline-offset: 0.2em; }

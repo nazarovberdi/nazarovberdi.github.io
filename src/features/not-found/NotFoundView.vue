@@ -3,7 +3,7 @@
     <main class="blog-main relative mx-auto flex min-h-[calc(100vh-var(--header-height))] flex-col justify-center px-5 py-16 sm:px-8 animate-fade-up">
       <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">404</p>
       <h1
-        class="font-serif text-[clamp(72px,14vw,150px)] font-semibold leading-[.82] tracking-[-0.075em]"
+        class="font-display text-[clamp(72px,14vw,150px)] font-semibold leading-[.82] tracking-[-0.075em]"
       >
         Page not found.
       </h1>

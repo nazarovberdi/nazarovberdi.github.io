@@ -2,7 +2,7 @@
   <div class="blog-page min-h-screen px-5 py-12 sm:px-8" style="color: var(--page-text)">
     <div class="mx-auto max-w-[880px]">
       <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">Independent learning</p>
-      <h1 class="mb-3 font-serif text-[clamp(42px,7vw,76px)] font-semibold leading-[.9] tracking-[-0.06em]">Vue / Vite<br />Learning Roadmap</h1>
+      <h1 class="mb-3 font-display text-[clamp(42px,7vw,76px)] font-semibold leading-[.9] tracking-[-0.06em]">Vue / Vite<br />Learning Roadmap</h1>
       <p class="mb-10 max-w-[560px] text-[14px] leading-[1.75]" style="color: var(--page-muted)">
         A personal roadmap for building toward future contributions in the ecosystem. You can use it too, and progress is saved in your browser.
       </p>

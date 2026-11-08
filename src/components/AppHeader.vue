@@ -11,10 +11,10 @@
         class="flex size-9 items-center justify-center bg-(--accent) font-mono text-[11px] font-medium text-(--button-primary-text)"
         >NB</span
       >
-      <span class="font-serif text-[15px] font-semibold tracking-[-0.04em] text-[var(--page-text)]"
+      <span class="font-display text-[15px] font-semibold tracking-[-0.04em] text-[var(--page-text)]"
         >Nazarov Berdi</span
       >
-      <span class="eyebrow hidden text-[10px] uppercase tracking-[0.08em] sm:block">Frontend Engineer</span>
+      <span class="eyebrow hidden text-[11px] uppercase tracking-[0.08em] sm:block">Frontend Engineer</span>
     </RouterLink>
 
     <nav
@@ -22,7 +22,7 @@
     >
       <RouterLink
         to="/blog"
-        class="font-mono text-[10px] uppercase tracking-[0.09em] text-(--page-muted) transition-colors duration-150 hover:text-(--accent-bright)"
+        class="font-mono text-[11px] uppercase tracking-[0.09em] text-(--page-muted) transition-colors duration-150 hover:text-(--accent-bright)"
       >
         <HoverLabel label="Blog" />
       </RouterLink>
@@ -32,7 +32,7 @@
       <a
         href="/resume/resume.pdf"
         download
-        class="hidden items-center gap-1 border border-[var(--line)] px-3 py-2 font-mono text-[10px] font-medium uppercase tracking-[0.08em] text-(--page-muted) transition-[color,border-color,scale] duration-150 hover:border-[var(--accent)] hover:text-[var(--accent-bright)] active:scale-[0.94] md:inline-flex"
+        class="hidden items-center gap-1 border border-[var(--line)] px-3 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.08em] text-(--page-muted) transition-[color,border-color,scale] duration-150 hover:border-[var(--accent)] hover:text-[var(--accent-bright)] active:scale-[0.94] md:inline-flex"
       >
         CV ↓
       </a>
@@ -139,7 +139,7 @@
       <nav class="flex flex-1 flex-col justify-center gap-1 px-8">
         <RouterLink
           to="/blog"
-          class="font-serif leading-[1.05] tracking-[-0.06em] transition-colors duration-150 hover:text-[var(--accent)]"
+          class="font-display leading-[1.05] tracking-[-0.06em] transition-colors duration-150 hover:text-[var(--accent)]"
           style="font-size: clamp(52px, 14vw, 80px); color: var(--page-text)"
           @click="menuOpen = false"
         >

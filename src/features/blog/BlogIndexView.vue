@@ -7,7 +7,7 @@
         <div class="min-w-0 flex-1">
           <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">Writing / frontend notes</p>
           <h1
-            class="font-serif text-[clamp(52px,10vw,120px)] font-semibold leading-[.85] tracking-[-0.07em]"
+            class="font-display text-[clamp(52px,10vw,120px)] font-semibold leading-[.85] tracking-[-0.07em]"
           >
             Thoughts &amp; Learnings
           </h1>
@@ -38,7 +38,7 @@
                 {{ post.readingTime }} min read
               </p>
               <h2
-                class="font-serif text-[clamp(28px,3vw,42px)] font-semibold leading-[.95] tracking-[-0.05em]"
+                class="font-display text-[clamp(28px,3vw,42px)] font-semibold leading-[.95] tracking-[-0.05em]"
               >
                 {{ post.title }}
               </h2>

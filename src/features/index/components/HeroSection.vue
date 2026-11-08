@@ -6,10 +6,10 @@
     </p>
     <div class="hero-layout">
       <div class="hero-copy">
-        <h1 class="hero-title mb-7 font-serif font-semibold">
+        <h1 class="hero-title mb-7 font-display font-semibold">
           <span class="hero-title-mask"><span data-hero-line>Nazarov</span></span>
           <span class="hero-title-mask"
-            ><span data-hero-line class="hero-accent italic text-(--accent-bright)">Berdi</span></span
+            ><span data-hero-line class="hero-accent text-(--accent-bright)">Berdi</span></span
           >
         </h1>
         <p
@@ -57,13 +57,13 @@
           <div class="portrait-shade" aria-hidden="true" />
           <span class="portrait-corner portrait-corner-top" aria-hidden="true" />
           <span class="portrait-corner portrait-corner-bottom" aria-hidden="true" />
-          <span class="portrait-location font-mono text-[10px] uppercase tracking-[0.14em]"
+          <span class="portrait-location font-mono text-[11px] uppercase tracking-[0.14em]"
             >Ashgabat, TM</span
           >
         </div>
         <figcaption class="hero-detail mt-5 border-l border-(--line-strong) pl-4">
-          <p class="eyebrow text-[10px] uppercase tracking-[0.12em]">Current focus</p>
-          <p class="mt-2 font-serif text-[22px] leading-none">Vue / DX / Tooling</p>
+          <p class="eyebrow text-[11px] uppercase tracking-[0.12em]">Current focus</p>
+          <p class="mt-2 font-display text-[22px] leading-none">Vue / DX / Tooling</p>
           <p class="body-muted mt-2 text-[12px] leading-[1.6]">Interfaces with intention.</p>
         </figcaption>
       </figure>

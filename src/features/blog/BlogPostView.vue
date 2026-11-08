@@ -22,7 +22,7 @@
             <span aria-hidden="true"> · </span>
             {{ post.readingTime }} min read
           </p>
-          <h1 class="font-serif text-[clamp(40px,9vw,80px)] leading-[0.96] tracking-[-0.05em]">
+          <h1 class="font-display text-[clamp(40px,9vw,80px)] leading-[0.96] tracking-[-0.05em]">
             {{ post.title }}
           </h1>
           <p class="body-muted mt-5 max-w-[620px] text-[14px] leading-[1.85]">
@@ -46,7 +46,7 @@
           >
             <span class="eyebrow text-[11px] uppercase tracking-[0.08em]">← Newer</span>
             <span
-              class="font-serif text-[18px] leading-tight tracking-[-0.02em] text-(--page-text) transition-colors duration-150 group-hover:text-(--accent)"
+              class="font-display text-[18px] leading-tight tracking-[-0.02em] text-(--page-text) transition-colors duration-150 group-hover:text-(--accent)"
             >
               {{ adjacent.prev.title }}
             </span>
@@ -58,7 +58,7 @@
           >
             <span class="eyebrow text-[11px] uppercase tracking-[0.08em]">Older →</span>
             <span
-              class="font-serif text-[18px] leading-tight tracking-[-0.02em] text-(--page-text) transition-colors duration-150 group-hover:text-(--accent)"
+              class="font-display text-[18px] leading-tight tracking-[-0.02em] text-(--page-text) transition-colors duration-150 group-hover:text-(--accent)"
             >
               {{ adjacent.next.title }}
             </span>
@@ -69,7 +69,7 @@
       <template v-else>
         <section class="surface-panel max-w-[720px] p-8">
           <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">Missing post</p>
-          <h1 class="font-serif text-[clamp(34px,8vw,64px)] leading-[0.96] tracking-[-0.05em]">
+          <h1 class="font-display text-[clamp(34px,8vw,64px)] leading-[0.96] tracking-[-0.05em]">
             This entry does not exist yet.
           </h1>
           <p class="body-muted mt-5 max-w-[520px] text-[14px] leading-[1.85]">

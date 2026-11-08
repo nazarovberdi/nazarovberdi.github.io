@@ -2,8 +2,8 @@
   <section data-reveal class="mb-28">
     <div class="mb-8 flex items-end justify-between gap-6 max-sm:flex-col max-sm:items-start">
       <div>
-        <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">02 / Capabilities</p>
-        <h2 class="font-serif text-[clamp(38px,5vw,58px)] font-semibold leading-[.93] tracking-[-0.055em]">
+        <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">03 / Capabilities</p>
+        <h2 class="font-display text-[clamp(38px,5vw,58px)] font-semibold leading-[.93] tracking-[-0.055em]">
           The systems<br />behind the surface.
         </h2>
       </div>
@@ -23,7 +23,7 @@
           <span
             v-for="skill in coreSkills"
             :key="skill"
-            data-reveal-item class="pill px-3 py-2 font-mono text-[10px] uppercase tracking-[0.06em] text-[var(--page-text)]"
+            data-reveal-item class="pill px-3 py-2 font-mono text-[11px] uppercase tracking-[0.06em] text-[var(--page-text)]"
           >
             {{ skill }}
           </span>
@@ -38,19 +38,19 @@
 
         <div class="space-y-4">
           <div>
-            <p class="font-mono text-[10px] uppercase tracking-[0.08em] text-(--accent-bright)">Interface craft</p>
+            <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-(--accent-bright)">Interface craft</p>
             <p class="body-muted mt-1 text-[13px] font-light leading-[1.7]">
               Thoughtful layouts, readable spacing, and product details that feel intentional.
             </p>
           </div>
           <div>
-            <p class="font-mono text-[10px] uppercase tracking-[0.08em] text-(--accent-bright)">Developer experience</p>
+            <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-(--accent-bright)">Developer experience</p>
             <p class="body-muted mt-1 text-[13px] font-light leading-[1.7]">
               Tools and workflows that make building, shipping, and maintaining easier.
             </p>
           </div>
           <div>
-            <p class="font-mono text-[10px] uppercase tracking-[0.08em] text-(--accent-bright)">Open source mindset</p>
+            <p class="font-mono text-[11px] uppercase tracking-[0.08em] text-(--accent-bright)">Open source mindset</p>
             <p class="body-muted mt-1 text-[13px] font-light leading-[1.7]">
               Learning in public, documenting clearly, and building toward thoughtful contributions over time.
             </p>
