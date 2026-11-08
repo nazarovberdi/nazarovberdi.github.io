@@ -67,6 +67,16 @@ export const projects: readonly Project[] = [
       "https://play.google.com/store/apps/details?id=com.enjoyablereader",
   },
   {
+    name: "Bileje",
+    owner: "nazarovberdi",
+    description:
+      "Playful date invitations sent as a link — envelope, scratch-off or incoming-call openings, a dodging No button, and the reply back to the sender. React, Motion and Supabase; Russian and Turkmen.",
+    language: "TypeScript",
+    color: "#3178c6",
+    stars: null,
+    liveUrl: "https://bileje.biz",
+  },
+  {
     name: "date-fns-locale-tk",
     owner: "nazarovberdi",
     description:
