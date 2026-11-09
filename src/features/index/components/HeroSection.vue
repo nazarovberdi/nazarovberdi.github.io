@@ -1,9 +1,6 @@
 <template>
   <section class="hero-section hero-rule relative mb-28 border-b border-[var(--line)] py-12 sm:py-16">
     <SignatureMark />
-    <p class="hero-intro eyebrow mb-6 text-[11px] uppercase tracking-[0.16em]">
-      Digital experiences built to perform · Frontend engineer
-    </p>
     <div class="hero-layout">
       <div class="hero-copy">
         <h1 class="hero-title mb-7 font-display font-semibold">
@@ -15,9 +12,7 @@
         <p
           class="hero-summary hero-detail body-muted max-w-[500px] text-[16px] leading-[1.85]"
         >
-          Frontend engineer in the Vue / Vite ecosystem — shipping production interfaces for
-          organizations, contributing to open-source libraries, and going deep on developer tooling
-          and DX.
+          Frontend engineer building Vue / Vite interfaces and developer tooling.
         </p>
         <div class="hero-detail mt-8 flex flex-wrap items-center gap-3">
           <a
@@ -61,11 +56,6 @@
             >Ashgabat, TM</span
           >
         </div>
-        <figcaption class="hero-detail mt-5 border-l border-(--line-strong) pl-4">
-          <p class="eyebrow text-[11px] uppercase tracking-[0.12em]">Current focus</p>
-          <p class="mt-2 font-display text-[22px] leading-none">Vue / DX / Tooling</p>
-          <p class="body-muted mt-2 text-[12px] leading-[1.6]">Interfaces with intention.</p>
-        </figcaption>
       </figure>
     </div>
   </section>

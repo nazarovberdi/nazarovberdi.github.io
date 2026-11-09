@@ -1,3 +1,7 @@
+---
+summary: A five-year path into AI engineering.
+---
+
 # From Frontend Developer to AI Application Engineer
 ## A 5-Year Roadmap for a Vue/React Dev with 3.5 Years of Experience
 

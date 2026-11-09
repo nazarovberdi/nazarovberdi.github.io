@@ -245,7 +245,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
 [data-hero-line] {
   display: block;
 }
-.intro-pending .hero-intro,
 .intro-pending [data-hero-line],
 .intro-pending .portrait-frame,
 .intro-pending .hero-detail {
@@ -394,9 +393,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
   }
   .portrait-frame {
     border-top-left-radius: 3rem;
-  }
-  .hero-portrait figcaption {
-    margin-top: 0;
   }
 }
 @media (prefers-reduced-motion: reduce) {

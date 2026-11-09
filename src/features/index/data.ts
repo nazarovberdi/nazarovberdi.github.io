@@ -1,6 +1,5 @@
 export interface SocialProfile {
   label: string;
-  kind: string;
   handle: string;
   url: string;
 }
@@ -24,19 +23,16 @@ export interface Project {
 export const socialProfiles: readonly SocialProfile[] = [
   {
     label: "LinkedIn",
-    kind: "Professional",
     handle: "berdi-nazarov",
     url: "https://www.linkedin.com/in/berdi-nazarov/",
   },
   {
     label: "X",
-    kind: "Social",
     handle: "@berdi_nazarov",
     url: "https://x.com/berdi_nazarov",
   },
   {
     label: "GitHub",
-    kind: "Code",
     handle: "nazarovberdi",
     url: "https://github.com/nazarovberdi",
   },
@@ -58,8 +54,7 @@ export const projects: readonly Project[] = [
   {
     name: "Lyne",
     owner: "nazarovberdi",
-    description:
-      "Cross-device EPUB reader — library and exact reading position sync everywhere. React PWA on Supabase, plus a native Kotlin/Compose Android app.",
+    description: "Cross-device EPUB reader with synced progress.",
     language: "TypeScript",
     color: "#3178c6",
     stars: null,
@@ -70,8 +65,7 @@ export const projects: readonly Project[] = [
   {
     name: "Bileje",
     owner: "nazarovberdi",
-    description:
-      "Playful date invitations sent as a link — envelope, scratch-off or incoming-call openings, a dodging No button, and the reply back to the sender. React, Motion and Supabase; Russian and Turkmen.",
+    description: "Playful date invitations, sent as a link.",
     language: "TypeScript",
     color: "#e0457b",
     stars: null,
@@ -80,8 +74,7 @@ export const projects: readonly Project[] = [
   {
     name: "date-fns-locale-tk",
     owner: "nazarovberdi",
-    description:
-      "Turkmen (tk) locale for date-fns. Full date formatting support for the Turkmen language, proposed upstream (pull request open).",
+    description: "Turkmen locale for date-fns.",
     language: "JavaScript",
     color: "#f1e05a",
     stars: 2,
@@ -91,8 +84,7 @@ export const projects: readonly Project[] = [
   {
     name: "weather-wise",
     owner: "nazarovberdi",
-    description:
-      "Weather app built with Vue 3 and the Open-Meteo API. Location search, hourly forecasts, and a clean responsive interface.",
+    description: "Vue weather app on Open-Meteo.",
     language: "Vue",
     color: "#41b883",
     stars: null,
@@ -103,8 +95,7 @@ export const projects: readonly Project[] = [
     name: "Physicist Explorer",
     repoSlug: "Physicst-Explorer",
     owner: "nazarovberdi",
-    description:
-      "React Native app for exploring physics constants, formulas, and unit conversions. Built for offline use.",
+    description: "Offline physics formulas and unit converter.",
     language: "TypeScript",
     color: "#8b5cf6",
     stars: 1,

@@ -7,9 +7,6 @@
       >
         Page not found.
       </h1>
-      <p class="body-muted mt-6 max-w-[480px] text-[14px] leading-[1.85]">
-        This route doesn't exist. You may have followed a broken link or typed the address incorrectly.
-      </p>
       <RouterLink
         to="/"
         class="primary-button mt-10 inline-flex w-fit items-center gap-2 px-5 py-3 text-[11px] uppercase tracking-[0.08em]"

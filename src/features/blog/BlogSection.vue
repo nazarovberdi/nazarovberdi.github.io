@@ -6,9 +6,6 @@
         <h2 class="font-display text-[clamp(28px,5vw,40px)] leading-[1.05] tracking-[-0.02em]">
           Notes from the workbench.
         </h2>
-        <p class="body-muted mt-4 max-w-[480px] text-[13px] leading-[1.8]">
-          Short write-ups on frontend craft, developer tooling, and the small decisions that make products feel more intentional.
-        </p>
       </div>
 
       <RouterLink

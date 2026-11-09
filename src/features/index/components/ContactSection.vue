@@ -9,18 +9,8 @@
           >
             Let’s make the interface<br />the reason it works.
           </h2>
-          <p class="body-muted mt-4 max-w-[520px] text-[13px] font-light leading-[1.8]">
-            Building a user-focused product or a developer-facing tool? I’m always open to thoughtful frontend work and collaboration.
-          </p>
 
           <div class="mt-6 flex flex-wrap items-center gap-4">
-            <div
-              class="pill body-muted inline-flex items-center gap-3 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.06em]"
-            >
-              <span class="size-2 rounded-full bg-(--accent)" aria-hidden="true" />
-              <span>Open channel for work and collaboration</span>
-            </div>
-
             <a
               href="mailto:nazarov120100@gmail.com"
               class="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.08em] text-(--accent-bright) transition-colors duration-150 hover:text-(--page-text)"
@@ -44,10 +34,7 @@
           >
             <div class="flex items-start justify-between gap-4">
               <div>
-                <p class="eyebrow text-[11px] uppercase tracking-[0.1em]">
-                  {{ profile.kind }}
-                </p>
-                <p class="mt-2 font-display text-[24px] font-semibold leading-none tracking-[-0.04em] text-[var(--page-text)]">
+                <p class="font-display text-[24px] font-semibold leading-none tracking-[-0.04em] text-[var(--page-text)]">
                   {{ profile.label }}
                 </p>
                 <p class="body-muted mt-2 text-[12px] leading-[1.6]">

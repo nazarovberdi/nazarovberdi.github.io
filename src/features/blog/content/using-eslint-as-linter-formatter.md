@@ -1,7 +1,7 @@
 ---
 title: Using ESLint as linter and formatter
 date: 2026-05-07
-summary: ESLint is a linter, but with the Stylistic plugin it replaces Prettier entirely — one tool, one config, zero conflicts.
+summary: One tool for linting and formatting.
 ---
 
 ESLint catches code problems; Prettier fixes whitespace. Running both means maintaining two configs that inevitably disagree on spacing, trailing commas, or bracket placement, and then spending time on tooling instead of code. The [ESLint Stylistic](https://eslint.style) project moves all formatting rules into ESLint, making one tool do both jobs.

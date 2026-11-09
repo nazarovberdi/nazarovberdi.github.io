@@ -26,7 +26,6 @@ export function useHomeMotion(page: Ref<HTMLElement | null>) {
         const desktop = context.conditions.desktop
         if (!seen) gsap
           .timeline({ defaults: { ease: 'power3.out' } })
-          .from(root.querySelector('.hero-intro'), { opacity: 0, y: 8, duration: 0.45 })
           .from(
             root.querySelectorAll('[data-hero-line]'),
             {
