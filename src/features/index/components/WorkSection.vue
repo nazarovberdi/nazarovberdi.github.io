@@ -3,10 +3,10 @@
     <header class="section-head">
       <p class="section-label">01 — Work</p>
       <h2 v-reveal class="section-title line-mask font-display">
-        <span class="line"><span>Software people</span></span>
-        <span class="line" style="--line: 1"><span>use every day.</span></span>
+        <span class="line"><span>Built in public,</span></span>
+        <span class="line" style="--line: 1"><span>shipped for real.</span></span>
       </h2>
-      <p class="section-aside">{{ projects.length }} projects · 2022 – 2026</p>
+      <p class="section-aside">{{ projects.length }} projects · 2024 – 2026</p>
     </header>
 
     <ol class="work-list" @pointerleave="hide">
@@ -17,19 +17,13 @@
         class="work-row"
         @pointerenter="show(i, $event)"
       >
-        <component
-          :is="projectHref(project) ? 'a' : 'div'"
-          :href="projectHref(project)"
-          :target="projectHref(project) ? '_blank' : undefined"
-          :rel="projectHref(project) ? 'noopener' : undefined"
-          class="work-row-main split-trigger"
-        >
+        <a :href="projectHref(project)" target="_blank" rel="noopener" class="work-row-main">
           <span class="work-index meta-label">{{ String(i + 1).padStart(2, '0') }}</span>
           <span class="work-name font-display"><SplitHover :label="project.name" /></span>
-          <span class="work-kind meta-label">{{ project.client ?? kindLabel[project.kind] }}</span>
+          <span class="work-kind meta-label">{{ kindLabel[project.kind] }}</span>
           <span class="work-year meta-label">{{ project.year }}</span>
-          <span class="work-arrow" aria-hidden="true">{{ projectHref(project) ? '↗' : '' }}</span>
-        </component>
+          <span class="work-arrow" aria-hidden="true">↗</span>
+        </a>
 
         <div class="work-detail">
           <p>

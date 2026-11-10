@@ -4,8 +4,8 @@ export interface SocialProfile {
   url: string
 }
 
-/** See GLOSSARY.md: Client work, Product, Open source. */
-export type ProjectKind = 'client' | 'product' | 'open-source'
+/** See GLOSSARY.md: Product, Open source. */
+export type ProjectKind = 'product' | 'open-source'
 
 export interface Project {
   name: string
@@ -14,8 +14,6 @@ export interface Project {
   summary: string
   /** One line on what came of it, shown on its Preview. */
   outcome?: string
-  /** Who it was built for. Client work only. */
-  client?: string
   year: string
   stack: readonly string[]
   /** Colour of the block on its Poster. */
@@ -48,39 +46,7 @@ export const skillGroups: ReadonlyArray<{ label: string; skills: readonly string
   { label: 'Tools', skills: ['Vite', 'Tauri', 'Git'] },
 ]
 
-const railways = 'Turkmenistan Railways'
-
 export const projects: readonly Project[] = [
-  {
-    name: 'Station Fees',
-    kind: 'client',
-    client: railways,
-    summary: 'Billing for per-wagon station charges, printed bills and corrections.',
-    outcome: 'Main developer',
-    year: '2022 – now',
-    stack: ['Vue 3', 'TypeScript'],
-    color: '#ff4f1a',
-  },
-  {
-    name: 'Freight Workspace',
-    kind: 'client',
-    client: railways,
-    summary: 'A spreadsheet-style wagon table that replaced a legacy app.',
-    outcome: 'Used by ~30 operators',
-    year: '2022 – now',
-    stack: ['Vue 3', 'TanStack Table'],
-    color: '#3d7bff',
-  },
-  {
-    name: 'Payment Kiosk',
-    kind: 'client',
-    client: railways,
-    summary: 'Touchscreen UI for the payment terminals in stations.',
-    outcome: '~50k payments a month',
-    year: '2024 – 25',
-    stack: ['Vue 3', 'Tauri'],
-    color: '#1fb57a',
-  },
   {
     name: 'Lyne',
     kind: 'product',
@@ -134,10 +100,9 @@ export const projects: readonly Project[] = [
 ]
 
 export const kindLabel: Record<ProjectKind, string> = {
-  client: 'Client work',
   product: 'Product',
   'open-source': 'Open source',
 }
 
-/** Where a Project row leads: the live site, else the code. Client work leads nowhere. */
+/** Where a Project row leads: the live site, else the code. */
 export const projectHref = (p: Project): string | undefined => p.liveUrl ?? p.repoUrl

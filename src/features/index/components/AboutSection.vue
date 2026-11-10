@@ -23,21 +23,27 @@
 
       <div v-reveal class="about-copy reveal-group">
         <p class="about-lead reveal-item" style="--i: 0">
-          I'm Berdi, a frontend engineer working mostly in Vue, React and TypeScript. By day I build the internal
-          tools Turkmenistan Railways runs on: billing, freight logistics and the payment kiosks in its stations.
+          I'm Berdi, a frontend engineer working mostly in Vue, React and TypeScript. At MilliGoshant I build the
+          frontend of Turkmenistan Railways' freight tariff system with a small team, on a Go backend.
         </p>
         <p class="about-body reveal-item" style="--i: 1">
+          Its Vue apps calculate freight charges for local and transit shipments and bill the services stations
+          provide. I'm the main developer of the station-fees app, from printed bills to the overcharge and
+          undercharge corrections that follow them, and I built most of the spreadsheet-style workspace where
+          operators calculate a shipment's charges wagon by wagon.
+        </p>
+        <p class="about-body reveal-item" style="--i: 2">
           On my own time I ship products end to end, like Lyne, an EPUB reader on Google Play, and Bileje, a paid
           invitation app.
         </p>
 
-        <p class="about-role reveal-item" style="--i: 2">
+        <p class="about-role reveal-item" style="--i: 3">
           <span class="meta-label">Now</span>
           <span>Frontend developer at MilliGoshant</span>
           <span class="meta-label">Dec 2022 – now</span>
         </p>
 
-        <dl class="skills reveal-item" style="--i: 3">
+        <dl class="skills reveal-item" style="--i: 4">
           <div v-for="group in skillGroups" :key="group.label" class="skills-row">
             <dt class="meta-label">{{ group.label }}</dt>
             <dd>{{ group.skills.join(', ') }}</dd>

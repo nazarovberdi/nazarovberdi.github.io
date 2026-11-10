@@ -1,7 +1,7 @@
 <template>
   <div class="poster" :style="{ '--poster-color': project.color }" aria-hidden="true">
     <div class="poster-top">
-      <span>{{ project.client ?? kindLabel[project.kind] }}</span>
+      <span>{{ kindLabel[project.kind] }}</span>
       <span>{{ project.year }}</span>
     </div>
     <span class="poster-block" />

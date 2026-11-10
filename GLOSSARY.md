@@ -5,12 +5,12 @@ The personal site of Nazarov Berdi, a frontend engineer. It exists to get him hi
 ## Content
 
 **Project**:
-One piece of shipped work shown on the site: an app, a site, or a library.
-_Avoid_: Repo, item, card
+One piece of public work shown in Work: a Product or Open source, always with something a visitor can open.
+_Avoid_: Repo, item, card, client work (employer work is Experience, never a Project)
 
-**Client work**:
-A Project built for an employer's client, shown without a public link.
-_Avoid_: Job, experience item, professional project
+**Experience**:
+Paid work for an employer, described in About and never shown as a Project.
+_Avoid_: Client work, job, professional project
 
 **Product**:
 A Project Berdi built and runs himself, live for real users.
