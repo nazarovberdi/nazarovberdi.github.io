@@ -1,6 +1,6 @@
 <template>
   <section class="hero">
-    <h1 v-reveal class="hero-name line-mask font-display">
+    <h1 class="hero-name line-mask line-intro font-display">
       <span class="line"><span>Nazarov</span></span>
       <span class="line" style="--line: 1"><span>Berdi</span></span>
     </h1>

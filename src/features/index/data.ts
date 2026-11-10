@@ -55,6 +55,7 @@ export const projects: readonly Project[] = [
     year: '2026',
     stack: ['React', 'Supabase', 'Kotlin'],
     color: '#3178c6',
+    preview: '/images/work/lyne.webp',
     liveUrl: 'https://lyne.page',
     storeUrl: 'https://play.google.com/store/apps/details?id=com.enjoyablereader',
   },
@@ -66,6 +67,7 @@ export const projects: readonly Project[] = [
     year: '2026',
     stack: ['React 19', 'Motion', 'Supabase'],
     color: '#e0457b',
+    preview: '/images/work/bileje.webp',
     liveUrl: 'https://bileje.biz',
   },
   {
@@ -85,6 +87,7 @@ export const projects: readonly Project[] = [
     year: '2025',
     stack: ['Vue'],
     color: '#41b883',
+    preview: '/images/work/weather-wise.webp',
     liveUrl: 'https://weather-wize.vercel.app',
     repoUrl: 'https://github.com/nazarovberdi/weather-wise',
   },

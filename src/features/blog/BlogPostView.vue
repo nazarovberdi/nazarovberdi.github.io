@@ -10,7 +10,7 @@
         <p class="meta-label">
           <time :datetime="post.date">{{ formatBlogDate(post.date) }}</time> · {{ post.readingTime }} min read
         </p>
-        <h1 v-reveal class="post-title line-mask font-display">
+        <h1 class="post-title line-mask line-intro font-display">
           <span class="line"><span>{{ post.title }}</span></span>
         </h1>
         <p v-if="post.summary" class="post-summary">{{ post.summary }}</p>
@@ -18,7 +18,7 @@
     </header>
 
     <div ref="body" class="section post-body">
-      <div class="blog-prose" v-html="post.html" />
+      <div class="blog-prose" v-html="html" />
     </div>
 
     <nav v-if="morePosts.length" class="section post-more" aria-label="Keep reading">
@@ -38,6 +38,7 @@ import SplitHover from '@/components/SplitHover.vue'
 import { usePageMeta } from '@/composables/usePageMeta'
 import NotFoundView from '@/features/not-found/NotFoundView.vue'
 
+import { getPostHtml } from './postHtml'
 import { formatBlogDate, getAdjacentPosts, getBlogPostBySlug, type BlogPost } from './posts'
 import WritingRows from './WritingRows.vue'
 
@@ -46,6 +47,7 @@ const body = ref<HTMLElement | null>(null)
 const progress = ref(0)
 
 const post = computed(() => getBlogPostBySlug(String(route.params.slug ?? '')))
+const html = computed(() => (post.value ? getPostHtml(post.value.slug) : ''))
 const morePosts = computed<BlogPost[]>(() => {
   if (!post.value) return []
   const { prev, next } = getAdjacentPosts(post.value.slug)

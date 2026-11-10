@@ -1,7 +1,7 @@
 <template>
   <section class="section not-found">
     <p class="section-label">404</p>
-    <h1 v-reveal class="not-found-title line-mask font-display">
+    <h1 class="not-found-title line-mask line-intro font-display">
       <span class="line"><span>Lost</span></span>
       <span class="line" style="--line: 1"><span>the <em class="accent-serif">thread</em>.</span></span>
     </h1>

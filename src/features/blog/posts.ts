@@ -1,69 +1,39 @@
-import type { FrontmatterAttributes } from './markdown'
-
+/** A post's details, without its body: cheap enough for every page to import. */
 export interface BlogPost {
   slug: string
   title: string
   date: string
   summary: string
-  html: string
   readingTime: number
 }
 
-interface RenderedPost {
-  attributes: FrontmatterAttributes
-  body: string
-  html: string
+interface PostMeta {
+  attributes: { title?: string; date?: string; summary?: string }
+  summary: string
+  readingTime: number
 }
 
-// Rendered at build time by the blog-posts plugin in vite.config.ts.
-const renderedPosts = import.meta.glob('./content/*.md', {
+// Built by the blog-posts plugin in vite.config.ts. The HTML lives in postHtml.ts.
+const metas = import.meta.glob('./content/*.md', {
   eager: true,
   import: 'default',
-  query: '?post',
-}) as Record<string, RenderedPost>
+  query: '?post-meta',
+}) as Record<string, PostMeta>
 
-function getSlugFromPath(path: string): string {
-  return path.split('/').pop()?.replace(/\.md$/, '') ?? path
-}
+export const slugFromPath = (path: string): string => path.split('/').pop()?.replace(/\.md$/, '') ?? path
 
-function getFallbackSummary(markdown: string): string {
-  const firstParagraph = markdown
-    .split('\n\n')
-    .map((block) => block.trim())
-    .find((block) => block && !block.startsWith('#') && !block.startsWith('```'))
-
-  const summary = (firstParagraph ?? 'New writing coming soon.')
-    .replace(/^[-*]\s+/gm, '')
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1')
-    .replace(/[*`>#]/g, '')
-    .trim()
-  if (summary.length <= 180) return summary
-  return `${summary.slice(0, summary.lastIndexOf(' ', 179)).replace(/[\s,.;:—-]+$/, '')}…`
-}
-
-function estimateReadingTime(text: string): number {
-  const words = text.trim().split(/\s+/).filter(Boolean).length
-  return Math.max(1, Math.ceil(words / 200))
-}
-
-const resolvedBlogPosts = Object.entries(renderedPosts).map(
-  ([path, { attributes, body, html }]) => {
-    const slug = getSlugFromPath(path)
-
+export const blogPosts: BlogPost[] = Object.entries(metas)
+  .map(([path, meta]) => {
+    const slug = slugFromPath(path)
     return {
       slug,
-      title: attributes.title ?? slug.replace(/-/g, ' '),
-      date: attributes.date ?? '2026-01-01',
-      summary: attributes.summary ?? getFallbackSummary(body),
-      html,
-      readingTime: estimateReadingTime(body),
+      title: meta.attributes.title ?? slug.replace(/-/g, ' '),
+      date: meta.attributes.date ?? '2026-01-01',
+      summary: meta.attributes.summary ?? meta.summary,
+      readingTime: meta.readingTime,
     }
-  },
-)
-
-export const blogPosts: BlogPost[] = resolvedBlogPosts.sort(
-  (left, right) => new Date(right.date).getTime() - new Date(left.date).getTime(),
-)
+  })
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
 export const featuredBlogPosts = blogPosts.slice(0, 3)
 
@@ -74,16 +44,9 @@ export function getBlogPostBySlug(slug: string): BlogPost | undefined {
 export function getAdjacentPosts(slug: string): { prev: BlogPost | null; next: BlogPost | null } {
   const idx = blogPosts.findIndex((p) => p.slug === slug)
   if (idx === -1) return { prev: null, next: null }
-  return {
-    prev: blogPosts[idx - 1] ?? null,
-    next: blogPosts[idx + 1] ?? null,
-  }
+  return { prev: blogPosts[idx - 1] ?? null, next: blogPosts[idx + 1] ?? null }
 }
 
 export function formatBlogDate(date: string, locale = 'en'): string {
-  return new Intl.DateTimeFormat(locale, {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  }).format(new Date(date))
+  return new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(date))
 }

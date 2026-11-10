@@ -2,7 +2,7 @@
   <div class="page">
     <header class="section page-head">
       <p class="section-label">Writing</p>
-      <h1 v-reveal class="page-title line-mask font-display">
+      <h1 class="page-title line-mask line-intro font-display">
         <span class="line"><span>Writing</span></span>
       </h1>
       <p v-reveal class="page-intro reveal-group">

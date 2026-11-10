@@ -267,3 +267,24 @@ export async function markdownToHtml(markdown: string): Promise<string> {
 
   return output.join("\n");
 }
+
+/** First paragraph, trimmed to ~180 characters: the summary when frontmatter has none. */
+export function getFallbackSummary(markdown: string): string {
+  const firstParagraph = markdown
+    .split('\n\n')
+    .map((block) => block.trim())
+    .find((block) => block && !block.startsWith('#') && !block.startsWith('```'))
+
+  const summary = (firstParagraph ?? 'New writing coming soon.')
+    .replace(/^[-*]\s+/gm, '')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1')
+    .replace(/[*`>#]/g, '')
+    .trim()
+  if (summary.length <= 180) return summary
+  return `${summary.slice(0, summary.lastIndexOf(' ', 179)).replace(/[\s,.;:—-]+$/, '')}…`
+}
+
+export function estimateReadingTime(text: string): number {
+  const words = text.trim().split(/\s+/).filter(Boolean).length
+  return Math.max(1, Math.ceil(words / 200))
+}

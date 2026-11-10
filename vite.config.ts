@@ -7,21 +7,25 @@ import { defineConfig, type Plugin } from 'vite'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import type {} from 'vite-ssg'
 
-import { markdownToHtml, parseFrontmatter } from './src/features/blog/markdown'
+import { estimateReadingTime, getFallbackSummary, markdownToHtml, parseFrontmatter } from './src/features/blog/markdown'
 
 /**
- * Renders `*.md?post` imports to HTML at build time, so Shiki never ships to
- * the browser. Highlighting in the browser held back startup by 1–3 seconds.
+ * Renders posts at build time, so Shiki never ships to the browser. `?post-meta`
+ * gives a post's details (every page), `?post-html` its body (the post page only).
  */
 function blogPosts(): Plugin {
   return {
     name: 'blog-posts',
     enforce: 'pre',
     async load(id) {
-      if (!id.endsWith('.md?post')) return
-      const { attributes, body } = parseFrontmatter(readFileSync(id.slice(0, -'?post'.length), 'utf8'))
-      const html = await markdownToHtml(body)
-      return `export default ${JSON.stringify({ attributes, body, html })}`
+      const [file, query] = id.split('?')
+      if (query !== 'post-meta' && query !== 'post-html') return
+      const { attributes, body } = parseFrontmatter(readFileSync(file, 'utf8'))
+      const data =
+        query === 'post-meta'
+          ? { attributes, summary: getFallbackSummary(body), readingTime: estimateReadingTime(body) }
+          : await markdownToHtml(body)
+      return `export default ${JSON.stringify(data)}`
     },
   }
 }

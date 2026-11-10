@@ -239,6 +239,9 @@ a, button { -webkit-tap-highlight-color: transparent; }
     transition: transform 1100ms var(--ease-out) calc(var(--line, 0) * 90ms + var(--delay, 0ms));
   }
   .motion .line-mask.is-in .line > span { transform: none; }
+  /* The hero name is the page's largest paint: it rises on first paint with CSS
+     alone instead of waiting for the app to start. */
+  .motion .line-intro .line > span { transform: none; transition: none; animation: line-rise 1100ms var(--ease-out) calc(var(--line, 0) * 90ms + 80ms) both; }
 
   .motion .mask-reveal { clip-path: inset(100% 0 0 0); transition: clip-path 1200ms var(--ease-in-out); }
   .motion .mask-reveal > * { scale: 1.16; transition: scale 1600ms var(--ease-out); }
@@ -331,7 +334,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
   .work-outcome { color: var(--page-text); }
   .work-links { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 10px; }
   .work-links a { display: inline-flex; gap: 4px; color: var(--page-text); }
-  .work-row-preview { grid-column: 2 / 4; margin: 0 0 28px; overflow: hidden; border-radius: 4px; aspect-ratio: 4 / 3; max-width: 560px; }
+  .work-row-preview { grid-column: 2 / 4; margin: 0 0 28px; overflow: hidden; border-radius: 4px; box-shadow: 0 0 0 1px var(--line); aspect-ratio: 4 / 3; max-width: 560px; }
   .work-row > .work-row-main, .work-row > .work-detail { grid-column: 1 / -1; }
 
   @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
@@ -343,6 +346,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
   .work-floater {
     position: fixed; left: 0; top: 0; z-index: 40; width: clamp(280px, 25vw, 400px); aspect-ratio: 4 / 3;
     overflow: hidden; border-radius: 4px; pointer-events: none; will-change: transform;
+    box-shadow: 0 0 0 1px var(--line), 0 30px 60px -24px rgba(0, 0, 0, .45);
     opacity: 0; scale: .85; transition: opacity 280ms var(--ease-out), scale 500ms var(--ease-out);
   }
   .work-floater.is-visible { opacity: 1; scale: 1; }
