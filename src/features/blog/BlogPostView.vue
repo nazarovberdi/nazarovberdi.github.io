@@ -1,162 +1,106 @@
 <template>
-  <div class="blog-page theme-hackful relative min-h-screen overflow-hidden">
-    <div class="home-dot-grid pointer-events-none fixed inset-0" />
-    <div class="home-veil pointer-events-none fixed inset-0" />
-    <div
-      class="home-glow pointer-events-none absolute inset-x-0 top-0 h-[360px] animate-gentle-drift"
-    />
+  <article v-if="post" class="page post">
+    <div class="read-progress" :style="{ transform: `scaleX(${progress})` }" aria-hidden="true" />
 
-    <main class="blog-main relative mx-auto px-6 pt-8 pb-16 animate-fade-up">
-      <template v-if="post">
-        <header class="mb-10">
-          <RouterLink
-            to="/blog"
-            class="body-muted mb-6 inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.08em] transition-colors duration-150 hover:text-(--page-text)"
-          >
-            <span aria-hidden="true">←</span>
-            <span>Back to blog</span>
-          </RouterLink>
+    <header class="section post-head">
+      <RouterLink to="/blog" class="post-back nav-link">
+        <span aria-hidden="true">←</span><SplitHover label="All writing" />
+      </RouterLink>
+      <div class="post-head-main">
+        <p class="meta-label">
+          <time :datetime="post.date">{{ formatBlogDate(post.date) }}</time> · {{ post.readingTime }} min read
+        </p>
+        <h1 v-reveal class="post-title line-mask font-display">
+          <span class="line"><span>{{ post.title }}</span></span>
+        </h1>
+        <p v-if="post.summary" class="post-summary">{{ post.summary }}</p>
+      </div>
+    </header>
 
-          <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">
-            {{ formatBlogDate(post.date) }}
-            <span aria-hidden="true"> · </span>
-            {{ post.readingTime }} min read
-          </p>
-          <h1 class="font-display text-[clamp(40px,9vw,80px)] leading-[0.96] tracking-[-0.05em]">
-            {{ post.title }}
-          </h1>
-          <p class="body-muted mt-5 max-w-[620px] text-[14px] leading-[1.85]">
-            {{ post.summary }}
-          </p>
-        </header>
+    <div ref="body" class="section post-body">
+      <div class="blog-prose" v-html="post.html" />
+    </div>
 
-        <article ref="articleRef" class="surface-panel blog-article p-8 max-sm:p-6">
-          <div class="blog-prose" v-html="post.html" />
-        </article>
+    <nav v-if="morePosts.length" class="section post-more" aria-label="Keep reading">
+      <p class="section-label">Keep reading</p>
+      <WritingRows :posts="morePosts" />
+    </nav>
+  </article>
 
-        <nav
-          v-if="adjacent.prev || adjacent.next"
-          class="mt-8 flex items-start justify-between gap-6 max-sm:flex-col"
-          aria-label="Post navigation"
-        >
-          <RouterLink
-            v-if="adjacent.prev"
-            :to="`/blog/${adjacent.prev.slug}`"
-            class="group flex min-w-0 flex-1 flex-col gap-1"
-          >
-            <span class="eyebrow text-[11px] uppercase tracking-[0.08em]">← Newer</span>
-            <span
-              class="font-display text-[18px] leading-tight tracking-[-0.02em] text-(--page-text) transition-colors duration-150 group-hover:text-(--accent)"
-            >
-              {{ adjacent.prev.title }}
-            </span>
-          </RouterLink>
-          <RouterLink
-            v-if="adjacent.next"
-            :to="`/blog/${adjacent.next.slug}`"
-            class="group flex min-w-0 flex-1 flex-col items-end gap-1 text-right"
-          >
-            <span class="eyebrow text-[11px] uppercase tracking-[0.08em]">Older →</span>
-            <span
-              class="font-display text-[18px] leading-tight tracking-[-0.02em] text-(--page-text) transition-colors duration-150 group-hover:text-(--accent)"
-            >
-              {{ adjacent.next.title }}
-            </span>
-          </RouterLink>
-        </nav>
-      </template>
-
-      <template v-else>
-        <section class="surface-panel max-w-[720px] p-8">
-          <p class="eyebrow mb-4 text-[11px] uppercase tracking-[0.12em]">Missing post</p>
-          <h1 class="font-display text-[clamp(34px,8vw,64px)] leading-[0.96] tracking-[-0.05em]">
-            This entry does not exist yet.
-          </h1>
-          <p class="body-muted mt-5 max-w-[520px] text-[14px] leading-[1.85]">
-            The route is wired correctly, but there is no markdown file matching this slug.
-          </p>
-          <RouterLink
-            to="/blog"
-            class="primary-button mt-8 inline-flex items-center gap-2 rounded-full px-5 py-3 text-[12px] uppercase tracking-[0.08em]"
-          >
-            Return to blog
-          </RouterLink>
-        </section>
-      </template>
-    </main>
-  </div>
+  <NotFoundView v-else message="There is no post at this address." :set-meta="false" />
 </template>
 
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 
-import { formatBlogDate, getAdjacentPosts, getBlogPostBySlug } from './posts'
+import SplitHover from '@/components/SplitHover.vue'
 import { usePageMeta } from '@/composables/usePageMeta'
+import NotFoundView from '@/features/not-found/NotFoundView.vue'
+
+import { formatBlogDate, getAdjacentPosts, getBlogPostBySlug, type BlogPost } from './posts'
+import WritingRows from './WritingRows.vue'
 
 const route = useRoute()
-const articleRef = ref<HTMLElement | null>(null)
-const copyResetTimers = new WeakMap<HTMLButtonElement, number>()
+const body = ref<HTMLElement | null>(null)
+const progress = ref(0)
 
 const post = computed(() => getBlogPostBySlug(String(route.params.slug ?? '')))
-const adjacent = computed(() =>
-  post.value ? getAdjacentPosts(post.value.slug) : { prev: null, next: null },
+const morePosts = computed<BlogPost[]>(() => {
+  if (!post.value) return []
+  const { prev, next } = getAdjacentPosts(post.value.slug)
+  return [prev, next].filter((p): p is BlogPost => p !== null)
+})
+
+usePageMeta(() =>
+  post.value
+    ? { title: post.value.title, description: post.value.summary, ogType: 'article' }
+    : { title: 'Post not found', description: "This post doesn't exist." },
 )
 
-usePageMeta(() => ({
-  title: post.value?.title,
-  description: post.value?.summary,
-  ogType: 'article',
-}))
+// How far through the article body the reader is, 0..1.
+let ticking = false
+function onScroll() {
+  if (ticking) return
+  ticking = true
+  requestAnimationFrame(() => {
+    ticking = false
+    const el = body.value
+    if (!el) return
+    const { top, height } = el.getBoundingClientRect()
+    progress.value = Math.min(1, Math.max(0, -top / Math.max(1, height - window.innerHeight)))
+  })
+}
 
-async function handleArticleClick(event: Event): Promise<void> {
-  const target = event.target
-
-  if (!(target instanceof HTMLElement)) {
-    return
-  }
-
-  const button = target.closest('.blog-code-copy')
-  if (!(button instanceof HTMLButtonElement)) {
-    return
-  }
-
-  const encodedCode = button.dataset.code
-  if (!encodedCode) {
-    return
-  }
-
+// Code blocks carry a copy button (rendered at build time in markdown.ts).
+const resetTimers = new WeakMap<HTMLButtonElement, number>()
+async function onBodyClick(event: Event) {
+  const button = (event.target as HTMLElement | null)?.closest('.blog-code-copy')
+  if (!(button instanceof HTMLButtonElement) || !button.dataset.code) return
   try {
-    await navigator.clipboard.writeText(decodeURIComponent(encodedCode))
+    await navigator.clipboard.writeText(decodeURIComponent(button.dataset.code))
     button.textContent = 'Copied'
     button.dataset.copied = 'true'
-
-    const existingTimer = copyResetTimers.get(button)
-    if (existingTimer) {
-      window.clearTimeout(existingTimer)
-    }
-
-    const resetTimer = window.setTimeout(() => {
-      button.textContent = 'Copy'
-      delete button.dataset.copied
-      copyResetTimers.delete(button)
-    }, 1800)
-
-    copyResetTimers.set(button, resetTimer)
   } catch {
     button.textContent = 'Failed'
-
+  }
+  window.clearTimeout(resetTimers.get(button))
+  resetTimers.set(
+    button,
     window.setTimeout(() => {
       button.textContent = 'Copy'
-    }, 1800)
-  }
+      delete button.dataset.copied
+    }, 1800),
+  )
 }
 
 onMounted(() => {
-  articleRef.value?.addEventListener('click', handleArticleClick)
+  window.addEventListener('scroll', onScroll, { passive: true })
+  body.value?.addEventListener('click', onBodyClick)
+  onScroll()
 })
-
 onBeforeUnmount(() => {
-  articleRef.value?.removeEventListener('click', handleArticleClick)
+  window.removeEventListener('scroll', onScroll)
+  body.value?.removeEventListener('click', onBodyClick)
 })
 </script>
