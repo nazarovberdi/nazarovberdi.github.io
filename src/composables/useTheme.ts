@@ -26,6 +26,8 @@ export function useTheme() {
     const isDark = theme.value === 'dark'
     document.documentElement.dataset.theme = isDark ? '' : 'light'
     document.documentElement.classList.toggle('dark', isDark)
+    // Mobile browser bars match the page.
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', PAGE_BG[theme.value])
   })
 
   function apply(next: Theme) {

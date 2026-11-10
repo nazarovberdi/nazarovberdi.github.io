@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>"
-    />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#11100e" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nazarov Berdi — Frontend Engineer</title>
     <link rel="alternate" type="application/rss+xml" title="Nazarov Berdi — Writing" href="/rss.xml" />
@@ -33,6 +33,7 @@
         try { theme = localStorage.getItem('theme') || theme } catch (e) {}
         root.dataset.theme = theme === 'light' ? 'light' : ''
         root.classList.toggle('dark', theme !== 'light')
+        document.querySelector('meta[name=theme-color]').content = theme === 'light' ? '#f2ede4' : '#11100e'
 
         // `motion` lets reveals start hidden (see src/motion/reveal.ts). If the app
         // has not started within 2.5s, drop it so the page is never left blank.
