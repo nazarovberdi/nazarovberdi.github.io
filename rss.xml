@@ -10,21 +10,21 @@
   <item>
     <title>Using ESLint as linter and formatter</title>
     <link>https://nazarovberdi.github.io/blog/using-eslint-as-linter-formatter</link>
-    <description>ESLint is a linter, but with the Stylistic plugin it replaces Prettier entirely — one tool, one config, zero conflicts.</description>
+    <description>One tool for linting and formatting.</description>
     <pubDate>Thu, 07 May 2026 00:00:00 GMT</pubDate>
     <guid isPermaLink="true">https://nazarovberdi.github.io/blog/using-eslint-as-linter-formatter</guid>
   </item>
   <item>
     <title>Configuring Zed for Vue 3 development</title>
     <link>https://nazarovberdi.github.io/blog/using-zed-editor-for-vue-js</link>
-    <description>Zed is fast, but its Vue 3 and TypeScript setup needs a few deliberate choices before it stops fighting you.</description>
+    <description>A Vue 3 and TypeScript setup for Zed.</description>
     <pubDate>Thu, 30 Apr 2026 00:00:00 GMT</pubDate>
     <guid isPermaLink="true">https://nazarovberdi.github.io/blog/using-zed-editor-for-vue-js</guid>
   </item>
   <item>
     <title>ai app engineer roadmap</title>
     <link>https://nazarovberdi.github.io/blog/ai-app-engineer-roadmap</link>
-    <description></description>
+    <description>A five-year path into AI engineering.</description>
     <pubDate>Thu, 01 Jan 2026 00:00:00 GMT</pubDate>
     <guid isPermaLink="true">https://nazarovberdi.github.io/blog/ai-app-engineer-roadmap</guid>
   </item>
