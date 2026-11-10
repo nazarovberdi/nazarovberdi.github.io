@@ -15,7 +15,7 @@
               href="mailto:nazarov120100@gmail.com"
               class="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.08em] text-(--accent-bright) transition-colors duration-150 hover:text-(--page-text)"
             >
-              <HoverLabel label="Send an email" /> <span aria-hidden="true">↗</span>
+              <SplitHover label="Send an email" /> <span aria-hidden="true">↗</span>
             </a>
           </div>
         </div>
@@ -57,7 +57,7 @@
 </template>
 
 <script setup lang="ts">
-import HoverLabel from '@/components/HoverLabel.vue'
+import SplitHover from '@/components/SplitHover.vue'
 
 import type { SocialProfile } from '../data'
 

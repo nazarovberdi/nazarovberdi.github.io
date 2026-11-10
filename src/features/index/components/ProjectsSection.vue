@@ -21,7 +21,7 @@
         rel="noopener"
         class="body-muted inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.06em] transition-colors duration-150 hover:text-[var(--page-text)]"
       >
-        <HoverLabel label="All repositories" />
+        <SplitHover label="All repositories" />
         <span aria-hidden="true">↗</span>
       </a>
     </div>
@@ -84,7 +84,7 @@
                 rel="noopener"
                 class="group/link inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.08em] text-(--page-muted) transition-colors duration-200 hover:text-(--accent-bright)"
               >
-                <HoverLabel label="Open live" />
+                <SplitHover label="Open live" />
                 <span
                   aria-hidden="true"
                   class="transition-transform duration-200 group-hover/link:translate-x-1 group-hover/link:-translate-y-0.5"
@@ -99,7 +99,7 @@
                 rel="noopener"
                 class="group/link inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.08em] text-(--page-muted) transition-colors duration-200 hover:text-(--accent-bright)"
               >
-                <HoverLabel label="Play Store" />
+                <SplitHover label="Play Store" />
                 <span
                   aria-hidden="true"
                   class="transition-transform duration-200 group-hover/link:translate-x-1 group-hover/link:-translate-y-0.5"
@@ -114,7 +114,7 @@
                 rel="noopener"
                 class="group/link inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.08em] text-(--page-muted) transition-colors duration-200 hover:text-(--accent-bright)"
               >
-                <HoverLabel label="Read source" />
+                <SplitHover label="Read source" />
                 <span
                   aria-hidden="true"
                   class="transition-transform duration-200 group-hover/link:translate-x-1.5"
@@ -130,7 +130,7 @@
 </template>
 
 <script setup lang="ts">
-import HoverLabel from '@/components/HoverLabel.vue'
+import SplitHover from '@/components/SplitHover.vue'
 
 import { onMounted, ref } from "vue";
 

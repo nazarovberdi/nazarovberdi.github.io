@@ -1,10 +1,24 @@
-import { nextTick, ref, watchEffect } from 'vue'
+import { ref, watchEffect } from 'vue'
+
+import { pixelSweep } from '@/motion/pixelToggle'
 
 type Theme = 'dark' | 'light'
 
-const theme = ref<Theme>(
-  (!import.meta.env.SSR ? (localStorage.getItem('theme') as Theme) : null) ?? 'dark',
-)
+/** Mirrors `--page-bg` in main.css: the colour the Pixel toggle covers the screen in. */
+const PAGE_BG: Record<Theme, string> = { dark: '#11100e', light: '#f2ede4' }
+
+function initialTheme(): Theme {
+  if (import.meta.env.SSR) return 'dark'
+  try {
+    const stored = localStorage.getItem('theme')
+    if (stored === 'dark' || stored === 'light') return stored
+  } catch {}
+  // No choice made yet: follow the system.
+  return matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+}
+
+const theme = ref<Theme>(initialTheme())
+let sweeping = false
 
 export function useTheme() {
   watchEffect(() => {
@@ -12,46 +26,34 @@ export function useTheme() {
     const isDark = theme.value === 'dark'
     document.documentElement.dataset.theme = isDark ? '' : 'light'
     document.documentElement.classList.toggle('dark', isDark)
-    localStorage.setItem('theme', theme.value)
   })
 
-  /** Pass the click so the new theme grows from the button that was pressed. */
+  function apply(next: Theme) {
+    theme.value = next
+    try {
+      localStorage.setItem('theme', next)
+    } catch {}
+  }
+
+  /** Pass the click so the Pixel toggle sweeps out from the button that was pressed. */
   function toggle(event?: MouseEvent) {
-    const next = theme.value === 'dark' ? 'light' : 'dark'
+    const next: Theme = theme.value === 'dark' ? 'light' : 'dark'
+    if (import.meta.env.SSR || matchMedia('(prefers-reduced-motion: reduce)').matches) return apply(next)
+    if (sweeping) return
+    sweeping = true
 
-    if (
-      import.meta.env.SSR ||
-      !document.startViewTransition ||
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    ) {
-      theme.value = next
-      return
-    }
+    // Keyboard presses have no pointer position, so start from the button's centre.
+    const box = (event?.currentTarget as HTMLElement | null)?.getBoundingClientRect()
+    const origin = box
+      ? { x: box.left + box.width / 2, y: box.top + box.height / 2 }
+      : { x: window.innerWidth - 40, y: 40 }
 
-    // Read now: currentTarget is gone once the handler returns. The button's
-    // centre also works for keyboard presses, which have no pointer position.
-    const button = (event?.currentTarget as HTMLElement | null)?.getBoundingClientRect()
-    const x = button ? button.left + button.width / 2 : window.innerWidth - 40
-    const y = button ? button.top + button.height / 2 : 40
-    const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y))
-
-    // watchEffect flushes on nextTick, so the callback has to await it for the
-    // view transition to capture the palette after the swap.
-    const transition = document.startViewTransition(async () => {
-      theme.value = next
-      await nextTick()
-    })
-
-    // A rapid second toggle skips the in-flight transition; the theme still
-    // applies, so swallow the rejection rather than let it surface as uncaught.
-    transition.ready
-      .then(() => {
-        document.documentElement.animate(
-          { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
-          { duration: 560, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', pseudoElement: '::view-transition-new(root)' },
-        )
-      })
-      .catch(() => {})
+    pixelSweep(origin, PAGE_BG[next], () => {
+      apply(next)
+      // Apply now rather than on Vue's next tick, so the reveal shows the new theme.
+      document.documentElement.dataset.theme = next === 'dark' ? '' : 'light'
+      document.documentElement.classList.toggle('dark', next === 'dark')
+    }).finally(() => (sweeping = false))
   }
 
   return { theme, toggle }

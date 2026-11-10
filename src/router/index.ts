@@ -5,10 +5,17 @@ import NotFoundView from '@/features/not-found/NotFoundView.vue'
 import OSSRoadmap from '@/features/oss-roadmap/OSSRoadmap.vue'
 import type { RouteRecordRaw } from 'vue-router'
 
+declare module 'vue-router' {
+  interface RouteMeta {
+    /** Shown on the Panel transition while it covers the screen. */
+    label?: string
+  }
+}
+
 export const routes: RouteRecordRaw[] = [
-  { name: 'home', component: HomeView, path: '/' },
-  { name: 'Goals', component: OSSRoadmap, path: '/goals' },
-  { name: 'blog', component: BlogIndexView, path: '/blog' },
-  { name: 'blog-post', component: BlogPostView, path: '/blog/:slug' },
-  { name: 'not-found', component: NotFoundView, path: '/:pathMatch(.*)*' },
+  { name: 'home', component: HomeView, path: '/', meta: { label: 'Home' } },
+  { name: 'Goals', component: OSSRoadmap, path: '/goals', meta: { label: 'Goals' } },
+  { name: 'blog', component: BlogIndexView, path: '/blog', meta: { label: 'Writing' } },
+  { name: 'blog-post', component: BlogPostView, path: '/blog/:slug', meta: { label: 'Writing' } },
+  { name: 'not-found', component: NotFoundView, path: '/:pathMatch(.*)*', meta: { label: 'Lost' } },
 ]

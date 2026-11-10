@@ -28,8 +28,9 @@
       // or the hero snapping away when the app starts.
       ;(function () {
         var root = document.documentElement
-        var theme = 'dark'
-        try { theme = localStorage.getItem('theme') || 'dark' } catch (e) {}
+        // A stored choice wins; otherwise follow the system, as useTheme.ts does.
+        var theme = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+        try { theme = localStorage.getItem('theme') || theme } catch (e) {}
         root.dataset.theme = theme === 'light' ? 'light' : ''
         root.classList.toggle('dark', theme !== 'light')
 

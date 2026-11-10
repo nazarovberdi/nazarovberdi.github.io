@@ -39,7 +39,7 @@
         <span
           class="mt-auto pt-6 text-[12px] uppercase tracking-[0.08em] text-(--page-text) transition-transform duration-300 group-hover:translate-x-1"
         >
-          <HoverLabel label="Read entry" />
+          <SplitHover label="Read entry" />
         </span>
       </RouterLink>
       </div>
@@ -48,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import HoverLabel from '@/components/HoverLabel.vue'
+import SplitHover from '@/components/SplitHover.vue'
 
 import { RouterLink } from 'vue-router'
 

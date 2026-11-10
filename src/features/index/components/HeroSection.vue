@@ -22,7 +22,7 @@
             class="secondary-button hover-magnet group inline-flex items-center gap-2 px-5 py-[11px] text-[13px] transition-transform duration-300 hover:-translate-y-0.5"
           >
             <span class="hover-magnet-content inline-flex items-center gap-2">
-            <HoverLabel label="Browse GitHub" />
+            <SplitHover label="Browse GitHub" />
             <span
               aria-hidden="true"
               class="transition-transform duration-300 group-hover:translate-x-1"
@@ -34,7 +34,7 @@
             href="#work"
             class="hero-work-link body-muted inline-flex items-center gap-2 px-3 py-3 text-[13px]"
           >
-            <HoverLabel label="Explore my work" /><span aria-hidden="true">↓</span>
+            <SplitHover label="Explore my work" /><span aria-hidden="true">↓</span>
           </a>
         </div>
       </div>
@@ -62,7 +62,7 @@
 </template>
 
 <script setup lang="ts">
-import HoverLabel from '@/components/HoverLabel.vue'
+import SplitHover from '@/components/SplitHover.vue'
 
 import SignatureMark from './SignatureMark.vue'
 </script>

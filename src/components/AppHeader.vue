@@ -1,234 +1,193 @@
 <template>
   <header
-    class="site-header fixed top-0 right-0 left-0 z-50 flex h-[var(--header-height)] items-center border-b border-[var(--line)] px-5 sm:px-8"
+    class="site-header"
+    :class="{ 'is-hidden': hidden && !menuOpen, 'is-scrolled': scrolled }"
+    @focusin="hidden = false"
   >
-    <RouterLink
-      to="/"
-      class="mr-auto flex items-center gap-3"
-      aria-label="Nazarov Berdi — home"
-    >
-      <span
-        class="flex size-9 items-center justify-center bg-(--accent) font-mono text-[11px] font-medium text-(--button-primary-text)"
-        >NB</span
-      >
-      <span class="font-display text-[15px] font-semibold tracking-[-0.04em] text-[var(--page-text)]"
-        >Nazarov Berdi</span
-      >
-      <span class="eyebrow hidden text-[11px] uppercase tracking-[0.08em] sm:block">Frontend Engineer</span>
-    </RouterLink>
-
-    <nav
-      class="desktop-nav absolute left-1/2 hidden -translate-x-1/2 items-center gap-7 md:flex"
-    >
-      <RouterLink
-        to="/blog"
-        class="font-mono text-[11px] uppercase tracking-[0.09em] text-(--page-muted) transition-colors duration-150 hover:text-(--accent-bright)"
-      >
-        <HoverLabel label="Blog" />
+    <div class="site-header-inner">
+      <RouterLink to="/" class="site-logo font-display" aria-label="Nazarov Berdi, home">
+        <SplitHover label="Nazarov Berdi" />
       </RouterLink>
-    </nav>
 
-    <div class="ml-auto flex items-center gap-2">
-      <a
-        href="/resume/resume.pdf"
-        download
-        class="hidden items-center gap-1 border border-[var(--line)] px-3 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.08em] text-(--page-muted) transition-[color,border-color,scale] duration-150 hover:border-[var(--accent)] hover:text-[var(--accent-bright)] active:scale-[0.94] md:inline-flex"
-      >
-        CV ↓
-      </a>
+      <nav class="desktop-nav" aria-label="Main">
+        <RouterLink v-for="item in navItems" :key="item.label" v-slot="{ href, navigate }" :to="item.to" custom>
+          <a
+            :href="href"
+            class="nav-link"
+            :class="{ 'is-active': isActive(item) }"
+            :aria-current="isActive(item) ? (item.section ? 'location' : 'page') : undefined"
+            @click="onNavClick($event, item, navigate)"
+          >
+            <SplitHover :label="item.label" />
+          </a>
+        </RouterLink>
+      </nav>
 
-      <button
-        class="body-muted flex size-9 items-center justify-center border border-[var(--line)] transition-[color,border-color,scale] duration-150 hover:border-[var(--accent)] hover:text-[var(--accent-bright)] active:scale-[0.94]"
-        :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
-        @click="toggleTheme"
-      >
-        <svg
-          v-if="isDark"
-          xmlns="http://www.w3.org/2000/svg"
-          class="size-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="1.75"
-          aria-hidden="true"
+      <div class="header-actions">
+        <a href="/resume/resume.pdf" target="_blank" rel="noopener" class="nav-link max-md:hidden">
+          <SplitHover label="Résumé" /><span aria-hidden="true">↗</span>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Switch colour theme" @click="toggleTheme">
+          <svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" />
+            <path d="M12 3.75a8.25 8.25 0 0 1 0 16.5z" fill="currentColor" />
+          </svg>
+        </button>
+        <button
+          class="nav-link md:hidden"
+          type="button"
+          aria-controls="mobile-menu"
+          :aria-expanded="menuOpen"
+          @click="menuOpen = true"
         >
-          <circle cx="12" cy="12" r="4" />
-          <path
-            stroke-linecap="round"
-            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
-          />
-        </svg>
-        <svg
-          v-else
-          xmlns="http://www.w3.org/2000/svg"
-          class="size-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="1.75"
-          aria-hidden="true"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"
-          />
-        </svg>
-      </button>
-
-      <button
-        class="body-muted flex size-9 items-center justify-center border border-[var(--line)] transition-[color,border-color,scale] duration-150 hover:border-[var(--accent)] hover:text-[var(--accent-bright)] active:scale-[0.94] md:hidden"
-        aria-label="Open menu"
-        :aria-expanded="menuOpen"
-        @click="menuOpen = true"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="size-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="1.75"
-          aria-hidden="true"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M4 6h16M4 12h16M4 18h16"
-          />
-        </svg>
-      </button>
+          <SplitHover label="Menu" />
+        </button>
+      </div>
     </div>
   </header>
 
   <Transition name="mobile-menu">
     <div
       v-if="menuOpen"
-      class="mobile-menu-panel fixed inset-0 z-[60] flex flex-col backdrop-blur-xl md:hidden"
-      style="background: var(--panel-bg-strong)"
+      id="mobile-menu"
+      class="mobile-menu"
       role="dialog"
-      aria-label="Open menu"
+      aria-modal="true"
+      aria-label="Menu"
     >
-      <div
-        class="flex h-[var(--header-height)] shrink-0 items-center justify-end border-b px-6"
-        style="border-color: var(--line)"
-      >
-        <button
-          class="body-muted flex size-9 items-center justify-center border border-[var(--line)] transition-[color,border-color,scale] duration-150 hover:border-[var(--accent)] hover:text-[var(--accent-bright)] active:scale-[0.94]"
-          aria-label="Close menu"
-          @click="menuOpen = false"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="size-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="1.75"
-            aria-hidden="true"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
+      <div class="site-header-inner">
+        <span class="font-display text-[17px] font-semibold tracking-[-0.03em]">Nazarov Berdi</span>
+        <button ref="closeButton" class="nav-link" type="button" @click="menuOpen = false">
+          <SplitHover label="Close" />
         </button>
       </div>
 
-      <nav class="flex flex-1 flex-col justify-center gap-1 px-8">
+      <nav class="mobile-menu-nav" aria-label="Main">
         <RouterLink
-          to="/blog"
-          class="font-display leading-[1.05] tracking-[-0.06em] transition-colors duration-150 hover:text-[var(--accent)]"
-          style="font-size: clamp(52px, 14vw, 80px); color: var(--page-text)"
-          @click="menuOpen = false"
+          v-for="(item, i) in navItems"
+          :key="item.label"
+          v-slot="{ href, navigate }"
+          :to="item.to"
+          custom
         >
-          <HoverLabel label="Blog" />
+          <a :href="href" class="mobile-menu-link font-display" @click="onNavClick($event, item, navigate)">
+            <span class="mobile-menu-line" :style="{ '--i': i }">{{ item.label }}</span>
+          </a>
         </RouterLink>
       </nav>
 
-      <div class="flex items-center justify-end px-8 pb-10">
-        <div class="flex items-center gap-2">
-          <a
-            href="/resume/resume.pdf"
-            download
-            class="primary-button inline-flex items-center gap-2 px-5 py-3 text-[12px] uppercase tracking-[0.08em]"
-            @click="menuOpen = false"
-          >
-            CV ↓
-          </a>
-          <button
-            class="body-muted flex size-9 items-center justify-center border border-[var(--line)] transition-[color,border-color,scale] duration-150 hover:border-[var(--accent)] hover:text-[var(--accent-bright)] active:scale-[0.94]"
-            :aria-label="
-              isDark ? 'Switch to light mode' : 'Switch to dark mode'
-            "
-            @click="toggleTheme"
-          >
-            <svg
-              v-if="isDark"
-              xmlns="http://www.w3.org/2000/svg"
-              class="size-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="1.75"
-              aria-hidden="true"
-            >
-              <circle cx="12" cy="12" r="4" />
-              <path
-                stroke-linecap="round"
-                d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
-              />
-            </svg>
-            <svg
-              v-else
-              xmlns="http://www.w3.org/2000/svg"
-              class="size-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="1.75"
-              aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"
-              />
-            </svg>
-          </button>
-        </div>
+      <div class="mobile-menu-foot">
+        <a href="/resume/resume.pdf" target="_blank" rel="noopener" class="nav-link">Résumé ↗</a>
+        <a href="mailto:nazarov120100@gmail.com" class="nav-link">nazarov120100@gmail.com</a>
       </div>
     </div>
   </Transition>
 </template>
 
 <script setup lang="ts">
-import HoverLabel from './HoverLabel.vue';
+import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { RouterLink, useRoute, type RouteLocationRaw } from 'vue-router'
 
-import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
-import { RouterLink } from "vue-router";
+import { useTheme } from '@/composables/useTheme'
+import { scrollToSection, stopScroll } from '@/motion/smoothScroll'
 
-import { useTheme } from "../composables/useTheme";
+import SplitHover from './SplitHover.vue'
 
-const { toggle: toggleTheme, theme } = useTheme();
-
-const isDark = computed(() => theme.value === "dark");
-const menuOpen = ref(false);
-
-watch(menuOpen, (open) => {
-  if (import.meta.env.SSR) return;
-  document.body.style.overflow = open ? "hidden" : "";
-});
-
-function handleKeydown(e: KeyboardEvent): void {
-  if (e.key === "Escape") menuOpen.value = false;
+interface NavItem {
+  label: string
+  to: RouteLocationRaw
+  /** Home section this item scrolls to; absent for items that are pages. */
+  section?: string
 }
 
-onMounted(() => window.addEventListener("keydown", handleKeydown));
+const navItems: NavItem[] = [
+  { label: 'Work', to: { path: '/', hash: '#work' }, section: 'work' },
+  { label: 'About', to: { path: '/', hash: '#about' }, section: 'about' },
+  { label: 'Writing', to: '/blog' },
+  { label: 'Contact', to: { path: '/', hash: '#contact' }, section: 'contact' },
+]
+
+const route = useRoute()
+const { toggle: toggleTheme } = useTheme()
+
+const menuOpen = ref(false)
+const closeButton = ref<HTMLButtonElement>()
+const hidden = ref(false)
+const scrolled = ref(false)
+const activeSection = ref<string | null>(null)
+
+function isActive(item: NavItem): boolean {
+  if (item.section) return route.path === '/' && activeSection.value === item.section
+  return route.path.startsWith('/blog')
+}
+
+/** On the home page, sections are a glide away; elsewhere the router takes over. */
+function onNavClick(event: MouseEvent, item: NavItem, navigate: (e?: MouseEvent) => unknown) {
+  menuOpen.value = false
+  if (item.section && route.path === '/') {
+    event.preventDefault()
+    scrollToSection(`#${item.section}`)
+    return
+  }
+  navigate(event)
+}
+
+// Hides while reading down the page, returns the moment the visitor scrolls up.
+let lastY = 0
+let ticking = false
+function onScroll() {
+  if (ticking) return
+  ticking = true
+  requestAnimationFrame(() => {
+    const y = window.scrollY
+    scrolled.value = y > 8
+    if (y > lastY + 6 && y > 160) hidden.value = true
+    else if (y < lastY - 6) hidden.value = false
+    lastY = y
+    ticking = false
+  })
+}
+
+// Which home section is in the middle of the screen. Sections opt in with `data-section`.
+let spy: IntersectionObserver | undefined
+function watchSections() {
+  spy?.disconnect()
+  activeSection.value = null
+  if (route.path !== '/') return
+  spy = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) activeSection.value = (entry.target as HTMLElement).dataset.section ?? null
+      }
+    },
+    { rootMargin: '-45% 0px -50% 0px' },
+  )
+  document.querySelectorAll('[data-section]').forEach((el) => spy!.observe(el))
+}
+
+function onKeydown(event: KeyboardEvent) {
+  if (event.key === 'Escape') menuOpen.value = false
+}
+
+watch(menuOpen, async (open) => {
+  stopScroll(open)
+  if (open) {
+    await nextTick()
+    closeButton.value?.focus()
+  }
+})
+watch(() => route.path, () => nextTick(watchSections))
+
+onMounted(() => {
+  window.addEventListener('scroll', onScroll, { passive: true })
+  window.addEventListener('keydown', onKeydown)
+  watchSections()
+})
 
 onBeforeUnmount(() => {
-  window.removeEventListener("keydown", handleKeydown);
-  document.body.style.overflow = "";
-});
+  window.removeEventListener('scroll', onScroll)
+  window.removeEventListener('keydown', onKeydown)
+  spy?.disconnect()
+  stopScroll(false)
+})
 </script>
