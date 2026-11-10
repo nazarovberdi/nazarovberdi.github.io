@@ -5,63 +5,76 @@
 <title>Berdi Nazarov — Frontend Engineer</title>
 <meta name="author" content="Berdi Nazarov" />
 <meta name="description" content="CV of Berdi Nazarov, frontend engineer (TypeScript, Vue, React)." />
+<script>
+  // Two PDFs from one source (scripts/build-resume.sh): the public one on the site,
+  // and with ?private a copy that also carries the phone number and internal figures.
+  if (location.search.includes('private')) document.documentElement.classList.add('private')
+</script>
 <style>
   /* Same faces as the portfolio, loaded from node_modules so the PDF embeds real text. */
+  @font-face { font-family: "Bricolage Grotesque"; src: url("../node_modules/@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2") format("woff2"); font-weight: 200 800; }
   @font-face { font-family: "DM Sans"; src: url("../node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-opsz-normal.woff2") format("woff2"); font-weight: 100 1000; }
-  @font-face { font-family: "Space Grotesk"; src: url("../node_modules/@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2") format("woff2"); font-weight: 300 700; }
+  @font-face { font-family: "IBM Plex Mono"; src: url("../node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
 
   @page { size: A4; margin: 14mm 16mm; }
 
-  :root { --text: #16161a; --muted: #4a4a52; --line: #d9d7d0; --accent: #2f55c4; }
+  /* The site's light theme, printed: ink on white, signal orange for rules, its
+     darker shade (readable at small sizes) for accent text. */
+  :root { --text: #15130f; --muted: #57524a; --line: #dcd6cb; --accent: #ff4f1a; --accent-text: #b8340b; }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  body { color: var(--text); font: 10pt/1.45 "DM Sans", system-ui, sans-serif; }
+  body { color: var(--text); font: 9.8pt/1.45 "DM Sans", system-ui, sans-serif; }
   a { color: inherit; text-decoration: none; }
   strong { font-weight: 650; }
 
-  header { padding-bottom: 9pt; border-bottom: 1.5pt solid var(--text); }
-  h1 { font: 650 23pt/1 "Space Grotesk", sans-serif; }
-  h1 span { color: var(--accent); font-weight: 500; }
-  .meta { margin-top: 6pt; color: var(--muted); font-size: 9pt; }
-  .contact { margin-top: 2pt; font-size: 9pt; }
-  .contact a { color: var(--accent); }
-  .sep { color: var(--line); }
+  .private-only { display: none; }
+  html.private .private-only { display: inline; }
+
+  header { display: grid; grid-template-columns: 1fr auto; align-items: end; column-gap: 16pt; padding-bottom: 9pt; border-bottom: 2pt solid var(--accent); }
+  h1 { font: 700 27pt/.9 "Bricolage Grotesque", sans-serif; letter-spacing: -.035em; }
+  .role-title { grid-column: 2; grid-row: 1; justify-self: end; font: 400 8pt/1 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-text); }
+  .meta, .contact { grid-column: 1 / -1; font-size: 8.8pt; }
+  .meta { margin-top: 8pt; color: var(--muted); }
+  .contact { margin-top: 2pt; }
+  .contact a { color: var(--accent-text); }
+  .sep { color: var(--line); padding-inline: 2pt; }
   .item { white-space: nowrap; }
 
   section { margin-top: 11pt; }
-  h2 { font: 650 10pt/1 "Space Grotesk", sans-serif; text-transform: uppercase; color: var(--accent); padding-bottom: 4pt; border-bottom: 0.75pt solid var(--line); margin-bottom: 6pt; }
+  h2 { font: 400 7.8pt/1 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-text); padding-bottom: 4pt; border-bottom: .75pt solid var(--line); margin-bottom: 6pt; }
 
-  .role { text-align: justify; text-align-last: justify; }
-  .role > h3, .role > .dates { display: inline-block; text-align-last: auto; }
-  .role h3, .role .title { font: 600 10.5pt/1.3 "Space Grotesk", sans-serif; }
-  .role h3 em { font-style: normal; font-weight: 400; color: var(--muted); }
-  .dates { color: var(--muted); white-space: nowrap; }
+  .role { display: flex; justify-content: space-between; align-items: baseline; gap: 12pt; }
+  .role h3 { font: 650 10.5pt/1.3 "Bricolage Grotesque", sans-serif; letter-spacing: -.01em; }
+  .role h3 em { font: 400 9.5pt/1.3 "DM Sans", sans-serif; letter-spacing: 0; color: var(--muted); padding-left: 4pt; }
+  .dates { font: 400 8pt/1 "IBM Plex Mono", monospace; letter-spacing: .04em; color: var(--muted); white-space: nowrap; }
+  .dates a { color: var(--accent-text); }
 
   ul { margin-top: 3pt; padding-left: 11pt; }
   li { margin-top: 2.5pt; padding-left: 1pt; }
-  li::marker { color: var(--muted); }
-  .stack { margin-top: 4pt; color: var(--muted); }
+  li::marker { color: var(--accent); }
+  .stack { margin-top: 4pt; font: 400 8pt/1.4 "IBM Plex Mono", monospace; color: var(--muted); }
 
   .project + .project { margin-top: 6pt; }
   .project p { margin-top: 1.5pt; }
 
   dl { display: grid; grid-template-columns: 74pt 1fr; row-gap: 2.5pt; }
-  dt { font-weight: 600; }
+  dt { font: 400 8pt/1.6 "IBM Plex Mono", monospace; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
 </style>
 </head>
 <body>
   <header>
-    <h1>Berdi Nazarov <span>Frontend Engineer</span></h1>
-    <p class="meta"><span class="item">Ashgabat, Turkmenistan (UTC+5)</span> <span class="sep">|</span> <span class="item">Remote, full EU-hours overlap</span> <span class="sep">|</span> <span class="item">Available as a contractor</span> <span class="sep">|</span> <span class="item">Open to relocation</span></p>
+    <h1>Berdi Nazarov</h1>
+    <p class="role-title">Frontend Engineer</p>
+    <p class="meta"><span class="item">Ashgabat, Turkmenistan (UTC+5)</span><span class="sep">|</span><span class="item">Remote, full EU-hours overlap</span><span class="sep">|</span><span class="item">Available as a contractor</span><span class="sep">|</span><span class="item">Open to relocation</span></p>
     <p class="contact">
-      <span class="item"><a href="mailto:nazarov120100@gmail.com">nazarov120100@gmail.com</a></span> <span class="sep">|</span> <span class="item">+993 62 559305</span> <span class="sep">|</span> <span class="item"><a href="https://www.linkedin.com/in/berdi-nazarov/">linkedin.com/in/berdi-nazarov</a></span> <span class="sep">|</span> <span class="item"><a href="https://github.com/nazarovberdi">github.com/nazarovberdi</a></span> <span class="sep">|</span> <span class="item"><a href="https://nazarovberdi.github.io">nazarovberdi.github.io</a></span>
+      <span class="item"><a href="mailto:nazarov120100@gmail.com">nazarov120100@gmail.com</a></span><span class="private-only"><span class="sep">|</span><span class="item">+993 62 559305</span></span><span class="sep">|</span><span class="item"><a href="https://www.linkedin.com/in/berdi-nazarov/">linkedin.com/in/berdi-nazarov</a></span><span class="sep">|</span><span class="item"><a href="https://github.com/nazarovberdi">github.com/nazarovberdi</a></span><span class="sep">|</span><span class="item"><a href="https://nazarovberdi.github.io">nazarovberdi.github.io</a></span>
     </p>
   </header>
 
   <section>
     <h2>Summary</h2>
-    <p>Frontend engineer (TypeScript, Vue, React) with 4 years in production. Builds the internal tools a national railway runs on, and ships his own products end to end: an EPUB reader on Google Play and a paid invitation app.</p>
+    <p>Frontend engineer (TypeScript, Vue, React) with 4 years in production. Builds the frontend of Turkmenistan Railways' freight tariff system, and ships his own products end to end: an EPUB reader on Google Play and a paid invitation app.</p>
   </section>
 
   <section>
@@ -71,11 +84,11 @@
     </div>
     <ul>
       <li>Built the <strong>station-fees billing app</strong> as its main developer: per-wagon charges, printed bills, and overcharge and undercharge corrections, in Vue 3 and TypeScript.</li>
-      <li>Built most of the <strong>freight logistics workspace</strong> that replaced a legacy app for ~30 operators: a spreadsheet-style wagon table with keyboard navigation, autosave, duplicate checks and live price calculation.</li>
-      <li>Built the touchscreen Vue UI of a <strong>Tauri kiosk app</strong> on station payment terminals, which <strong>handled ~50k payments a month</strong> (<span class="item">2024–2025</span>; later rewritten natively in Rust).</li>
-      <li>Work in a team of 10–20 developers, alongside a Go backend team.</li>
+      <li>Built most of the <strong>freight logistics workspace</strong> that replaced a legacy app<span class="private-only"> for ~30 operators</span>: a spreadsheet-style wagon table with keyboard navigation, autosave, duplicate checks and live price calculation.</li>
+      <li>Built the touchscreen Vue UI of a <strong>Tauri kiosk app</strong> on station payment terminals<span class="private-only">, which <strong>handled ~50k payments a month</strong></span> (<span class="item">2024–2025</span>; later rewritten natively in Rust).</li>
+      <li>Work in a small frontend team alongside a Go backend team.</li>
     </ul>
-    <p class="stack">Vue 3, TypeScript, Pinia, TanStack Table, Tailwind CSS, shadcn-vue, Tauri</p>
+    <p class="stack">Vue 3 · TypeScript · Pinia · TanStack Table · Tailwind CSS · shadcn-vue · Tauri</p>
   </section>
 
   <section>

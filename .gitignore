@@ -37,3 +37,6 @@ __screenshots__/
 
 # Vite
 *.timestamp-*-*.mjs
+
+# Résumé with phone number and internal figures: sent directly, never published
+resume/private/
