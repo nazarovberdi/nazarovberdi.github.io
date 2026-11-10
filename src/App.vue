@@ -8,10 +8,14 @@ import { onMounted } from 'vue'
 import AppHeader from './components/AppHeader.vue'
 import PanelTransition from './components/PanelTransition.vue'
 import { useTheme } from './composables/useTheme'
+import { markMotionReady } from './motion/reveal'
 import { startSmoothScroll } from './motion/smoothScroll'
 
 useTheme()
-onMounted(startSmoothScroll)
+onMounted(() => {
+  startSmoothScroll()
+  markMotionReady()
+})
 
 // The hero headline and body text are on screen first; fetch them before the CSS asks.
 useHead({

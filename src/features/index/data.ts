@@ -1,105 +1,143 @@
 export interface SocialProfile {
-  label: string;
-  handle: string;
-  url: string;
+  label: string
+  handle: string
+  url: string
 }
+
+/** See GLOSSARY.md: Client work, Product, Open source. */
+export type ProjectKind = 'client' | 'product' | 'open-source'
 
 export interface Project {
-  name: string;
-  repoSlug?: string;
-  owner: string;
-  description: string;
-  language: string;
-  /** The card's own accent: its number and hover bar. */
-  color: string;
-  stars: number | null;
-  /** Public repo link. Omitted for closed-source work, which hides "Read source". */
-  url?: string;
-  liveUrl: string | null;
+  name: string
+  kind: ProjectKind
+  /** One line on what it is. */
+  summary: string
+  /** One line on what came of it, shown on its Preview. */
+  outcome?: string
+  /** Who it was built for. Client work only. */
+  client?: string
+  year: string
+  stack: readonly string[]
+  /** Colour of the block on its Poster. */
+  color: string
+  /** Screenshot under /public/images/work. Without one, the Preview is a Poster. */
+  preview?: string
+  liveUrl?: string
   /** App store listing, for projects that ship as an installable app. */
-  storeUrl?: string;
+  storeUrl?: string
+  /** Public repo. */
+  repoUrl?: string
 }
 
-export const socialProfiles: readonly SocialProfile[] = [
-  {
-    label: "LinkedIn",
-    handle: "berdi-nazarov",
-    url: "https://www.linkedin.com/in/berdi-nazarov/",
-  },
-  {
-    label: "X",
-    handle: "@berdi_nazarov",
-    url: "https://x.com/berdi_nazarov",
-  },
-  {
-    label: "GitHub",
-    handle: "nazarovberdi",
-    url: "https://github.com/nazarovberdi",
-  },
-] as const;
+export const email = 'nazarov120100@gmail.com'
 
-export const coreSkills = [
-  "Vue 3",
-  "React",
-  "Nuxt",
-  "Vite",
-  "TypeScript",
-  "JavaScript",
-  "Tailwind CSS",
-  "Vue Router",
-  "GitHub",
-] as const;
+export const socialProfiles: readonly SocialProfile[] = [
+  { label: 'LinkedIn', handle: 'berdi-nazarov', url: 'https://www.linkedin.com/in/berdi-nazarov/' },
+  { label: 'X', handle: '@berdi_nazarov', url: 'https://x.com/berdi_nazarov' },
+  { label: 'GitHub', handle: 'nazarovberdi', url: 'https://github.com/nazarovberdi' },
+]
+
+export const resumeUrl = '/resume/resume.pdf'
+
+/** Grouped as on the résumé. */
+export const skillGroups: ReadonlyArray<{ label: string; skills: readonly string[] }> = [
+  { label: 'Languages', skills: ['TypeScript', 'JavaScript', 'HTML', 'CSS'] },
+  { label: 'Frameworks', skills: ['Vue 3', 'Nuxt', 'React', 'Next.js'] },
+  { label: 'State & data', skills: ['Pinia', 'Zustand', 'Redux Toolkit', 'TanStack Table', 'Supabase'] },
+  { label: 'UI', skills: ['Tailwind CSS', 'shadcn-vue', 'Motion', 'GSAP', 'Accessibility (WCAG)'] },
+  { label: 'Tools', skills: ['Vite', 'Tauri', 'Git'] },
+]
+
+const railways = 'Turkmenistan Railways'
 
 export const projects: readonly Project[] = [
   {
-    name: "Lyne",
-    owner: "nazarovberdi",
-    description: "Cross-device EPUB reader with synced progress.",
-    language: "TypeScript",
-    color: "#3178c6",
-    stars: null,
-    liveUrl: "https://lyne.page",
-    storeUrl:
-      "https://play.google.com/store/apps/details?id=com.enjoyablereader",
+    name: 'Station Fees',
+    kind: 'client',
+    client: railways,
+    summary: 'Billing for per-wagon station charges, printed bills and corrections.',
+    outcome: 'Main developer',
+    year: '2022 – now',
+    stack: ['Vue 3', 'TypeScript'],
+    color: '#ff4f1a',
   },
   {
-    name: "Bileje",
-    owner: "nazarovberdi",
-    description: "Playful date invitations, sent as a link.",
-    language: "TypeScript",
-    color: "#e0457b",
-    stars: null,
-    liveUrl: "https://bileje.biz",
+    name: 'Freight Workspace',
+    kind: 'client',
+    client: railways,
+    summary: 'A spreadsheet-style wagon table that replaced a legacy app.',
+    outcome: 'Used by ~30 operators',
+    year: '2022 – now',
+    stack: ['Vue 3', 'TanStack Table'],
+    color: '#3d7bff',
   },
   {
-    name: "date-fns-locale-tk",
-    owner: "nazarovberdi",
-    description: "Turkmen locale for date-fns.",
-    language: "JavaScript",
-    color: "#f1e05a",
-    stars: 2,
-    url: "https://github.com/nazarovberdi/date-fns-locale-tk",
-    liveUrl: null,
+    name: 'Payment Kiosk',
+    kind: 'client',
+    client: railways,
+    summary: 'Touchscreen UI for the payment terminals in stations.',
+    outcome: '~50k payments a month',
+    year: '2024 – 25',
+    stack: ['Vue 3', 'Tauri'],
+    color: '#1fb57a',
   },
   {
-    name: "weather-wise",
-    owner: "nazarovberdi",
-    description: "Vue weather app on Open-Meteo.",
-    language: "Vue",
-    color: "#41b883",
-    stars: null,
-    url: "https://github.com/nazarovberdi/weather-wise",
-    liveUrl: "https://weather-wize.vercel.app",
+    name: 'Lyne',
+    kind: 'product',
+    summary: 'Cross-device EPUB reader that syncs your exact reading position.',
+    outcome: '100+ installs on Google Play',
+    year: '2026',
+    stack: ['React', 'Supabase', 'Kotlin'],
+    color: '#3178c6',
+    liveUrl: 'https://lyne.page',
+    storeUrl: 'https://play.google.com/store/apps/details?id=com.enjoyablereader',
   },
   {
-    name: "Physicist Explorer",
-    repoSlug: "Physicst-Explorer",
-    owner: "nazarovberdi",
-    description: "Offline physics formulas and unit converter.",
-    language: "TypeScript",
-    color: "#8b5cf6",
-    stars: 1,
-    url: "https://github.com/nazarovberdi/Physicst-Explorer",
-    liveUrl: null,
+    name: 'Bileje',
+    kind: 'product',
+    summary: 'Playful date invitations, sent as a link.',
+    outcome: 'First paying customer',
+    year: '2026',
+    stack: ['React 19', 'Motion', 'Supabase'],
+    color: '#e0457b',
+    liveUrl: 'https://bileje.biz',
   },
-] as const;
+  {
+    name: 'date-fns-locale-tk',
+    kind: 'open-source',
+    summary: 'Turkmen locale for date-fns.',
+    outcome: 'Proposed upstream, PR #3845',
+    year: '2024',
+    stack: ['JavaScript'],
+    color: '#f1e05a',
+    repoUrl: 'https://github.com/nazarovberdi/date-fns-locale-tk',
+  },
+  {
+    name: 'weather-wise',
+    kind: 'open-source',
+    summary: 'Vue weather app on Open-Meteo.',
+    year: '2025',
+    stack: ['Vue'],
+    color: '#41b883',
+    liveUrl: 'https://weather-wize.vercel.app',
+    repoUrl: 'https://github.com/nazarovberdi/weather-wise',
+  },
+  {
+    name: 'Physicist Explorer',
+    kind: 'open-source',
+    summary: 'Offline physics formulas and a unit converter.',
+    year: '2024',
+    stack: ['TypeScript'],
+    color: '#8b5cf6',
+    repoUrl: 'https://github.com/nazarovberdi/Physicst-Explorer',
+  },
+]
+
+export const kindLabel: Record<ProjectKind, string> = {
+  client: 'Client work',
+  product: 'Product',
+  'open-source': 'Open source',
+}
+
+/** Where a Project row leads: the live site, else the code. Client work leads nowhere. */
+export const projectHref = (p: Project): string | undefined => p.liveUrl ?? p.repoUrl

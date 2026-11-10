@@ -1,5 +1,6 @@
 <template>
-  <span ref="root" class="hero-signature" aria-hidden="true" v-html="signatureRaw" />
+  <!-- Draws itself once an ancestor gets `is-signing` (see main.css). -->
+  <span ref="root" class="signature" aria-hidden="true" v-html="signatureRaw" />
 </template>
 
 <script setup lang="ts">

@@ -34,14 +34,13 @@
         root.dataset.theme = theme === 'light' ? 'light' : ''
         root.classList.toggle('dark', theme !== 'light')
 
-        // Hold the hero for its intro. If the app is slow, show it as is and skip the intro.
-        if (location.pathname !== '/' || !matchMedia('(prefers-reduced-motion: no-preference)').matches) return
-        root.classList.add('intro-pending')
+        // `motion` lets reveals start hidden (see src/motion/reveal.ts). If the app
+        // has not started within 2.5s, drop it so the page is never left blank.
+        if (!matchMedia('(prefers-reduced-motion: no-preference)').matches) return
+        root.classList.add('motion')
         setTimeout(function () {
-          if (!root.classList.contains('intro-pending')) return
-          root.classList.remove('intro-pending')
-          root.dataset.introSkip = ''
-        }, 1000)
+          if (!root.classList.contains('motion-ready')) root.classList.remove('motion')
+        }, 2500)
       })()
     </script>
   </head>
