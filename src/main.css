@@ -286,6 +286,24 @@ a, button { -webkit-tap-highlight-color: transparent; }
     font-weight: 700; line-height: .86; letter-spacing: -.055em;
   }
   .hero-name .line:last-child { align-self: flex-end; }
+  /* Paint reveal (src/motion/paintName.ts): under html.motion the name first shows
+     as an outline sketch; paint canvases sit behind each line, then the real text
+     fills in over them once .is-painted lands. */
+  .hero-name { position: relative; }
+  .hero-b { color: var(--accent-bright); }
+  .paint-name .line > span { position: relative; z-index: 0; }
+  .paint-canvas { position: absolute; z-index: -1; pointer-events: none; }
+  .motion .paint-name :is(.line > span, .hero-b) {
+    -webkit-text-stroke: max(1px, .011em) transparent;
+    transition: color 480ms var(--ease-out), -webkit-text-stroke-color 480ms var(--ease-out);
+  }
+  /* A faint tint, not transparent: Chrome skips invisible text for LCP, so a
+     clear fill would push the page's largest paint back to when the name fills in. */
+  .motion .paint-name:not(.is-painted) :is(.line > span, .hero-b) {
+    color: color-mix(in srgb, var(--page-text) 5%, transparent);
+    -webkit-text-stroke-color: color-mix(in srgb, var(--page-text) 55%, transparent);
+  }
+  .motion .paint-name:not(.is-painted) .line .hero-b { -webkit-text-stroke-color: var(--accent-bright); }
   .hero-foot {
     display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) auto; align-items: end; gap: 24px 48px;
     margin-top: clamp(28px, 4vw, 56px); padding-top: 20px; border-top: 1px solid var(--line);

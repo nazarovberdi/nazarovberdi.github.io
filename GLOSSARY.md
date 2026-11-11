@@ -62,6 +62,10 @@ _Avoid_: Wipe, clip animation
 A solid panel that sweeps across the screen to hide one page and uncover the next.
 _Avoid_: Page wipe, route animation
 
+**Paint reveal**:
+The hero name, sketched as an outline on load and then painted in by hand: orange underpainting, loose brush, then palette knife, until the real text fills in.
+_Avoid_: Brush animation, paint effect
+
 **Pixel toggle**:
 The theme switch, where the screen dissolves through a grid of blocks into the other theme.
 _Avoid_: Pixel transition (that name is for page changes, which this site does not use)
