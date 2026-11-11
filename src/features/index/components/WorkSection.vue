@@ -32,6 +32,9 @@
           </p>
           <p class="work-links meta-label">
             <span>{{ project.stack.join(' · ') }}</span>
+            <RouterLink v-if="project.caseStudy" :to="`/blog/${project.caseStudy}`">
+              <SplitHover label="Case study" />→
+            </RouterLink>
             <a v-if="project.storeUrl" :href="project.storeUrl" target="_blank" rel="noopener">
               <SplitHover label="Google Play" />↗
             </a>
@@ -64,6 +67,7 @@
 
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { RouterLink } from 'vue-router'
 
 import SplitHover from '@/components/SplitHover.vue'
 
