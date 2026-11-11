@@ -5,8 +5,8 @@
       class="hero-name line-mask line-intro paint-name font-display"
       :class="{ 'is-painted': painted }"
     >
-      <span class="line"><span>Nazarov</span></span>
-      <span class="line" style="--line: 1"><span><span class="hero-b">B</span>erdi</span></span>
+      <span class="line"><span><span class="hero-b">B</span>erdi</span></span>
+      <span class="line" style="--line: 1"><span>Nazarov</span></span>
     </h1>
 
     <div v-reveal class="hero-foot reveal-group">

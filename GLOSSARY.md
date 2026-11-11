@@ -1,6 +1,6 @@
 # Portfolio
 
-The personal site of Nazarov Berdi, a frontend engineer. It exists to get him hired: the content shows his work, and the motion itself is proof of craft.
+The personal site of Berdi Nazarov, a frontend engineer. It exists to get him hired: the content shows his work, and the motion itself is proof of craft.
 
 ## Content
 
@@ -39,6 +39,10 @@ _Avoid_: Toolbox, bio section, skills section
 **Writing**:
 The articles published on the site, and the section that lists them.
 _Avoid_: Blog (in copy; it survives only in URLs), posts, articles section
+
+**Case study**:
+A piece of Writing about one Project: the problem, the decisions and what Berdi would change. Its Work row links to it.
+_Avoid_: Write-up, deep dive, project page
 
 **Contact footer**:
 The closing block with the email and social links, uncovered from beneath the page as it ends.

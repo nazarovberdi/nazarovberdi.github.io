@@ -12,7 +12,7 @@
       <figure v-reveal class="about-portrait mask-reveal">
         <img
           src="/images/berdi.jpg"
-          alt="Portrait of Nazarov Berdi"
+          alt="Portrait of Berdi Nazarov"
           width="1060"
           height="855"
           loading="lazy"

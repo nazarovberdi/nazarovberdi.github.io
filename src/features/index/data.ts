@@ -25,6 +25,8 @@ export interface Project {
   storeUrl?: string
   /** Public repo. */
   repoUrl?: string
+  /** Slug of its Case study in Writing. */
+  caseStudy?: string
 }
 
 export const email = 'nazarov120100@gmail.com'
@@ -58,6 +60,7 @@ export const projects: readonly Project[] = [
     preview: '/images/work/lyne.webp',
     liveUrl: 'https://lyne.page',
     storeUrl: 'https://play.google.com/store/apps/details?id=com.enjoyablereader',
+    caseStudy: 'how-lyne-resumes-on-the-exact-line',
   },
   {
     name: 'Bileje',
@@ -69,6 +72,7 @@ export const projects: readonly Project[] = [
     color: '#e0457b',
     preview: '/images/work/bileje.webp',
     liveUrl: 'https://bileje.biz',
+    caseStudy: 'bileje-paid-links-without-a-checkout',
   },
   {
     name: 'date-fns-locale-tk',
@@ -79,26 +83,6 @@ export const projects: readonly Project[] = [
     stack: ['JavaScript'],
     color: '#f1e05a',
     repoUrl: 'https://github.com/nazarovberdi/date-fns-locale-tk',
-  },
-  {
-    name: 'weather-wise',
-    kind: 'open-source',
-    summary: 'Vue weather app on Open-Meteo.',
-    year: '2025',
-    stack: ['Vue'],
-    color: '#41b883',
-    preview: '/images/work/weather-wise.webp',
-    liveUrl: 'https://weather-wize.vercel.app',
-    repoUrl: 'https://github.com/nazarovberdi/weather-wise',
-  },
-  {
-    name: 'Physicist Explorer',
-    kind: 'open-source',
-    summary: 'Offline physics formulas and a unit converter.',
-    year: '2024',
-    stack: ['TypeScript'],
-    color: '#8b5cf6',
-    repoUrl: 'https://github.com/nazarovberdi/Physicst-Explorer',
   },
 ]
 
