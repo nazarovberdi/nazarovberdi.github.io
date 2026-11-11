@@ -9,7 +9,7 @@ interface PageMeta {
   image?: string;
 }
 
-const SITE_NAME = "Nazarov Berdi";
+const SITE_NAME = "Berdi Nazarov";
 const SITE_URL = "https://nazarovberdi.github.io";
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 

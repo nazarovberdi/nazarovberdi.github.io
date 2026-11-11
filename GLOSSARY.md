@@ -1,6 +1,6 @@
 # Portfolio
 
-The personal site of Nazarov Berdi, a frontend engineer. It exists to get him hired: the content shows his work, and the motion itself is proof of craft.
+The personal site of Berdi Nazarov, a frontend engineer. It exists to get him hired: the content shows his work, and the motion itself is proof of craft.
 
 ## Content
 

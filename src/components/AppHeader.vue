@@ -5,8 +5,8 @@
     @focusin="hidden = false"
   >
     <div class="site-header-inner">
-      <RouterLink to="/" class="site-logo font-display" aria-label="Nazarov Berdi, home">
-        <SplitHover label="Nazarov Berdi" />
+      <RouterLink to="/" class="site-logo font-display" aria-label="Berdi Nazarov, home">
+        <SplitHover label="Berdi Nazarov" />
       </RouterLink>
 
       <nav class="desktop-nav" aria-label="Main">
@@ -56,7 +56,7 @@
       aria-label="Menu"
     >
       <div class="site-header-inner">
-        <span class="font-display text-[17px] font-semibold tracking-[-0.03em]">Nazarov Berdi</span>
+        <span class="font-display text-[17px] font-semibold tracking-[-0.03em]">Berdi Nazarov</span>
         <button ref="closeButton" class="nav-link" type="button" @click="menuOpen = false">
           <SplitHover label="Close" />
         </button>

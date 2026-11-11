@@ -31,7 +31,7 @@
       </ul>
 
       <div class="contact-bar meta-label">
-        <span>© {{ year }} Nazarov Berdi</span>
+        <span>© {{ year }} Berdi Nazarov</span>
         <span>Ashgabat<template v-if="time">, {{ time }}</template> (UTC+5)</span>
       </div>
 

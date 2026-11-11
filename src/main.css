@@ -277,7 +277,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
     font-size: calc((min(100vw, var(--main-width)) - 2 * var(--gutter)) / 3.82);
     font-weight: 700; line-height: .86; letter-spacing: -.055em;
   }
-  .hero-name .line:last-child { align-self: flex-end; }
   .hero-foot {
     display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) auto; align-items: end; gap: 24px 48px;
     margin-top: clamp(28px, 4vw, 56px); padding-top: 20px; border-top: 1px solid var(--line);

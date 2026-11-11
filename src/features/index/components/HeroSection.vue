@@ -1,8 +1,8 @@
 <template>
   <section class="hero">
     <h1 class="hero-name line-mask line-intro font-display">
-      <span class="line"><span>Nazarov</span></span>
-      <span class="line" style="--line: 1"><span>Berdi</span></span>
+      <span class="line"><span>Berdi</span></span>
+      <span class="line" style="--line: 1"><span>Nazarov</span></span>
     </h1>
 
     <div v-reveal class="hero-foot reveal-group">
