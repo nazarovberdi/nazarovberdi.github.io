@@ -33,7 +33,6 @@
       <div class="contact-bar meta-label">
         <span>© {{ year }} Nazarov Berdi</span>
         <span>Ashgabat<template v-if="time">, {{ time }}</template> (UTC+5)</span>
-        <RouterLink to="/goals" class="nav-link"><SplitHover label="Private learning roadmap" />→</RouterLink>
       </div>
 
       <SignatureMark />
@@ -43,7 +42,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { RouterLink } from 'vue-router'
 
 import SplitHover from '@/components/SplitHover.vue'
 import { useLocalTime } from '@/composables/useLocalTime'

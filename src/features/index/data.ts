@@ -80,26 +80,6 @@ export const projects: readonly Project[] = [
     color: '#f1e05a',
     repoUrl: 'https://github.com/nazarovberdi/date-fns-locale-tk',
   },
-  {
-    name: 'weather-wise',
-    kind: 'open-source',
-    summary: 'Vue weather app on Open-Meteo.',
-    year: '2025',
-    stack: ['Vue'],
-    color: '#41b883',
-    preview: '/images/work/weather-wise.webp',
-    liveUrl: 'https://weather-wize.vercel.app',
-    repoUrl: 'https://github.com/nazarovberdi/weather-wise',
-  },
-  {
-    name: 'Physicist Explorer',
-    kind: 'open-source',
-    summary: 'Offline physics formulas and a unit converter.',
-    year: '2024',
-    stack: ['TypeScript'],
-    color: '#8b5cf6',
-    repoUrl: 'https://github.com/nazarovberdi/Physicst-Explorer',
-  },
 ]
 
 export const kindLabel: Record<ProjectKind, string> = {

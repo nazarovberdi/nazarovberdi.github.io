@@ -10,7 +10,6 @@ declare module 'vue-router' {
 
 export const routes: RouteRecordRaw[] = [
   { name: 'home', component: HomeView, path: '/', meta: { label: 'Home' } },
-  { name: 'Goals', component: () => import('@/features/oss-roadmap/OSSRoadmap.vue'), path: '/goals', meta: { label: 'Goals' } },
   { name: 'blog', component: () => import('@/features/blog/BlogIndexView.vue'), path: '/blog', meta: { label: 'Writing' } },
   { name: 'blog-post', component: () => import('@/features/blog/BlogPostView.vue'), path: '/blog/:slug', meta: { label: 'Writing' } },
   { name: 'not-found', component: () => import('@/features/not-found/NotFoundView.vue'), path: '/:pathMatch(.*)*', meta: { label: 'Lost' } },

@@ -75,14 +75,6 @@ body {
 
 a, button { -webkit-tap-highlight-color: transparent; }
 
-/* /goals keeps its own design; these are the only old classes it still uses. */
-.eyebrow { color: var(--page-soft-text); font-family: var(--font-mono); }
-.blog-page { min-height: 100vh; background-color: var(--page-bg); color: var(--page-text); }
-
-/* Roadmap checkbox dot — matches the 150ms the surrounding ring already uses. */
-.check-enter-from { opacity: 0; transform: scale(0.4); }
-.check-enter-active { transition: opacity 150ms var(--ease-out), transform 150ms var(--ease-out); }
-
 
 /* Article text: a long-form reading column. */
 .blog-prose { min-width: 0; max-width: 68ch; font-size: 18px; line-height: 1.75; overflow-wrap: anywhere; color: color-mix(in srgb, var(--page-text) 88%, var(--page-bg)); }
@@ -407,7 +399,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
   .contact-email-copy:hover { color: var(--accent-bright); }
   .contact-links { display: flex; flex-wrap: wrap; gap: 8px 32px; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); }
   .contact-bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 24px; margin-top: 28px; }
-  .contact-bar .nav-link { font-size: 11.5px; }
 
   .signature { position: absolute; top: clamp(64px, 9vw, 112px); right: var(--gutter); width: clamp(110px, 13vw, 190px); color: var(--accent-bright); }
   .signature svg { width: 100%; height: auto; }
