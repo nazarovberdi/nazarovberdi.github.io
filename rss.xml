@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Nazarov Berdi — Writing</title>
+    <title>Berdi Nazarov — Writing</title>
     <link>https://nazarovberdi.github.io</link>
     <description>Thoughts on frontend craft, the Vue / Vite ecosystem, and developer tooling.</description>
     <language>en</language>
     <atom:link href="https://nazarovberdi.github.io/rss.xml" rel="self" type="application/rss+xml" />
     
+  <item>
+    <title>Bileje, paid invitations with no sign-up and no checkout</title>
+    <link>https://nazarovberdi.github.io/blog/bileje-paid-links-without-a-checkout</link>
+    <description>Three decisions behind Bileje's paid links.</description>
+    <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://nazarovberdi.github.io/blog/bileje-paid-links-without-a-checkout</guid>
+  </item>
+  <item>
+    <title>How Lyne resumes a book on the exact line</title>
+    <link>https://nazarovberdi.github.io/blog/how-lyne-resumes-on-the-exact-line</link>
+    <description>Three decisions behind Lyne's position sync.</description>
+    <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://nazarovberdi.github.io/blog/how-lyne-resumes-on-the-exact-line</guid>
+  </item>
   <item>
     <title>Using ESLint as linter and formatter</title>
     <link>https://nazarovberdi.github.io/blog/using-eslint-as-linter-formatter</link>
@@ -20,13 +34,6 @@
     <description>A Vue 3 and TypeScript setup for Zed.</description>
     <pubDate>Thu, 30 Apr 2026 00:00:00 GMT</pubDate>
     <guid isPermaLink="true">https://nazarovberdi.github.io/blog/using-zed-editor-for-vue-js</guid>
-  </item>
-  <item>
-    <title>ai app engineer roadmap</title>
-    <link>https://nazarovberdi.github.io/blog/ai-app-engineer-roadmap</link>
-    <description>A five-year path into AI engineering.</description>
-    <pubDate>Thu, 01 Jan 2026 00:00:00 GMT</pubDate>
-    <guid isPermaLink="true">https://nazarovberdi.github.io/blog/ai-app-engineer-roadmap</guid>
   </item>
   </channel>
 </rss>
